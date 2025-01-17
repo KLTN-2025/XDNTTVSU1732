@@ -16,33 +16,29 @@
                 <li class="nav-item">
                     <router-link to="/admin/danh-muc">
                         <a class="nav-link" href="/admin/danh-muc">
-                            <div class="parent-icon"><i class='bx bx-cookie'></i>
+                            <div class="parent-icon"><i class="fa-solid fa-list"></i>
                             </div>
                             <div class="menu-title">Danh Mục</div>
                         </a>
                     </router-link>
                 </li>
-                <li class="nav-item dropdown">
-                    <a href="javascript:;" class="nav-link dropdown-toggle dropdown-toggle-nocaret"
-                        data-bs-toggle="dropdown">
-                        <div class="parent-icon"><i class='bx bx-cart'></i>
-                        </div>
-                        <div class="menu-title">Bán Sách</div>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <router-link to="/admin/sach">
-                                <a class="dropdown-item" href="/admin/sach"><i
-                                        class="bx bx-right-arrow-alt"></i>Sách</a>
-                            </router-link>
-                        </li>
-                        <li>
-                            <router-link to="/admin/tac-gia">
-                                <a class="dropdown-item" href="/admin/tac-gia"><i class="bx bx-right-arrow-alt"></i>Tác
-                                    Giả</a>
-                            </router-link>
-                        </li>
-                    </ul>
+                <li class="nav-item">
+                    <router-link to="/admin/sach">
+                        <a class="nav-link" href="/admin/sach">
+                            <div class="parent-icon"><i class="fa-solid fa-book-open"></i>
+                            </div>
+                            <div class="menu-title">Sách</div>
+                        </a>
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link to="/admin/tac-gia">
+                        <a class="nav-link" href="/admin/tac-gia">
+                            <div class="parent-icon"><i class="fa-solid fa-user-pen"></i>
+                            </div>
+                            <div class="menu-title">Tác Giả</div>
+                        </a>
+                    </router-link>
                 </li>
             </ul>
         </nav>

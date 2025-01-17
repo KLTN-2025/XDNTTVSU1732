@@ -12,7 +12,7 @@
         </div>
         <nav class="navbar navbar-expand-xl w-100">
             <ul class="navbar-nav justify-content-start flex-grow-1 gap-1">
-                <li class="nav-item dropdown">
+                <!-- <li class="nav-item dropdown">
                     <a href="javascript:;" class="nav-link dropdown-toggle dropdown-toggle-nocaret"
                         data-bs-toggle="dropdown">
                         <div class="parent-icon"><i class='bx bx-home-circle'></i>
@@ -29,13 +29,15 @@
                                     class="bx bx-right-arrow-alt"></i>Graphical</a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
                 <li class="nav-item">
-                    <a class="nav-link" href="widgets.html">
-                        <div class="parent-icon"><i class='bx bx-cookie'></i>
-                        </div>
-                        <div class="menu-title">Widgets</div>
-                    </a>
+                    <router-link to="/">
+                        <a class="nav-link" href="/">
+                            <div class="parent-icon"><i class="fa-solid fa-house"></i>
+                            </div>
+                            <div class="menu-title">Home</div>
+                        </a>
+                    </router-link>
                 </li>
             </ul>
         </nav>
