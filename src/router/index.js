@@ -20,6 +20,11 @@ const routes = [
         component: () => import("../components/Admin/TacGia/index.vue"),
         beforeEnter: checkAdminLogin,
       },
+      {
+        path: "nhan-vien",
+        component: () => import("../components/Admin/NhanVien/index.vue"),
+        beforeEnter: checkAdminLogin,
+      },
     ],
   },
 

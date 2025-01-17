@@ -3,7 +3,7 @@
         <div class="col-lg-4">
             <div class="card border-primary border-top border-3 border-0">
                 <div class="card-header">
-                    <h5 class="mt-2">THÊM MỚI DANH MỤC</h5>
+                    <h6 class="mt-2"><b>THÊM MỚI DANH MỤC</b></h6>
                 </div>
                 <div class="card-body">
                     <div class="mb-2">
@@ -13,16 +13,6 @@
                     <div class="mb-2">
                         <label>Slug Danh Mục</label>
                         <input v-model="create_danh_muc.slug_danh_muc" type="text" class="form-control mt-2" />
-                    </div>
-                    <div class="mb-2">
-                        <label>Hình Ảnh</label>
-                        <!-- <input v-model="create_danh_muc.hinh_anh" type="text" class="form-control mt-2" /> -->
-                        <input type="file" class="form-control" accept="image/*" v-on:change="loadAnhTuLocal($event)"
-                            ref="inputFile">
-                    </div>
-                    <div class="mb-2 text-center">
-                        <img v-if="xem_truoc" style="width: 150px; height: 150px" v-bind:src="xem_truoc" alt=""
-                            class="img-fluid">
                     </div>
                     <div class="mb-2">
                         <label>Danh Mục Cha</label>
@@ -53,7 +43,7 @@
         <div class="col-lg-8">
             <div class="card border-primary border-top border-3 border-0">
                 <div class="card-header">
-                    <h5 class="mt-2">DANH SÁCH DANH MỤC</h5>
+                    <h6 class="mt-2"><b>DANH SÁCH DANH MỤC</b></h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -67,7 +57,6 @@
                                     <th class="align-middle text-nowrap text-center">
                                         Slug Danh Mục
                                     </th>
-                                    <th class="align-middle text-nowrap text-center">Hình Ảnh</th>
                                     <th class="align-middle text-nowrap text-center">
                                         Tình Trạng
                                     </th>
@@ -81,11 +70,7 @@
                                     <tr>
                                         <th class="align-middle text-nowrap text-center">{{ index + 1 }}</th>
                                         <td class="align-middle text-nowrap">{{ value.ten_danh_muc }}</td>
-                                        <td class="align-middle text-nowrap text-center">{{ value.slug_danh_muc }}</td>
-                                        <td class="align-middle text-nowrap">
-                                            <img :src="value.hinh_anh" alt="" class="img-fluid"
-                                                style="max-height: 120px; width: 100%; object-fit: contain;">
-                                        </td>
+                                        <td class="align-middle text-nowrap">{{ value.slug_danh_muc }}</td>
                                         <td class="align-middle text-nowrap text-center">
                                             <button v-on:click="doiTrangThai(value)" v-if="value.tinh_trang == 1"
                                                 class="btn btn-success w-100">Hoạt
@@ -128,19 +113,6 @@
                     <div class="mb-2">
                         <label>Slug Danh Mục</label>
                         <input v-model="cap_nhat_danh_muc.slug_danh_muc" type="text" class="form-control mt-2" />
-                    </div>
-                    <div class="mb-2">
-                        <label>Hình Ảnh</label>
-                        <input type="file" class="form-control" accept="image/*"
-                            v-on:change="loadAnhTuLocalCapNhat($event)" ref="inputFileCapNhat">
-                    </div>
-                    <div class="mb-2 text-center">
-                        <!-- Hiển thị ảnh xem trước nếu có -->
-                        <img v-if="xem_truoc_cap_nhat" style="width: 150px; height: 150px"
-                            v-bind:src="xem_truoc_cap_nhat" alt="" class="img-fluid">
-                        <!-- Nếu không có ảnh xem trước, sử dụng ảnh cũ -->
-                        <img v-else :src="cap_nhat_danh_muc.hinh_anh" style="width: 150px; height: 150px"
-                            alt="Hình ảnh cũ" class="img-fluid">
                     </div>
                     <div class="mb-2">
                         <label>Danh Mục Cha</label>
@@ -202,15 +174,10 @@ export default {
                 slug_danh_muc: '',
                 id_danh_muc_cha: 0,
                 tinh_trang: 1,
-                hinh_anh: ''
             },
             del_danh_muc: {},
             cap_nhat_danh_muc: {},
             list_danh_muc: [],
-            xem_truoc: "",
-            file_anh: "",
-            xem_truoc_cap_nhat: "",
-            file_anh_cap_nhat: ""
         };
     },
     mounted() {
@@ -223,30 +190,6 @@ export default {
         },
     },
     methods: {
-        loadAnhTuLocal(event) {
-            this.file_anh = event.target.files[0];
-            this.createImage(this.file_anh);
-        },
-        createImage(file) {
-            let reader = new FileReader();
-            let vm = this;
-            reader.onload = (e) => {
-                vm.xem_truoc = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        },
-        loadAnhTuLocalCapNhat(event) {
-            this.file_anh_cap_nhat = event.target.files[0];
-            this.createImageCapNhat(this.file_anh_cap_nhat);
-        },
-        createImageCapNhat(file) {
-            let reader = new FileReader();
-            let vm = this;
-            reader.onload = (e) => {
-                vm.xem_truoc_cap_nhat = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        },
         loadDataDanhMuc() {
             axios
                 .get('http://127.0.0.1:8000/api/admin/danh-muc/data')
@@ -255,32 +198,18 @@ export default {
                 });
         },
         themMoiDanhMuc() {
-            let formData = new FormData();
-            formData.append('ten_danh_muc', this.create_danh_muc.ten_danh_muc);
-            formData.append('slug_danh_muc', this.create_danh_muc.slug_danh_muc);
-            formData.append('id_danh_muc_cha', this.create_danh_muc.id_danh_muc_cha);
-            formData.append('tinh_trang', this.create_danh_muc.tinh_trang);
-            formData.append('hinh_anh', this.file_anh); // Thêm ảnh vào FormData
             axios
-                .post("http://127.0.0.1:8000/api/admin/danh-muc/create", formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data', // Đặt header là multipart
-                    }
-                })
+                .post("http://127.0.0.1:8000/api/admin/danh-muc/create", this.create_danh_muc)
                 .then((res) => {
                     if (res.data.status) {
                         this.$toast.success(res.data.message);
                         this.loadDataDanhMuc();
                         this.create_danh_muc = {
-                            ten_danh_muc: '', // Gán giá trị mặc định
+                            ten_danh_muc: '',
                             slug_danh_muc: '',
                             id_danh_muc_cha: 0,
                             tinh_trang: 1,
-                            hinh_anh: ''
                         }
-                        this.$refs.inputFile.value = null;  // Reset lại input file
-                        this.file_anh = null;  // Reset tệp ảnh
-                        this.xem_truoc = "";  // Reset hình ảnh xem trước
                     } else {
                         this.$toast.error(res.data.message);
                     }
@@ -293,34 +222,12 @@ export default {
                 });
         },
         capNhatDanhMuc() {
-            let formData = new FormData();
-            formData.append('id', this.cap_nhat_danh_muc.id);
-            formData.append('ten_danh_muc', this.cap_nhat_danh_muc.ten_danh_muc);
-            formData.append('slug_danh_muc', this.cap_nhat_danh_muc.slug_danh_muc);
-            formData.append('id_danh_muc_cha', this.cap_nhat_danh_muc.id_danh_muc_cha);
-            formData.append('tinh_trang', this.cap_nhat_danh_muc.tinh_trang);
-
-            // Nếu có ảnh mới thì gửi ảnh mới lên
-            if (this.file_anh_cap_nhat) {
-                formData.append('hinh_anh', this.file_anh_cap_nhat);
-            } else {
-                formData.append('hinh_anh', this.cap_nhat_danh_muc.hinh_anh); // Giữ ảnh cũ nếu không có ảnh mới
-            }
-
             axios
-                .post("http://127.0.0.1:8000/api/admin/danh-muc/update", formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data', // Đặt header là multipart
-                    }
-                })
+                .post("http://127.0.0.1:8000/api/admin/danh-muc/update", this.cap_nhat_danh_muc)
                 .then((res) => {
                     if (res.data.status) {
                         this.$toast.success(res.data.message);
                         this.loadDataDanhMuc();
-                        this.cap_nhat_danh_muc = {};  // Reset form cập nhật
-                        this.file_anh_cap_nhat = null; // Reset ảnh
-                        this.xem_truoc_cap_nhat = ""; // Reset ảnh xem trước
-                        this.$refs.inputFileCapNhat.value = null;  // Reset lại input file
                     } else {
                         this.$toast.error(res.data.message);
                     }
