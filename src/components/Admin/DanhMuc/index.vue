@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-lg-4">
-            <div class="card">
+            <div class="card border-primary border-top border-3 border-0">
                 <div class="card-header">
                     <h5 class="mt-2">THÊM MỚI DANH MỤC</h5>
                 </div>
@@ -51,14 +51,14 @@
             </div>
         </div>
         <div class="col-lg-8">
-            <div class="card">
+            <div class="card border-primary border-top border-3 border-0">
                 <div class="card-header">
                     <h5 class="mt-2">DANH SÁCH DANH MỤC</h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
-                            <thead>
+                            <thead class="bg-primary text-white">
                                 <tr>
                                     <th class="align-middle text-nowrap text-center">#</th>
                                     <th class="align-middle text-nowrap text-center">
@@ -91,7 +91,7 @@
                                                 class="btn btn-success w-100">Hoạt
                                                 Động</button>
                                             <button v-on:click="doiTrangThai(value)" v-if="value.tinh_trang == 0"
-                                                class="btn btn-warning w-100">Tạm
+                                                class="btn btn-warning w-100 text-white">Tạm
                                                 Tắt</button>
                                         </td>
                                         <td class="align-middle text-nowrap text-center">

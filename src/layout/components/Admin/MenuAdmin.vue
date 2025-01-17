@@ -12,36 +12,37 @@
         </div>
         <nav class="navbar navbar-expand-xl w-100">
             <ul class="navbar-nav justify-content-start flex-grow-1 gap-1">
+
+                <li class="nav-item">
+                    <router-link to="/admin/danh-muc">
+                        <a class="nav-link" href="/admin/danh-muc">
+                            <div class="parent-icon"><i class='bx bx-cookie'></i>
+                            </div>
+                            <div class="menu-title">Danh Mục</div>
+                        </a>
+                    </router-link>
+                </li>
                 <li class="nav-item dropdown">
                     <a href="javascript:;" class="nav-link dropdown-toggle dropdown-toggle-nocaret"
                         data-bs-toggle="dropdown">
                         <div class="parent-icon"><i class='bx bx-cart'></i>
                         </div>
-                        <div class="menu-title">eCommerce</div>
+                        <div class="menu-title">Bán Sách</div>
                     </a>
                     <ul class="dropdown-menu">
-                        <li> <a class="dropdown-item" href="ecommerce-products.html"><i
-                                    class="bx bx-right-arrow-alt"></i>Products</a>
+                        <li>
+                            <router-link to="/admin/sach">
+                                <a class="dropdown-item" href="/admin/sach"><i
+                                        class="bx bx-right-arrow-alt"></i>Sách</a>
+                            </router-link>
                         </li>
-                        <li> <a class="dropdown-item" href="ecommerce-products-details.html"><i
-                                    class="bx bx-right-arrow-alt"></i>Product Details</a>
-                        </li>
-                        <li> <a class="dropdown-item" href="ecommerce-add-new-products.html"><i
-                                    class="bx bx-right-arrow-alt"></i>Add New Products</a>
-                        </li>
-                        <li> <a class="dropdown-item" href="ecommerce-orders.html"><i
-                                    class="bx bx-right-arrow-alt"></i>Orders</a>
+                        <li>
+                            <router-link to="/admin/tac-gia">
+                                <a class="dropdown-item" href="/admin/tac-gia"><i class="bx bx-right-arrow-alt"></i>Tác
+                                    Giả</a>
+                            </router-link>
                         </li>
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <router-link to="/admin/danh-muc">
-                        <a class="nav-link" href="/admin/danh-muc">
-                        <div class="parent-icon"><i class='bx bx-cookie'></i>
-                        </div>
-                        <div class="menu-title">Danh Mục</div>
-                    </a>
-                    </router-link>
                 </li>
             </ul>
         </nav>
