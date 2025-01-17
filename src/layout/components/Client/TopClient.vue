@@ -4,10 +4,10 @@
             <nav class="navbar navbar-expand">
                 <div class="topbar-logo-header">
                     <div class="">
-                        <img src="../../../assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+                        <img src="https://img.pikbest.com/png-images/20241014/modern-school-logo-vector-design-artwork_10962285.png!bw700" class="logo-icon" alt="logo icon">
                     </div>
                     <div class="">
-                        <h4 class="logo-text">Rocker</h4>
+                        <h4 class="logo-text">BOOK STORE</h4>
                     </div>
                 </div>
                 <div class="mobile-toggle-menu"><i class='bx bx-menu'></i></div>
@@ -385,20 +385,14 @@
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="javascript:;"><i
+                        <li>
+                            <router-link to="/khach-hang/profile">
+                                <a class="dropdown-item" href="/khach-hang/profile"><i
                                     class="bx bx-user"></i><span>Profile</span></a>
+                            </router-link>
                         </li>
                         <li><a class="dropdown-item" href="javascript:;"><i
                                     class="bx bx-cog"></i><span>Settings</span></a>
-                        </li>
-                        <li><a class="dropdown-item" href="javascript:;"><i
-                                    class='bx bx-home-circle'></i><span>Dashboard</span></a>
-                        </li>
-                        <li><a class="dropdown-item" href="javascript:;"><i
-                                    class='bx bx-dollar-circle'></i><span>Earnings</span></a>
-                        </li>
-                        <li><a class="dropdown-item" href="javascript:;"><i
-                                    class='bx bx-download'></i><span>Downloads</span></a>
                         </li>
                         <li>
                             <div class="dropdown-divider mb-0"></div>
