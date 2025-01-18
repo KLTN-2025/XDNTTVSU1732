@@ -15,6 +15,10 @@
                         <input v-model="create_danh_muc.slug_danh_muc" type="text" class="form-control mt-2" />
                     </div>
                     <div class="mb-2">
+                        <label>Icon Danh Mục</label>
+                        <input v-model="create_danh_muc.icon" type="text" class="form-control mt-2" />
+                    </div>
+                    <div class="mb-2">
                         <label>Danh Mục Cha</label>
                         <select v-model="create_danh_muc.id_danh_muc_cha" class="form-control mt-2">
                             <option value="0">Không Có</option>
@@ -58,6 +62,8 @@
                                         Slug Danh Mục
                                     </th>
                                     <th class="align-middle text-nowrap text-center">
+                                        Icon </th>
+                                    <th class="align-middle text-nowrap text-center">
                                         Tình Trạng
                                     </th>
                                     <th class="align-middle text-nowrap text-center">
@@ -71,6 +77,9 @@
                                         <th class="align-middle text-nowrap text-center">{{ index + 1 }}</th>
                                         <td class="align-middle text-nowrap">{{ value.ten_danh_muc }}</td>
                                         <td class="align-middle text-nowrap">{{ value.slug_danh_muc }}</td>
+                                        <td class="align-middle text-nowrap">
+                                            <span v-html="value.icon"></span>
+                                        </td>
                                         <td class="align-middle text-nowrap text-center">
                                             <button v-on:click="doiTrangThai(value)" v-if="value.tinh_trang == 1"
                                                 class="btn btn-success w-100">Hoạt
@@ -113,6 +122,10 @@
                     <div class="mb-2">
                         <label>Slug Danh Mục</label>
                         <input v-model="cap_nhat_danh_muc.slug_danh_muc" type="text" class="form-control mt-2" />
+                    </div>
+                     <div class="mb-2">
+                        <label>Icon Danh Mục</label>
+                        <input v-model="cap_nhat_danh_muc.icon" type="text" class="form-control mt-2" />
                     </div>
                     <div class="mb-2">
                         <label>Danh Mục Cha</label>
@@ -172,6 +185,7 @@ export default {
             create_danh_muc: {
                 ten_danh_muc: '',
                 slug_danh_muc: '',
+                icon: '',
                 id_danh_muc_cha: 0,
                 tinh_trang: 1,
             },

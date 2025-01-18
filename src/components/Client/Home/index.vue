@@ -47,7 +47,7 @@
       </div>
       <div class="col-lg-12">
          <div class="row row-cols-1 row-cols-md-3 row-cols-xl-5 product-grid">
-            <div class="col">
+            <div class="col d-flex">
                <div class="card radius-10">
                   <div class="card-body">
                      <div class="text-center">
@@ -64,7 +64,7 @@
                </div>
             </div>
 
-            <div class="col">
+            <div class="col d-flex">
                <div class="card radius-10">
                   <div class="card-body">
                      <div class="text-center">
@@ -79,7 +79,7 @@
                </div>
             </div>
 
-            <div class="col">
+            <div class="col d-flex">
                <div class="card radius-10">
                   <div class="card-body">
                      <div class="text-center">
@@ -94,7 +94,7 @@
                </div>
             </div>
 
-            <div class="col">
+            <div class="col d-flex">
                <div class="card radius-10">
                   <div class="card-body">
                      <div class="text-center">
@@ -109,7 +109,7 @@
                </div>
             </div>
 
-            <div class="col">
+            <div class="col d-flex">
                <div class="card radius-10">
                   <div class="card-body">
                      <div class="text-center">
@@ -126,154 +126,7 @@
          </div>
       </div>
    </div>
-   <!-- SẢN PHẨM BÁN CHẠY -->
-   <div class="row mt-3">
-      <div class="col-lg-12">
-         <h4 class="fw-bold mb-3">SẢN PHẨM BÁN CHẠY</h4>
-         <hr />
-         <div class="card">
-            <div class="card-body">
-               <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 product-grid">
-                  <div class="col-lg-2 d-flex">
-                     <div class="card flex-fill">
-                        <img
-                           src="https://www.netabooks.vn/Data/Sites/1/Product/46292/hoang-tu-be-le-petit-prince-song-ngu-viet-phap.jpg"
-                           class="card-img-top" alt="..." />
-                        <div class="card-body">
-                           <h6 class="card-title cursor-pointer">Tên Sách</h6>
-                           <div class="clearfix">
-                              <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                              <p class="mb-0 float-end fw-bold">
-                                 <span
-                                    class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
-                              </p>
-                           </div>
-                           <div class="d-flex align-items-center mt-3 fs-6">
-                              <div class="cursor-pointer">
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-secondary"></i>
-                              </div>
-                              <p class="mb-0 ms-auto">4.2(182)</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-lg-2 d-flex">
-                     <div class="card flex-fill">
-                        <img
-                           src="https://www.netabooks.vn/Data/Sites/1/Product/46292/hoang-tu-be-le-petit-prince-song-ngu-viet-phap.jpg"
-                           class="card-img-top" alt="..." />
-                        <div class="card-body">
-                           <h6 class="card-title cursor-pointer">Tên Sách</h6>
-                           <div class="clearfix">
-                              <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                              <p class="mb-0 float-end fw-bold">
-                                 <span
-                                    class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
-                              </p>
-                           </div>
-                           <div class="d-flex align-items-center mt-3 fs-6">
-                              <div class="cursor-pointer">
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-secondary"></i>
-                              </div>
-                              <p class="mb-0 ms-auto">4.2(182)</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-lg-2 d-flex">
-                     <div class="card flex-fill">
-                        <img
-                           src="https://www.netabooks.vn/Data/Sites/1/Product/46292/hoang-tu-be-le-petit-prince-song-ngu-viet-phap.jpg"
-                           class="card-img-top" alt="..." />
-                        <div class="card-body">
-                           <h6 class="card-title cursor-pointer">Tên Sách</h6>
-                           <div class="clearfix">
-                              <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                              <p class="mb-0 float-end fw-bold">
-                                 <span
-                                    class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
-                              </p>
-                           </div>
-                           <div class="d-flex align-items-center mt-3 fs-6">
-                              <div class="cursor-pointer">
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-secondary"></i>
-                              </div>
-                              <p class="mb-0 ms-auto">4.2(182)</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-lg-2 d-flex">
-                     <div class="card flex-fill">
-                        <img
-                           src="https://www.netabooks.vn/Data/Sites/1/Product/46292/hoang-tu-be-le-petit-prince-song-ngu-viet-phap.jpg"
-                           class="card-img-top" alt="..." />
-                        <div class="card-body">
-                           <h6 class="card-title cursor-pointer">Tên Sách</h6>
-                           <div class="clearfix">
-                              <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                              <p class="mb-0 float-end fw-bold">
-                                 <span
-                                    class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
-                              </p>
-                           </div>
-                           <div class="d-flex align-items-center mt-3 fs-6">
-                              <div class="cursor-pointer">
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-secondary"></i>
-                              </div>
-                              <p class="mb-0 ms-auto">4.2(182)</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-lg-2 d-flex">
-                     <div class="card flex-fill">
-                        <img
-                           src="https://www.netabooks.vn/Data/Sites/1/Product/46292/hoang-tu-be-le-petit-prince-song-ngu-viet-phap.jpg"
-                           class="card-img-top" alt="..." />
-                        <div class="card-body">
-                           <h6 class="card-title cursor-pointer">Tên Sách</h6>
-                           <div class="clearfix">
-                              <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                              <p class="mb-0 float-end fw-bold">
-                                 <span
-                                    class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
-                              </p>
-                           </div>
-                           <div class="d-flex align-items-center mt-3 fs-6">
-                              <div class="cursor-pointer">
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-secondary"></i>
-                              </div>
-                              <p class="mb-0 ms-auto">4.2(182)</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+
    <!-- GỢI Ý CHO BẠN -->
    <div class="row mt-3">
       <div class="col-lg-12">
@@ -282,140 +135,87 @@
          <div class="card">
             <div class="card-body">
                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 product-grid">
-                  <div class="col-lg-2 d-flex">
-                     <div class="card flex-fill">
-                        <img
-                           src="https://www.netabooks.vn/Data/Sites/1/Product/46292/hoang-tu-be-le-petit-prince-song-ngu-viet-phap.jpg"
-                           class="card-img-top" alt="..." />
-                        <div class="card-body">
-                           <h6 class="card-title cursor-pointer">Tên Sách</h6>
-                           <div class="clearfix">
-                              <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                              <p class="mb-0 float-end fw-bold">
-                                 <span
-                                    class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
-                              </p>
-                           </div>
-                           <div class="d-flex align-items-center mt-3 fs-6">
-                              <div class="cursor-pointer">
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-secondary"></i>
+                  <template v-for="(value, index) in list_sach_goi_y" :key="index">
+                     <div class="col-lg-2 d-flex">
+                        <div class="card flex-fill">
+                           <img :src="value.hinh_anh" style="max-height: 250px; width: 100%; object-fit: contain;"
+                              class="card-img-top" alt="..." />
+                           <div class="card-body">
+                              <h6 class="card-title cursor-pointer">{{ value.ten_sach }}</h6>
+                              <div class="clearfix">
+                                 <p class="mb-0 float-start">SL: <strong>{{ value.so_luong_ban }}</strong></p>
+                                 <p class="mb-0 float-end fw-bold">
+                                    <span class="me-2 text-decoration-line-through text-secondary"><del
+                                          class="text-danger">{{ formatVND(value.gia_ban) }}</del></span><span>{{
+                                             formatVND(value.gia_km) }}</span>
+                                 </p>
                               </div>
-                              <p class="mb-0 ms-auto">4.2(182)</p>
+                              <div class="d-flex align-items-center mt-3 fs-6">
+                                 <div class="cursor-pointer">
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-secondary"></i>
+                                 </div>
+                                 <p class="mb-0 ms-auto">4.2(182)</p>
+                              </div>
                            </div>
                         </div>
                      </div>
+                  </template>
+               </div>
+               <div class="row">
+                  <div class="col-lg-12 text-center">
+                     <button type="button" class="btn btn-outline-success px-5 radius-30"><i class="fa-regular fa-eye"></i>Xem Thêm</button>
                   </div>
-                  <div class="col-lg-2 d-flex">
-                     <div class="card flex-fill">
-                        <img
-                           src="https://www.netabooks.vn/Data/Sites/1/Product/46292/hoang-tu-be-le-petit-prince-song-ngu-viet-phap.jpg"
-                           class="card-img-top" alt="..." />
-                        <div class="card-body">
-                           <h6 class="card-title cursor-pointer">Tên Sách</h6>
-                           <div class="clearfix">
-                              <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                              <p class="mb-0 float-end fw-bold">
-                                 <span
-                                    class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
-                              </p>
-                           </div>
-                           <div class="d-flex align-items-center mt-3 fs-6">
-                              <div class="cursor-pointer">
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-secondary"></i>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- SẢN PHẨM BÁN CHẠY -->
+   <div class="row mt-3">
+      <div class="col-lg-12">
+         <h4 class="fw-bold mb-3">SẢN PHẨM ĐANG SALE</h4>
+         <hr />
+         <div class="card">
+            <div class="card-body">
+               <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 product-grid">
+                  <template v-for="(value, index) in list_sach_sale" :key="index">
+                     <div class="col-lg-2 d-flex">
+                        <div class="card flex-fill">
+                           <img :src="value.hinh_anh" style="max-height: 250px; width: 100%; object-fit: contain;"
+                              class="card-img-top" alt="..." />
+                           <div class="card-body">
+                              <h6 class="card-title cursor-pointer">{{ value.ten_sach }}</h6>
+                              <div class="clearfix">
+                                 <p class="mb-0 float-start">SL: <strong>{{ value.so_luong_ban }}</strong></p>
+                                 <p class="mb-0 float-end fw-bold">
+                                    <span class="me-2 text-decoration-line-through text-secondary"><del
+                                          class="text-danger">{{ formatVND(value.gia_ban) }}</del></span><span>{{
+                                             formatVND(value.gia_km) }}</span>
+                                 </p>
                               </div>
-                              <p class="mb-0 ms-auto">4.2(182)</p>
+                              <div class="d-flex align-items-center mt-3 fs-6">
+                                 <div class="cursor-pointer">
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-secondary"></i>
+                                 </div>
+                                 <p class="mb-0 ms-auto">4.2(182)</p>
+                              </div>
                            </div>
                         </div>
                      </div>
-                  </div>
-                  <div class="col-lg-2 d-flex">
-                     <div class="card flex-fill">
-                        <img
-                           src="https://www.netabooks.vn/Data/Sites/1/Product/46292/hoang-tu-be-le-petit-prince-song-ngu-viet-phap.jpg"
-                           class="card-img-top" alt="..." />
-                        <div class="card-body">
-                           <h6 class="card-title cursor-pointer">Tên Sách</h6>
-                           <div class="clearfix">
-                              <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                              <p class="mb-0 float-end fw-bold">
-                                 <span
-                                    class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
-                              </p>
-                           </div>
-                           <div class="d-flex align-items-center mt-3 fs-6">
-                              <div class="cursor-pointer">
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-secondary"></i>
-                              </div>
-                              <p class="mb-0 ms-auto">4.2(182)</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-lg-2 d-flex">
-                     <div class="card flex-fill">
-                        <img
-                           src="https://www.netabooks.vn/Data/Sites/1/Product/46292/hoang-tu-be-le-petit-prince-song-ngu-viet-phap.jpg"
-                           class="card-img-top" alt="..." />
-                        <div class="card-body">
-                           <h6 class="card-title cursor-pointer">Tên Sách</h6>
-                           <div class="clearfix">
-                              <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                              <p class="mb-0 float-end fw-bold">
-                                 <span
-                                    class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
-                              </p>
-                           </div>
-                           <div class="d-flex align-items-center mt-3 fs-6">
-                              <div class="cursor-pointer">
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-secondary"></i>
-                              </div>
-                              <p class="mb-0 ms-auto">4.2(182)</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-lg-2 d-flex">
-                     <div class="card flex-fill">
-                        <img
-                           src="https://www.netabooks.vn/Data/Sites/1/Product/46292/hoang-tu-be-le-petit-prince-song-ngu-viet-phap.jpg"
-                           class="card-img-top" alt="..." />
-                        <div class="card-body">
-                           <h6 class="card-title cursor-pointer">Tên Sách</h6>
-                           <div class="clearfix">
-                              <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                              <p class="mb-0 float-end fw-bold">
-                                 <span
-                                    class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
-                              </p>
-                           </div>
-                           <div class="d-flex align-items-center mt-3 fs-6">
-                              <div class="cursor-pointer">
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-warning"></i>
-                                 <i class="bx bxs-star text-secondary"></i>
-                              </div>
-                              <p class="mb-0 ms-auto">4.2(182)</p>
-                           </div>
-                        </div>
-                     </div>
+                  </template>
+               </div>
+               <div class="row">
+                  <div class="col-lg-12 text-center">
+                     <button type="button" class="btn btn-outline-success px-5 radius-30"><i class="fa-regular fa-eye"></i>Xem Thêm</button>
                   </div>
                </div>
             </div>
@@ -424,6 +224,40 @@
    </div>
 </template>
 <script>
-export default {};
+import axios from 'axios';
+
+export default {
+   data() {
+      return {
+         list_sach_goi_y: [],
+         list_sach_sale: [],
+      }
+   },
+
+   mounted() {
+      this.loadDataGoiY();
+      this.loadDataSale();
+   },
+
+   methods: {
+      formatVND(number) {
+         return new Intl.NumberFormat('vi-VI', { style: 'currency', currency: 'VND' }).format(number,)
+      },
+      loadDataGoiY() {
+         axios
+            .get('http://127.0.0.1:8000/api/home/data-goi-y')
+            .then((res) => {
+               this.list_sach_goi_y = res.data.list_sach_goi_y
+            });
+      },
+      loadDataSale() {
+         axios
+            .get('http://127.0.0.1:8000/api/home/data-sale')
+            .then((res) => {
+               this.list_sach_sale = res.data.list_sach_sale
+            });
+      }
+   },
+};
 </script>
 <style></style>

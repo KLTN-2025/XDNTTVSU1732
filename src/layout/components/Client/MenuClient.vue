@@ -39,13 +39,54 @@
                         </a>
                     </router-link>
                 </li>
+                <template v-for="(value, index) in list_danh_muc" :key="index">
+                    <template v-if="value.id_danh_muc_cha == 0">
+                        <li class="nav-item dropdown">
+                            <a href="/danh-sach-san-pham" class="nav-link dropdown-toggle dropdown-toggle-nocaret"
+                                data-bs-toggle="dropdown">
+                                <div class="parent-icon">
+                                    <span v-html="value.icon"></span>
+                                </div>
+                                <div class="menu-title">{{ value.ten_danh_muc }}</div>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <template v-for="(v, k) in list_danh_muc" :key="k">
+                                    <router-link :to="'/danh-sach-san-pham/' + v.id + '-' + v.slug_danh_muc">
+                                        <a v-if="value.id == v.id_danh_muc_cha" class="dropdown-item">
+                                           <i class="fa-solid fa-arrow-right-long"></i> {{ v.ten_danh_muc }}
+                                        </a>
+                                    </router-link>
+                                </template>
+                            </ul>
+                        </li>
+                    </template>
+                </template>
             </ul>
         </nav>
     </div>
 </template>
 <script>
-export default {
+import axios from 'axios';
 
+
+export default {
+    data() {
+        return {
+            list_danh_muc: [],
+        }
+    },
+    mounted() {
+        this.loadDataDanhMuc();
+    },
+    methods: {
+        loadDataDanhMuc() {
+            axios
+                .get('http://127.0.0.1:8000/api/home/data-menu')
+                .then((res) => {
+                    this.list_danh_muc = res.data.data
+                });
+        },
+    },
 }
 </script>
 <style></style>
