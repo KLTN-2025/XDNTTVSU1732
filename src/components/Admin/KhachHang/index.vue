@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h6 class="mt-2"><b>DANH SÁCH NHÂN VIÊN</b></h6>
+                    <h6 class="mt-2"><b>DANH SÁCH KHÁCH HÀNG</b></h6>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#themMoiModal">
                         <i class="fa-solid fa-user-plus"></i> Thêm Mới
                     </button>
@@ -26,35 +26,38 @@
                                 <th class="text-center">Họ Và Tên</th>
                                 <th class="text-center">Email</th>
                                 <th class="text-center">Số Điện Thoại</th>
-                                <th class="text-center">Quyền</th>
-                                <th class="text-center">Tình Trạng</th>
+                                <th class="text-center" style="width: 180px;">Kích Hoạt</th>
+                                <th class="text-center" style="width: 180px;">Tình Trạng</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <template v-for="(v, k) in list_nhan_vien" :key="k">
+                            <template v-for="(v, k) in list_khach_hang" :key="k">
                                 <tr>
                                     <th class="align-middle text-center">{{ k + 1 }}</th>
                                     <td class="align-middle">{{ v.ho_va_ten }}</td>
                                     <td class="align-middle">{{ v.email }}</td>
                                     <td class="align-middle text-center">{{ v.so_dien_thoai }}</td>
-                                    <td class="align-middle text-center">Xử lý sau</td>
                                     <td class="align-middle text-center">
-                                        <template v-if="v.tinh_trang == 1">
-                                            <button v-on:click="doiTrangThai(v)" class="btn btn-success w-100">Hoạt
+                                        <button v-on:click="doiTrangThaiActive(v)" v-if="v.is_active == 1" class="btn btn-success w-100">Đã Kích Hoạt</button>
+                                        <button v-on:click="doiTrangThaiActive(v)" v-else class="btn btn-warning w-100 text-white">Chưa Kích Hoạt</button>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <template v-if="v.is_block == 0">
+                                            <button v-on:click="doiTrangThaiBlock(v)" class="btn btn-success w-100">Hoạt
                                                 Động</button>
                                         </template>
                                         <template v-else>
-                                            <button v-on:click="doiTrangThai(v)"
-                                                class="btn btn-warning w-100 text-white">Tạm Tắt</button>
+                                            <button v-on:click="doiTrangThaiBlock(v)"
+                                                class="btn btn-warning w-100 text-white">Đã Chặn</button>
                                         </template>
                                     </td>
                                     <td class="align-middle text-center">
                                         <button class="btn btn-primary me-2" data-bs-toggle="modal"
-                                            data-bs-target="#capnhatModal" v-on:click="Object.assign(edit_nhan_vien, v)"><i
+                                            data-bs-target="#capnhatModal" v-on:click="Object.assign(edit_kh, v)"><i
                                                 class="fas fa-edit"></i> Sửa</button>
                                         <button class="btn btn-danger" data-bs-toggle="modal"
-                                            v-on:click="Object.assign(del_nhan_vien, v)" data-bs-target="#delModal"><i
+                                            v-on:click="Object.assign(del_kh, v)" data-bs-target="#delModal"><i
                                                 class="fas fa-trash"></i> Xóa</button>
                                     </td>
                                 </tr>
@@ -68,46 +71,47 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header bg-primary">
-                        <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Thêm Mới Nhân Viên</h1>
+                        <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Thêm Mới Khách Hàng</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-2">
                             <label class="form-lable">Họ Và Tên</label>
-                            <input v-model="create_nhan_vien.ho_va_ten" type="text" class="form-control">
+                            <input v-model="create_kh.ho_va_ten" type="text" class="form-control">
                         </div>
                         <div class="mb-2">
                             <label class="form-lable">Email</label>
-                            <input v-model="create_nhan_vien.email" type="email" class="form-control">
+                            <input v-model="create_kh.email" type="email" class="form-control">
                         </div>
                         <div class="mb-2">
                             <label class="form-lable">Số Điện Thoại</label>
-                            <input v-model="create_nhan_vien.so_dien_thoai" type="text" class="form-control">
+                            <input v-model="create_kh.so_dien_thoai" type="text" class="form-control">
                         </div>
                         <div class="mb-2">
                             <label class="form-lable">Password</label>
-                            <input v-model="create_nhan_vien.password" type="password" class="form-control">
+                            <input v-model="create_kh.password" type="password" class="form-control">
                         </div>
                         <div class="mb-2">
-                            <label>Quyền</label>
-                            <select v-model="create_nhan_vien.id_quyen" class="form-select mt-2">
-                                <!-- <template v-for="(v, k) in list_quyen" :key="k">
-                                    <option :value="v.id">
-                                        {{ v.ten_quyen }}
-                                    </option>
-                                </template> -->
+                            <label class="form-lable">Nhập Lại Password</label>
+                            <input v-model="create_kh.re_password" type="password" class="form-control">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-lable">Kích Hoạt</label>
+                            <select v-model="create_kh.is_active" class="form-control">
+                                <option value="1">Đã Kích Hoạt</option>
+                                <option value="0">Chưa Kích Hoạt</option>
                             </select>
                         </div>
                         <div class="mb-2">
                             <label class="form-lable">Tình Trạng</label>
-                            <select v-model="create_nhan_vien.tinh_trang" class="form-control">
-                                <option value="1">Hoạt Động</option>
-                                <option value="0">Tạm Dừng</option>
+                            <select v-model="create_kh.is_block" class="form-control">
+                                <option value="0">Hoạt Động</option>
+                                <option value="1">Đã Chặn</option>
                             </select>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button v-on:click="themMoiNhanVien()" class="btn btn-primary" data-bs-dismiss="modal">Thêm
+                        <button v-on:click="themMoiKhachHang()" class="btn btn-primary" data-bs-dismiss="modal">Thêm
                             Mới</button>
                     </div>
                 </div>
@@ -117,12 +121,12 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa Nhân Viên</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa Khách Hàng</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="alert alert-danger" role="alert">
-                            Bạn có chắc muốn xóa Nhân Viên <b class="text-danger">{{ del_nhan_vien.ho_va_ten
+                            Bạn có chắc muốn xóa Khách Hàng <b class="text-danger">{{ del_kh.ho_va_ten
                                 }}</b>
                             này
                             không?
@@ -130,7 +134,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" v-on:click="xoaNhanVien()">Xác
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" v-on:click="xoaKhachHang()">Xác
                             nhận</button>
                     </div>
                 </div>
@@ -140,49 +144,46 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Cập nhật Nhân Viên</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Cập nhật Khách Hàng</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-2">
                             <label class="form-lable">Họ Và Tên</label>
-                            <input v-model="edit_nhan_vien.ho_va_ten" type="text" class="form-control">
+                            <input v-model="edit_kh.ho_va_ten" type="text" class="form-control">
                         </div>
                         <div class="mb-2">
                             <label class="form-lable">Email</label>
-                            <input v-model="edit_nhan_vien.email" type="email" class="form-control">
+                            <input v-model="edit_kh.email" type="email" class="form-control">
                         </div>
                         <div class="mb-2">
                             <label class="form-lable">Số Điện Thoại</label>
-                            <input v-model="edit_nhan_vien.so_dien_thoai" type="text" class="form-control">
+                            <input v-model="edit_kh.so_dien_thoai" type="text" class="form-control">
                         </div>
                         <div class="mb-2">
-                            <label class="form-lable">Địa Chỉ</label>
-                            <input v-model="edit_nhan_vien.dia_chi" type="text" class="form-control">
-                        </div>
-                        <div class="mb-2">
-                            <label>Quyền</label>
-                            <select v-model="edit_nhan_vien.id_quyen" class="form-control mt-2">
-                                <!-- <template v-for="(v, k) in list_quyen" :key="k">
-                                    <option :value="v.id">
-                                        {{ v.ten_quyen }}
-                                    </option>
-                                </template> -->
-                                <option value="">Xử lý sau</option>
+                            <label class="form-lable">Kích Hoạt</label>
+                            <select v-model="edit_kh.is_active" class="form-control">
+                                <template v-if="edit_kh.is_active == 1">
+                                    <option value="" disabled>Đã Kích Hoạt</option>
+                                </template>
+                                <template v-else>
+                                    <option value="1">Đã Kích Hoạt</option>
+                                    <option value="0">Chưa Kích Hoạt</option>
+                                </template>
                             </select>
                         </div>
                         <div class="mb-2">
                             <label class="form-lable">Tình Trạng</label>
-                            <select v-model="edit_nhan_vien.tinh_trang" class="form-control">
-                                <option value="0">Tạm Dừng</option>
-                                <option value="1">Hoạt Động</option>
+                            <select v-model="edit_kh.is_block" class="form-control">
+                                <option value="0">Hoạt Động</option>
+                                <option value="1">Đã Chặn</option>
                             </select>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                            v-on:click="capNhatNhanVien()">Cập
+                            v-on:click="capNhatKhachHang()">Cập
                             nhật</button>
                     </div>
                 </div>
@@ -195,34 +196,35 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            create_nhan_vien: {},
-            edit_nhan_vien: {},
-            del_nhan_vien: {},
-            list_nhan_vien: [],
+            create_kh: {
+                
+            },
+            edit_kh: {},
+            del_kh: {},
+            list_khach_hang: [],
             search: {},
-            // list_quyen: []
         }
 
     },
     mounted() {
-        this.loadDataNhanVien();
+        this.loadDataKhachHang();
     },
     methods: {
-        loadDataNhanVien() {
+        loadDataKhachHang() {
             axios
-                .get('http://127.0.0.1:8000/api/admin/nhan-vien/data')
+                .get('http://127.0.0.1:8000/api/admin/khach-hang/data')
                 .then((res) => {
-                    this.list_nhan_vien = res.data.data
+                    this.list_khach_hang = res.data.data
                 });
         },
-        themMoiNhanVien() {
+        themMoiKhachHang() {
             axios
-                .post('http://127.0.0.1:8000/api/admin/nhan-vien/create', this.create_nhan_vien)
+                .post('http://127.0.0.1:8000/api/admin/khach-hang/create', this.create_kh)
                 .then((res) => {
                     if (res.data.status) {
-                        this.loadDataNhanVien();
+                        this.loadDataKhachHang();
                         this.$toast.success(res.data.message);
-                        this.create_nhan_vien = { }
+                        this.create_kh = {}
                     } else {
                         this.$toast.error(res.data.message);
                     }
@@ -234,30 +236,12 @@ export default {
                     });
                 });
         },
-        capNhatNhanVien() {
+        capNhatKhachHang() {
             axios
-                .post('http://127.0.0.1:8000/api/admin/nhan-vien/update', this.edit_nhan_vien)
+                .post('http://127.0.0.1:8000/api/admin/khach-hang/update', this.edit_kh)
                 .then((res) => {
                     if (res.data.status) {
-                        this.loadDataNhanVien();
-                        this.$toast.success(res.data.message);
-                    } else {
-                        this.$toast.error(res.data.message);
-                    }
-                })
-                .catch((res) => {
-                    var list_error = Object.values(res.response.data.errors);
-                    list_error.forEach((v, k) => {
-                        toastr.error(v[0]);
-                    });
-                });
-        },
-        xoaNhanVien() {
-            axios
-                .post('http://127.0.0.1:8000/api/admin/nhan-vien/delete', this.del_nhan_vien)
-                .then((res) => {
-                    if (res.data.status) {
-                        this.loadDataNhanVien();
+                        this.loadDataKhachHang();
                         this.$toast.success(res.data.message);
                     } else {
                         this.$toast.error(res.data.message);
@@ -270,12 +254,48 @@ export default {
                     });
                 });
         },
-        doiTrangThai(value) {
+        xoaKhachHang() {
             axios
-                .post('http://127.0.0.1:8000/api/admin/nhan-vien/change', value)
+                .post('http://127.0.0.1:8000/api/admin/khach-hang/delete', this.del_kh)
                 .then((res) => {
                     if (res.data.status) {
-                        this.loadDataNhanVien();
+                        this.loadDataKhachHang();
+                        this.$toast.success(res.data.message);
+                    } else {
+                        this.$toast.error(res.data.message);
+                    }
+                })
+                .catch((res) => {
+                    var list_error = Object.values(res.response.data.errors);
+                    list_error.forEach((v, k) => {
+                        toastr.error(v[0]);
+                    });
+                });
+        },
+        doiTrangThaiBlock(value) {
+            axios
+                .post('http://127.0.0.1:8000/api/admin/khach-hang/change-block', value)
+                .then((res) => {
+                    if (res.data.status) {
+                        this.loadDataKhachHang();
+                        this.$toast.success(res.data.message);
+                    } else {
+                        this.$toast.error(res.data.message);
+                    }
+                })
+                .catch((res) => {
+                    var list_error = Object.values(res.response.data.errors);
+                    list_error.forEach((v, k) => {
+                        toastr.error(v[0]);
+                    });
+                });
+        },
+        doiTrangThaiActive(value) {
+            axios
+                .post('http://127.0.0.1:8000/api/admin/khach-hang/change', value)
+                .then((res) => {
+                    if (res.data.status) {
+                        this.loadDataKhachHang();
                         this.$toast.success(res.data.message);
                     } else {
                         this.$toast.error(res.data.message);
@@ -290,9 +310,9 @@ export default {
         },
         timKiem() {
             axios
-                .post('http://127.0.0.1:8000/api/admin/nhan-vien/search', this.search)
+                .post('http://127.0.0.1:8000/api/admin/khach-hang/search', this.search)
                 .then((res) => {
-                    this.list_nhan_vien = res.data.data;
+                    this.list_khach_hang = res.data.data;
                 })
                 .catch((res) => {
                     var list_error = Object.values(res.response.data.errors);

@@ -27,6 +27,11 @@ const routes = [
                 component: () => import("../components/Admin/NhanVien/index.vue"),
                 beforeEnter: checkAdminLogin,
             },
+            {
+                path: "khach-hang",
+                component: () => import("../components/Admin/KhachHang/index.vue"),
+                beforeEnter: checkAdminLogin,
+            },
         ],
     },
     // End Admin
@@ -61,7 +66,7 @@ const routes = [
             {
                 path: "kich-hoat/:id_khach_hang",
                 component: () => import("../components/KhachHang/KichHoat/index.vue"),
-                props: true
+                props: true,
             },
         ],
     },
@@ -100,7 +105,7 @@ const routes = [
             {
                 path: "profile",
                 component: () => import("../components/KhachHang/Profile/index.vue"),
-                beforeEnter: checkKhachHangLogin
+                beforeEnter: checkKhachHangLogin,
             },
             {
                 path: "dang-nhap",
