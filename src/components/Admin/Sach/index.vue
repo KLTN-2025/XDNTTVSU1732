@@ -18,9 +18,7 @@
                                     </th>
                                     <th class="align-middle text-nowrap text-center">Hình Ảnh</th>
                                     <th class="align-middle text-nowrap text-center">Mô Tả Sách</th>
-                                    <th class="align-middle text-nowrap text-center">Tác Giả</th>
                                     <th class="align-middle text-nowrap text-center">Danh Mục</th>
-                                    <th class="align-middle text-nowrap text-center">Số Lượng Bán</th>
                                     <th class="align-middle text-nowrap text-center" style="width: 100px;">Giá Bán</th>
                                     <th class="align-middle text-nowrap text-center">Giá Khuyến Mãi</th>
                                     <th class="align-middle text-nowrap text-center">
@@ -44,10 +42,9 @@
                                             data-bs-target='#moTaModal' v-on:click="Object.assign(xem_mo_ta, value)">
                                             <i class="fa-solid fa-circle-info fa-2x text-success"></i>
                                         </td>
-                                        <td class="align-middle text-wrap">{{ value.ten_tac_gia }}</td>
                                         <td class="align-middle text-wrap">{{ value.ten_danh_muc }}</td>
-                                        <td class="align-middle text-nowrap text-center">{{ value.so_luong_ban }}</td>
-                                        <td class="align-middle text-nowrap text-end">{{ formatVND(value.gia_ban) }}</td>
+                                        <td class="align-middle text-nowrap text-end">{{ formatVND(value.gia_ban) }}
+                                        </td>
                                         <td class="align-middle text-nowrap text-end">{{ formatVND(value.gia_km) }}</td>
                                         <td class="align-middle text-nowrap text-center">
                                             <button v-on:click="doiTrangThaiSale(value)" v-if="value.is_sale == 1"
@@ -62,12 +59,17 @@
                                                 class="btn btn-warning text-white mt-2 w-100">Tạm Tắt</button>
                                         </td>
                                         <td class="align-middle text-nowrap text-center">
+                                            <button v-on:click="Object.assign(xem_them, value)" data-bs-toggle='modal'
+                                                data-bs-target='#xemThemModal' class="btn btn-success btn-sm mb-2"><i
+                                                    class="fa-regular fa-eye"></i> Xem thêm
+                                            </button>
+                                            <br>
                                             <button v-on:click="Object.assign(cap_nhat_sach, value)"
                                                 data-bs-toggle='modal' data-bs-target='#capNhatModal'
-                                                class="btn btn-primary me-2"><i class="fas fa-edit"></i> Sửa
+                                                class="btn btn-primary btn-sm me-2"><i class="fas fa-edit"></i> Sửa
                                             </button>
                                             <button v-on:click="Object.assign(del_sach, value)" data-bs-toggle='modal'
-                                                data-bs-target='#xoaModal' class="btn btn-danger"><i
+                                                data-bs-target='#xoaModal' class="btn btn-danger btn-sm"><i
                                                     class="fas fa-trash"></i> Xóa </button>
                                         </td>
                                     </tr>
@@ -81,7 +83,7 @@
     </div>
     <!-- Thêm Mới Modal -->
     <div class='modal fade' id='themMoiModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-        <div class='modal-dialog modal-lg'>
+        <div class='modal-dialog modal-xl'>
             <div class='modal-content'>
                 <div class='modal-header'>
                     <h1 class='modal-title fs-5' id='exampleModalLabel'>Thêm Mới Sách</h1>
@@ -89,19 +91,19 @@
                 </div>
                 <div class='modal-body'>
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="mb-2">
                                 <label>Tên Sách</label>
                                 <input v-model="create_sach.ten_sach" type="text" class="form-control mt-2" />
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="mb-2">
                                 <label>Slug Sách</label>
                                 <input v-model="create_sach.slug_sach" type="text" class="form-control mt-2" />
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="mb-2">
                                 <label>Chọn Tác Giả</label>
                                 <select v-model="create_sach.id_tac_gia" class="form-select mt-2">
@@ -112,7 +114,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="mb-2">
                                 <label>Chọn Danh Mục</label>
                                 <select v-model="create_sach.id_danh_muc" class="form-select mt-2">
@@ -123,30 +125,62 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                         <div class="col-lg-4">
+                            <div class="mb-2">
+                                <label>Chọn Nhà Xuất Bản</label>
+                                <select v-model="create_sach.id_nxb" class="form-select mt-2">
+                                    <option value="0">-- Vui lòng chọn danh mục --</option>
+                                    <template v-for="(value, index) in list_nxb" :key="index">
+                                        <option :value="value.id">{{ value.ten_nxb }}</option>
+                                    </template>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
                             <div class="mb-2">
                                 <label>Số Lượng Bán</label>
                                 <input v-model="create_sach.so_luong_ban" type="text" class="form-control mt-2" />
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="mb-2">
                                 <label>Giá Bán</label>
                                 <input v-model="create_sach.gia_ban" type="number" class="form-control mt-2" />
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="mb-2">
                                 <label>Giá Khuyến Mãi</label>
                                 <input v-model="create_sach.gia_km" type="number" class="form-control mt-2" />
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="mb-2">
                                 <label>Sale?</label>
-                                <select v-model="cap_nhat_sach.is_sale" class="form-select mt-2">
+                                <select v-model="create_sach.is_sale" class="form-select mt-2">
                                     <option value="0">Không Sale</option>
                                     <option value="1">Đang Sale</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="mb-2">
+                                <label>Số Trang</label>
+                                <input v-model="create_sach.so_trang" type="number" class="form-control mt-2" />
+                            </div>
+                        </div>
+                         <div class="col-lg-4">
+                            <div class="mb-2">
+                                <label>Năm Xuất Bản</label>
+                                <input v-model="create_sach.nam_xb" type="number" class="form-control mt-2" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="mb-2">
+                                <label>Tình Trạng</label>
+                                <select v-model="create_sach.tinh_trang" class="form-select mt-2">
+                                    <option value="0">Hoạt Động</option>
+                                    <option value="1">Tạm Tắt</option>
                                 </select>
                             </div>
                         </div>
@@ -164,7 +198,6 @@
                         <div class="col-lg-12">
                             <div class="mb-2">
                                 <label>Mô Tả</label>
-                                <!-- <textarea v-model="create_sach.mo_ta" class="form-control mt-2"></textarea> -->
                                 <ckeditor v-model="create_sach.mo_ta" :editor="editor" :config="editorConfig" />
                             </div>
                         </div>
@@ -181,27 +214,27 @@
     </div>
     <!-- Cập Nhật Modal -->
     <div class='modal fade' id='capNhatModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-        <div class='modal-dialog modal-lg'>
+        <div class='modal-dialog modal-xl'>
             <div class='modal-content'>
                 <div class='modal-header'>
                     <h1 class='modal-title fs-5' id='exampleModalLabel'>Cập Nhật Sách {{ cap_nhat_sach.ten_sach }}</h1>
                     <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                 </div>
                 <div class='modal-body'>
-                    <div class="row">
-                        <div class="col-lg-6">
+                   <div class="row">
+                        <div class="col-lg-4">
                             <div class="mb-2">
                                 <label>Tên Sách</label>
                                 <input v-model="cap_nhat_sach.ten_sach" type="text" class="form-control mt-2" />
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="mb-2">
                                 <label>Slug Sách</label>
                                 <input v-model="cap_nhat_sach.slug_sach" type="text" class="form-control mt-2" />
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="mb-2">
                                 <label>Chọn Tác Giả</label>
                                 <select v-model="cap_nhat_sach.id_tac_gia" class="form-select mt-2">
@@ -212,41 +245,73 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="mb-2">
                                 <label>Chọn Danh Mục</label>
                                 <select v-model="cap_nhat_sach.id_danh_muc" class="form-select mt-2">
-                                    <option value="">-- Vui lòng chọn danh mục --</option>
+                                    <option value="0">-- Vui lòng chọn danh mục --</option>
                                     <template v-for="(value, index) in list_danh_muc" :key="index">
                                         <option :value="value.id">{{ value.ten_danh_muc }}</option>
                                     </template>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                         <div class="col-lg-4">
+                            <div class="mb-2">
+                                <label>Chọn Nhà Xuất Bản</label>
+                                <select v-model="cap_nhat_sach.id_nxb" class="form-select mt-2">
+                                    <option value="0">-- Vui lòng chọn danh mục --</option>
+                                    <template v-for="(value, index) in list_nxb" :key="index">
+                                        <option :value="value.id">{{ value.ten_nxb }}</option>
+                                    </template>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
                             <div class="mb-2">
                                 <label>Số Lượng Bán</label>
                                 <input v-model="cap_nhat_sach.so_luong_ban" type="text" class="form-control mt-2" />
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="mb-2">
                                 <label>Giá Bán</label>
                                 <input v-model="cap_nhat_sach.gia_ban" type="number" class="form-control mt-2" />
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="mb-2">
                                 <label>Giá Khuyến Mãi</label>
                                 <input v-model="cap_nhat_sach.gia_km" type="number" class="form-control mt-2" />
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="mb-2">
                                 <label>Sale?</label>
                                 <select v-model="cap_nhat_sach.is_sale" class="form-select mt-2">
                                     <option value="0">Không Sale</option>
                                     <option value="1">Đang Sale</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="mb-2">
+                                <label>Số Trang</label>
+                                <input v-model="cap_nhat_sach.so_trang" type="number" class="form-control mt-2" />
+                            </div>
+                        </div>
+                         <div class="col-lg-4">
+                            <div class="mb-2">
+                                <label>Năm Xuất Bản</label>
+                                <input v-model="cap_nhat_sach.nam_xb" type="number" class="form-control mt-2" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="mb-2">
+                                <label>Tình Trạng</label>
+                                <select v-model="cap_nhat_sach.tinh_trang" class="form-select mt-2">
+                                    <option value="0">Hoạt Động</option>
+                                    <option value="1">Tạm Tắt</option>
                                 </select>
                             </div>
                         </div>
@@ -257,12 +322,8 @@
                                     v-on:change="loadAnhTuLocalCapNhat($event)" ref="inputFile">
                             </div>
                             <div class="mb-2 text-center">
-                                <!-- Hiển thị ảnh xem trước nếu có -->
-                                <img v-if="xem_truoc_cap_nhat" style="width: 150px; height: 150px"
-                                    v-bind:src="xem_truoc_cap_nhat" alt="" class="img-fluid">
-                                <!-- Nếu không có ảnh xem trước, sử dụng ảnh cũ -->
-                                <img v-else :src="cap_nhat_sach.hinh_anh" style="width: 150px; height: 150px"
-                                    alt="Hình ảnh cũ" class="img-fluid">
+                                <img v-if="xem_truoc_cap_nhat" style="width: 150px; height: 150px" v-bind:src="xem_truoc_cap_nhat" alt=""
+                                    class="img-fluid">
                             </div>
                         </div>
                         <div class="col-lg-12">
@@ -320,6 +381,47 @@
             </div>
         </div>
     </div>
+
+    <!-- Xem Thêm Modal -->
+    <div class='modal fade' id='xemThemModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+        <div class='modal-dialog modal-lg'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h6 class='modal-title fs-5' id='exampleModalLabel'>Bạn Đang Xem Mô Tả Của Sách <b
+                            class="text-danger">{{ xem_them.ten_sach }}</b></h6>
+                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                </div>
+                <div class='modal-body' style="max-height: 500px; overflow-y: auto;">
+                    <div class='table-responsive'>
+                        <table class='table table-bordered table-hover'>
+
+                            <tbody>
+                                <tr class="text-white">
+                                    <th class='align-middle text-nowrap text-center bg-primary'>#</th>
+                                    <th class='align-middle text-nowrap text-center bg-primary'>Số Lượng Bán</th>
+                                    <td class='align-middle text-nowrap text-center bg-primary'>Sô Trang</td>
+                                    <td class='align-middle text-nowrap text-center bg-primary'>Nhà Xuất Bản</td>
+                                    <td class='align-middle text-nowrap text-center bg-primary'>Tác Giả</td>
+                                    <td class='align-middle text-nowrap text-center bg-primary'>Năm Xuất Bản</td>
+                                </tr>
+                                <tr>
+                                    <th class='align-middle text-nowrap text-center'>1</th>
+                                    <td class='align-middle text-nowrap text-center'>{{ xem_them.so_luong_ban }}</td>
+                                    <td class='align-middle text-nowrap text-center'>{{ xem_them.so_trang }} trang</td>
+                                    <td class='align-middle text-nowrap'>{{ xem_them.ten_nxb }}</td>
+                                    <td class='align-middle text-nowrap'>{{ xem_them.ten_tac_gia }}</td>
+                                    <td class='align-middle text-nowrap text-center'>Năm:{{ xem_them.nam_xb }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class='modal-footer'>
+                    <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 <script>
 import axios from 'axios';
@@ -344,6 +446,7 @@ export default {
             xem_truoc_cap_nhat: "",
             file_anh_cap_nhat: "",
             list_tac_gia: [],
+            list_nxb: [],
             list_sach: [],
             xem_mo_ta: {},
             editor: ClassicEditor,
@@ -365,6 +468,7 @@ export default {
                 ],
                 licenseKey: this.$licenseKey
             },
+            xem_them: {}
         };
     },
 
@@ -372,6 +476,7 @@ export default {
         this.loadDataTacGia();
         this.loadDataSach();
         this.loadDataDanhMuc();
+        this.loadDataNXB();
     },
     watch: {
         // Watcher cho `ten_danh_muc` để tự động tạo `slug_danh_muc`

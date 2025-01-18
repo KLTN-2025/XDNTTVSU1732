@@ -32,6 +32,11 @@ const routes = [
                 component: () => import("../components/Admin/KhachHang/index.vue"),
                 beforeEnter: checkAdminLogin,
             },
+            {
+                path: "nha-xuat-ban",
+                component: () => import("../components/Admin/NhaXuatBan/index.vue"),
+                beforeEnter: checkAdminLogin,
+            },
         ],
     },
     // End Admin

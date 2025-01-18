@@ -41,6 +41,15 @@
                     </router-link>
                 </li>
                 <li class="nav-item">
+                    <router-link to="/admin/nha-xuat-ban">
+                        <a class="nav-link" href="/admin/nha-xuat-ban">
+                            <div class="parent-icon"><i class="fa-solid fa-user-pen"></i>
+                            </div>
+                            <div class="menu-title">Nhà Xuất Bản</div>
+                        </a>
+                    </router-link>
+                </li>
+                <li class="nav-item">
                     <router-link to="/admin/nhan-vien">
                         <a class="nav-link" href="/admin/nhan-vien">
                             <div class="parent-icon"><i class="fa-solid fa-users-line"></i>

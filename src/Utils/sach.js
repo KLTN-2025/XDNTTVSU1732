@@ -39,6 +39,12 @@ export default {
                     this.list_tac_gia = res.data.data;
                 });
         },
+        loadDataNXB() {
+            axios.get("http://127.0.0.1:8000/api/admin/nha-xuat-ban/data-open")
+            .then((res) => {
+                this.list_nxb = res.data.data;
+            });
+        },
         loadDataDanhMuc() {
             axios
                 .get("http://127.0.0.1:8000/api/admin/danh-muc/data-open")
@@ -62,6 +68,10 @@ export default {
             formData.append("gia_km", this.create_sach.gia_km);
             formData.append("mo_ta", this.create_sach.mo_ta);
             formData.append("is_sale", this.create_sach.is_sale);
+            formData.append("so_trang", this.create_sach.so_trang);
+            formData.append("id_nxb", this.create_sach.id_nxb);
+            formData.append("nam_xb", this.create_sach.nam_xb);
+            formData.append("tinh_trang", this.create_sach.tinh_trang);
             formData.append("hinh_anh", this.file_anh); // Thêm ảnh vào FormData
             axios
                 .post("http://127.0.0.1:8000/api/admin/sach/create", formData, {
@@ -101,6 +111,10 @@ export default {
             formData.append("gia_km", this.cap_nhat_sach.gia_km);
             formData.append("mo_ta", this.cap_nhat_sach.mo_ta);
             formData.append("is_sale", this.cap_nhat_sach.is_sale);
+            formData.append("so_trang", this.cap_nhat_sach.so_trang);
+            formData.append("id_nxb", this.cap_nhat_sach.id_nxb);
+            formData.append("nam_xb", this.cap_nhat_sach.nam_xb);
+            formData.append("tinh_trang", this.cap_nhat_sach.tinh_trang);
             // Nếu có ảnh mới thì gửi ảnh mới lên
             if (this.file_anh_cap_nhat) {
                 formData.append("hinh_anh", this.file_anh_cap_nhat);
