@@ -38,8 +38,8 @@
                                                     type="password" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="col-12"><button type="button" v-on:click="dangNhap()" class="btn btn-primary w-100"><i
-                                                    class="fa-solid fa-lock-open"></i>Đăng
+                                        <div class="col-12"><button type="button" v-on:click="dangNhap()"
+                                                class="btn btn-primary w-100"><i class="fa-solid fa-lock-open"></i>Đăng
                                                 Nhập</button></div>
                                         <div class="col-12"><a href="/khach-hang/dang-ky" class=""><button type="button"
                                                     class="btn btn-danger w-100"><i class="bx bx-user"></i>Đăng
@@ -64,7 +64,7 @@ export default {
         }
     },
     mounted() {
-        // this.kiemTraDangNhap()
+        this.kiemTraDangNhap()
     },
     methods: {
         dangNhap() {
@@ -75,7 +75,9 @@ export default {
                         this.$toast.success(res.data.message);
                         this.create = {};
                         localStorage.setItem("token_khach_hang", res.data.token);
-                        this.$router.push('/khach-hang/profile')
+                        setTimeout(() => {
+                            window.location.href = '/khach-hang/profile';
+                        }, 2000);
                     }
                     else {
                         this.$toast.error(res.data.message);
@@ -88,19 +90,20 @@ export default {
                     });
                 });
         },
-        // kiemTraDangNhap() {
-        //     axios
-        //         .get("http://127.0.0.1:8000/api/khach-hang/check-login", {
-        //             headers: {
-        //                 Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
-        //             }
-        //         })
-        //         .then((res) => {
-        //             if (res.data.status) {
-        //                 this.$router.push('/khach-hang/dang-nhap')
-        //             }
-        //         });
-        // },
+        kiemTraDangNhap() {
+            axios
+                .get("http://127.0.0.1:8000/api/khach-hang/check-login", {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
+                    }
+                })
+                .then((res) => {
+                    if (res.data.status == 1) {
+                        this.$router.push('/khach-hang/profile')
+                        // this.$toast.error(res.data.message)
+                    }
+                });
+        },
     },
 }
 </script>

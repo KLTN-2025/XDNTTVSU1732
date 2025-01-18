@@ -24,8 +24,7 @@
                                                 <div class="input-group-text bg-transparent">
                                                     <i class="fa-solid fa-envelope"></i>
                                                 </div>
-                                                <input v-model="tai_Khoan.email" type="email"
-                                                    class="form-control" />
+                                                <input v-model="tai_Khoan.email" type="email" class="form-control" />
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -34,8 +33,8 @@
                                                 <div class="input-group-text bg-transparent">
                                                     <i class="fa-solid fa-lock"></i>
                                                 </div>
-                                                <input v-on:keyup.enter="dangNhap()" v-model="tai_Khoan.password" type="password"
-                                                    class="form-control" />
+                                                <input v-on:keyup.enter="dangNhap()" v-model="tai_Khoan.password"
+                                                    type="password" class="form-control" />
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -78,7 +77,9 @@ export default {
                         };
                         localStorage.setItem("token_nhan_vien", res.data.token);
                         localStorage.setItem("name", res.data.name);
-                        this.$router.push("/admin/danh-muc");
+                        setTimeout(() => {
+                            window.location.href = "/admin/danh-muc"
+                        }, 2000);
                     } else {
                         this.$toast.error(res.data.message);
                     }

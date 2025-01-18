@@ -308,6 +308,12 @@ export default {
                         this.$router.push('/');
                     }
                 })
+                .catch((res) => {
+                    var list_error = Object.values(res.response.data.errors);
+                    list_error.forEach((v, k) => {
+                        this.$toast.error(v[0]);
+                    });
+                });
         },
     },
 

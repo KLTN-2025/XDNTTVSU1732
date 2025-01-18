@@ -65,7 +65,7 @@
                                             </div>
                                         </div>
                                     </a>
-                                      <a class="dropdown-item" href="javascript:;">
+                                    <a class="dropdown-item" href="javascript:;">
                                         <div class="d-flex align-items-center">
                                             <div class="notify bg-light-danger text-danger">
                                                 <i class="bx bx-cart-alt"></i>
@@ -77,7 +77,7 @@
                                             </div>
                                         </div>
                                     </a>
-                                      <a class="dropdown-item" href="javascript:;">
+                                    <a class="dropdown-item" href="javascript:;">
                                         <div class="d-flex align-items-center">
                                             <div class="notify bg-light-danger text-danger">
                                                 <i class="bx bx-cart-alt"></i>
@@ -259,39 +259,148 @@
                     </ul>
                 </div>
                 <div class="user-box dropdown">
-                    <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
-                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="../../../assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
-                        <div class="user-info ps-3">
-                            <p class="user-name mb-0">Pauline Seitz</p>
-                            <p class="designattion mb-0">Khách Hàng</p>
+                    <template v-if="user.check">
+                        <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="../../../assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
+                            <div class="user-info ps-3">
+                                <p class="user-name mb-0">{{ user.name }}</p>
+                                <p class="designattion mb-0">Khách Hàng</p>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <router-link to="/khach-hang/profile">
+                                    <a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>Thông
+                                            tin cá nhân</span></a>
+                                </router-link>
+                            </li>
+                            <li>
+                                <div class="dropdown-divider mb-0"></div>
+                            </li>
+                            <li><a class="dropdown-item" v-on:click="logout()" href="javascript:;"><i
+                                        class='bx bx-log-out-circle'></i><span>Đăng Xuất</span></a>
+                            </li>
+                            <li><a class="dropdown-item" v-on:click="logoutAll()" href="javascript:;"><i
+                                        class='bx bx-log-out-circle'></i><span>Đăng Xuất Tất Cả</span></a>
+                            </li>
+                        </ul>
+                    </template>
+                    <template v-else>
+                        <div class="user-box">
+                            <a class="d-flex align-items-center">
+                                <router-link to="/khach-hang/dang-nhap">
+                                    <button type="button" class="btn btn-primary me-2">
+                                        <i class="bx bxs-lock-open"></i> <span class="btn-text">Đăng Nhập</span>
+                                    </button>
+                                </router-link>
+                                <router-link to="/khach-hang/dang-ky">
+                                    <button type="button" class="btn btn-secondary">
+                                        <i class="fa-solid fa-right-to-bracket fa-2xs"></i> <span class="btn-text">Đăng
+                                            Ký</span>
+                                    </button>
+                                </router-link>
+                            </a>
                         </div>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li>
-                            <router-link to="/khach-hang/profile">
-                                <a class="dropdown-item" href="/khach-hang/profile"><i
-                                        class="bx bx-user"></i><span>Profile</span></a>
-                            </router-link>
-                        </li>
-                        <li><a class="dropdown-item" href="javascript:;"><i
-                                    class="bx bx-cog"></i><span>Settings</span></a>
-                        </li>
-                        <li>
-                            <div class="dropdown-divider mb-0"></div>
-                        </li>
-                        <li><a class="dropdown-item" href="javascript:;"><i
-                                    class='bx bx-log-out-circle'></i><span>Logout</span></a>
-                        </li>
-                    </ul>
+
+                    </template>
                 </div>
             </nav>
         </div>
     </header>
 </template>
 <script>
-export default {
+import axios from 'axios';
 
+export default {
+    data() {
+        return {
+            user: {},
+        }
+    },
+    mounted() {
+        this.user = {
+            name: localStorage.getItem("name_kh"),
+            email: localStorage.getItem("email_kh"),
+            check: localStorage.getItem("check_kh")
+        };
+    },
+    methods: {
+        logout() {
+            axios
+                .get('http://127.0.0.1:8000/api/khach-hang/logout', {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
+                    }
+                })
+                .then((res) => {
+                    if (res.data.status) {
+                        localStorage.removeItem('token_khach_hang');
+                        localStorage.removeItem("name_kh");
+                        localStorage.removeItem("email_kh");
+                        localStorage.removeItem("check_kh");
+                        this.user = {
+                            name: null,
+                            email: null,
+                            check: null
+                        }
+                        this.$toast.success(res.data.message);
+                        this.$router.push('/')
+                    } else {
+                        this.$toast.error('Có lỗi xảy ra')
+                    }
+                })
+                .catch((res) => {
+                    var list_error = Object.values(res.response.data.errors);
+                    list_error.forEach((v, k) => {
+                        this.$toast.error(v[0]);
+                    });
+                });
+        },
+        logoutAll() {
+            axios
+                .get('http://127.0.0.1:8000/api/khach-hang/logout-all', {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
+                    }
+                })
+                .then((res) => {
+                    if (res.data.status) {
+                        localStorage.removeItem('token_khach_hang');
+                        localStorage.removeItem("name_kh");
+                        localStorage.removeItem("email_kh");
+                        localStorage.removeItem("check_kh");
+                        this.$toast.success(res.data.message);
+                        this.user = {
+                            name: null,
+                            email: null,
+                            check: null
+                        }
+                        this.$router.push('/')
+                    } else {
+                        this.$toast.error(res.data.message)
+                    }
+                })
+                .catch((res) => {
+                    var list_error = Object.values(res.response.data.errors);
+                    list_error.forEach((v, k) => {
+                        this.$toast.error(v[0]);
+                    });
+                });
+        }
+    },
 }
 </script>
-<style></style>
+<style>
+@media (max-width: 768px) {
+    .btn .btn-text {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .btn i {
+        font-size: 20px;
+    }
+}
+</style>

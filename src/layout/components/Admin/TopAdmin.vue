@@ -290,6 +290,12 @@ data() {
 						this.$toast.error('Có lỗi xảy ra')
 					}
 				})
+                .catch((res) => {
+                    var list_error = Object.values(res.response.data.errors);
+                    list_error.forEach((v, k) => {
+                        this.$toast.error(v[0]);
+                    });
+                });
 		},
 		logoutAll(){
 			axios
@@ -308,9 +314,12 @@ data() {
 						this.$toast.error(res.data.message)
 					}
 				})
-				.catch((res) =>{
-					this.$toast.error('Đã xảy ra lỗi')
-				})
+				.catch((res) => {
+                    var list_error = Object.values(res.response.data.errors);
+                    list_error.forEach((v, k) => {
+                        this.$toast.error(v[0]);
+                    });
+                });
 		}	
 	},
 }
