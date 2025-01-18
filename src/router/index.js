@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router"; // cài vue-router: npm install vue-router@next --save
 import checkAdminLogin from './checkAdminLogin'
 const routes = [
+  // Admin
   {
     path: "/admin",
     component: () => import("../layout/wrapper/Admin/index.vue"),
@@ -27,7 +28,9 @@ const routes = [
       },
     ],
   },
+  // End Admin
 
+  // Auth Admin
   {
     path: "/admin",
     component: () => import("../layout/wrapper/Auth/index.vue"),
@@ -39,6 +42,27 @@ const routes = [
     ],
   },
 
+  // End Auth Admin
+
+  // Auth Khách Hàng
+  {
+    path: "/khach-hang",
+    component: () => import("../layout/wrapper/Auth/index.vue"),
+    children: [
+      {
+        path: "dang-nhap",
+        component: () => import("../components/KhachHang/DangNhap/index.vue"),
+      },
+      {
+        path: "dang-ky",
+        component: () => import("../components/KhachHang/DangKy/index.vue"),
+      },
+    ],
+  },
+
+  // End Auth Khách Hàng
+
+  // Home
   {
     path: "/",
     component: () => import("../layout/wrapper/Client/index.vue"),
@@ -47,8 +71,22 @@ const routes = [
         path: "",
         component: () => import("../components/Client/Home/index.vue"),
       },
+      {
+        path: "/danh-muc/:id_danh_muc-:slug_danh_muc",
+        component: () =>
+          import("../components/Client/DanhSachSanPham/index.vue"),
+        props: true,
+      },
+      {
+        path: "/chi-tiet/:id_sach-:slug_sach",
+        component: () => import("../components/Client/ChiTietSach/index.vue"),
+        props: true,
+      },
     ],
   },
+  // End Home
+
+  // Khách Hàng
   {
     path: "/khach-hang",
     component: () => import("../layout/wrapper/Client/index.vue"),
@@ -57,8 +95,17 @@ const routes = [
         path: "profile",
         component: () => import("../components/KhachHang/Profile/index.vue"),
       },
+      {
+        path: "dang-nhap",
+        component: () => import("../components/KhachHang/DangNhap/index.vue"),
+      },
+      {
+        path: "dang-ky",
+        component: () => import("../components/KhachHang/DangKy/index.vue"),
+      },
     ],
   },
+  // End Khách Hàng
 ];
 
 const router = createRouter({

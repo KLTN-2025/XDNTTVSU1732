@@ -141,7 +141,9 @@
                            <img :src="value.hinh_anh" style="max-height: 250px; width: 100%; object-fit: contain;"
                               class="card-img-top" alt="..." />
                            <div class="card-body">
-                              <h6 class="card-title cursor-pointer">{{ value.ten_sach }}</h6>
+                               <router-link :to="'/chi-tiet/' + value.id + '-' + value.slug_sach">
+                                 <h6 class="card-title cursor-pointer">{{ value.ten_sach }}</h6>
+                              </router-link>
                               <div class="clearfix">
                                  <p class="mb-0 float-start">SL: <strong>{{ value.so_luong_ban }}</strong></p>
                                  <p class="mb-0 float-end fw-bold">
@@ -167,7 +169,9 @@
                </div>
                <div class="row">
                   <div class="col-lg-12 text-center">
-                     <button type="button" class="btn btn-outline-success px-5 radius-30"><i class="fa-regular fa-eye"></i>Xem Thêm</button>
+                     <button type="button" class="btn btn-outline-success px-5 radius-30"><i
+                           class="fa-regular fa-eye"></i>Xem
+                        Thêm</button>
                   </div>
                </div>
             </div>
@@ -189,7 +193,9 @@
                            <img :src="value.hinh_anh" style="max-height: 250px; width: 100%; object-fit: contain;"
                               class="card-img-top" alt="..." />
                            <div class="card-body">
-                              <h6 class="card-title cursor-pointer">{{ value.ten_sach }}</h6>
+                              <router-link :to="'/chi-tiet/' + value.id + '-' + value.slug_sach">
+                                 <h6 class="card-title cursor-pointer">{{ value.ten_sach }}</h6>
+                              </router-link>
                               <div class="clearfix">
                                  <p class="mb-0 float-start">SL: <strong>{{ value.so_luong_ban }}</strong></p>
                                  <p class="mb-0 float-end fw-bold">
@@ -215,7 +221,8 @@
                </div>
                <div class="row">
                   <div class="col-lg-12 text-center">
-                     <button type="button" class="btn btn-outline-success px-5 radius-30"><i class="fa-regular fa-eye"></i>Xem Thêm</button>
+                     <button type="button" class="btn btn-outline-success px-5 radius-30"><i
+                           class="fa-regular fa-eye"></i>Xem Thêm</button>
                   </div>
                </div>
             </div>
