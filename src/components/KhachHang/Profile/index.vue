@@ -46,10 +46,9 @@
                                                     style="width: 140px; height: 140px;" alt=""
                                                     class="rounded-circle p-1 bg-primary">
                                                 <div class="mt-3">
-                                                    <h4></h4>
-                                                    <p class="text-secondary mb-1">Khách Hàng</p>
-                                                    <p class="text-muted font-size-sm">322/60, Hải Phòng,
-                                                        Đà Nẵng</p>
+                                                    <h4>{{ thong_tin.ho_va_ten }}</h4>
+                                                    <p class="text-secondary mb-1">{{ thong_tin.email }}</p>
+                                                    <p class="text-muted font-size-sm">Đà Nẵng</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -63,7 +62,7 @@
                                                     <h6 class="mb-0">Họ và Tên</h6>
                                                 </div>
                                                 <div class="col-lg-9 text-secondary">
-                                                    <input type="text" class="form-control"
+                                                    <input v-model="thong_tin.ho_va_ten" type="text" class="form-control"
                                                         placeholder="Nhập họ và tên">
                                                 </div>
                                             </div>
@@ -72,7 +71,7 @@
                                                     <h6 class="mb-0">Email</h6>
                                                 </div>
                                                 <div class="col-lg-9 text-secondary">
-                                                    <input type="text" class="form-control" placeholder="Nhập email">
+                                                    <input v-model="thong_tin.email" type="text" class="form-control" placeholder="Nhập email">
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
@@ -80,7 +79,7 @@
                                                     <h6 class="mb-0">Số Điện Thoại</h6>
                                                 </div>
                                                 <div class="col-lg-9 text-secondary">
-                                                    <input type="text" class="form-control"
+                                                    <input v-model="thong_tin.so_dien_thoai" type="text" class="form-control"
                                                         placeholder="Nhập số điện thoại">
                                                 </div>
                                             </div>
@@ -280,7 +279,37 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
+    data() {
+        return {
+            thong_tin: {},
+        }
+    },
+
+    mounted() {
+        this.layThongTinKhachHang();
+    },
+
+    methods: {
+        layThongTinKhachHang() {
+            axios
+                .get("http://127.0.0.1:8000/api/khach-hang/profile", {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
+                    }
+                })
+                .then((res) => {
+                    if (res.data.status) {
+                        this.thong_tin = res.data.thong_tin;
+                    } else {
+                        this.$toast.error(res.data.message);
+                        this.$router.push('/');
+                    }
+                })
+        },
+    },
 
 }
 </script>
