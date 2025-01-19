@@ -38,6 +38,11 @@
                                                     type="password" class="form-control">
                                             </div>
                                         </div>
+                                        <div class="col-12 text-end">
+                                            <router-link to="/khach-hang/quen-mat-khau">
+                                                <a href="/khach-hang/quen-mat-khau">Quên Mật Khẩu</a>
+                                            </router-link>
+                                        </div>
                                         <div class="col-12"><button type="button" v-on:click="dangNhap()"
                                                 class="btn btn-primary w-100"><i class="fa-solid fa-lock-open"></i>Đăng
                                                 Nhập</button></div>

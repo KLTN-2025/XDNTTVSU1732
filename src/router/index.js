@@ -73,6 +73,11 @@ const routes = [
                 component: () => import("../components/KhachHang/KichHoat/index.vue"),
                 props: true,
             },
+            {
+                path: "quen-mat-khau",
+                component: () => import("../components/KhachHang/QuenMatKhau/index.vue"),
+                props: true,
+            },
         ],
     },
 
