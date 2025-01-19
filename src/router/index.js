@@ -75,7 +75,14 @@ const routes = [
             },
             {
                 path: "quen-mat-khau",
-                component: () => import("../components/KhachHang/QuenMatKhau/index.vue"),
+                component: () =>
+                    import("../components/KhachHang/QuenMatKhau/index.vue"),
+                props: true,
+            },
+            {
+                path: "dat-lai-mat-khau/:hash_reset",
+                component: () =>
+                    import("../components/KhachHang/DatLaiMatKhau/index.vue"),
                 props: true,
             },
         ],

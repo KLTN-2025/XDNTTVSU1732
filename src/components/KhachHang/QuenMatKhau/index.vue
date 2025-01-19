@@ -58,6 +58,7 @@ import axios from 'axios'
                     .then((res)=>{
                         if(res.data.status){
                             this.$toast.success(res.data.message);
+                            this.tai_Khoan = {}
                         }else{
                             this.$toast.error(res.data.message)
                         }
