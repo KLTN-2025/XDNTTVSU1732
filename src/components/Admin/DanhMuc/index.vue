@@ -77,8 +77,8 @@
                                         <th class="align-middle text-nowrap text-center">{{ index + 1 }}</th>
                                         <td class="align-middle text-nowrap">{{ value.ten_danh_muc }}</td>
                                         <td class="align-middle text-nowrap">{{ value.slug_danh_muc }}</td>
-                                        <td class="align-middle text-nowrap">
-                                            <span v-html="value.icon"></span>
+                                        <td class="align-middle text-nowrap text-center">
+                                            <span v-html="value.icon" class=""></span>
                                         </td>
                                         <td class="align-middle text-nowrap text-center">
                                             <button v-on:click="doiTrangThai(value)" v-if="value.tinh_trang == 1"

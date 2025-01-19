@@ -62,8 +62,8 @@
                                                     <h6 class="mb-0">Họ và Tên</h6>
                                                 </div>
                                                 <div class="col-lg-9 text-secondary">
-                                                    <input v-model="thong_tin.ho_va_ten" type="text" class="form-control"
-                                                        placeholder="Nhập họ và tên">
+                                                    <input v-model="thong_tin.ho_va_ten" type="text"
+                                                        class="form-control" placeholder="Nhập họ và tên">
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
@@ -71,7 +71,8 @@
                                                     <h6 class="mb-0">Email</h6>
                                                 </div>
                                                 <div class="col-lg-9 text-secondary">
-                                                    <input v-model="thong_tin.email" type="text" class="form-control" placeholder="Nhập email">
+                                                    <input v-model="thong_tin.email" type="text" class="form-control"
+                                                        placeholder="Nhập email">
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
@@ -79,14 +80,15 @@
                                                     <h6 class="mb-0">Số Điện Thoại</h6>
                                                 </div>
                                                 <div class="col-lg-9 text-secondary">
-                                                    <input v-model="thong_tin.so_dien_thoai" type="text" class="form-control"
-                                                        placeholder="Nhập số điện thoại">
+                                                    <input v-model="thong_tin.so_dien_thoai" type="text"
+                                                        class="form-control" placeholder="Nhập số điện thoại">
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-3"></div>
                                                 <div class="col-lg-9 text-secondary">
-                                                    <button type="button" class="btn btn-primary px-4">Lưu</button>
+                                                    <button v-on:click="capNhatProfile()" type="button"
+                                                        class="btn btn-primary px-4">Lưu</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -108,37 +110,38 @@
                                 </div>
                                 <hr>
                             </div>
+                            <template v-for="(value, index) in list_dia_chi" :key="index">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-6">
                                             <h5 class="mb-4">Địa chỉ</h5>
-                                            Nguyễn Văn A | 0123456789
+                                            {{ value.ten_nguoi_nhan }} | ({{ value.so_dien_thoai }})
                                             <div class="row">
-                                                <div class="col-lg-6">32 xuân diệu</div>
+                                                <div class="col-6">{{ value.dia_chi }}</div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3"></div>
-                                        <div class="col-lg-2 text-end">
+                                        <div class="col-3"></div>
+                                        <div class="col-2 text-end">
                                             <div class="row mb-2 mt-3">
                                                 <button type="button" class="btn btn-danger px-5 radius-30"
-                                                    data-bs-toggle="modal" data-bs-target="#deleteModal">Xoá</button>
+                                                    data-bs-toggle="modal" data-bs-target="#deleteModal" v-on:click="Object.assign(dia_chi_delete, value)">Xoá</button>
                                             </div>
                                             <div class="row">
                                                 <button type="button" class="btn btn-primary px-5 radius-30"
-                                                    data-bs-toggle="modal" data-bs-target="#capnhatModal">Cập
-                                                    Nhật</button>
+                                                    data-bs-toggle="modal" data-bs-target="#capnhatModal" v-on:click="Object.assign(dia_chi_update, value)">Cập Nhật</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </template>
                             <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 style="display: none;" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h3 class="modal-title" id="exampleModalLabel">Xoá</h3>
+                                            <h5 class="modal-title" id="exampleModalLabel">Xoá</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
@@ -149,11 +152,9 @@
                                                     <div class="font-35 text-dark"><i class="bx bx-info-circle"></i>
                                                     </div>
                                                     <div class="ms-3">
-                                                        <h6 class="mb-0 text-dark">Lưu ý!</h6>
                                                         <div class="text-dark">
-                                                            Dòng này sẽ bị xoá vĩnh viễn!
+                                                            Bạn muốn xóa địa chỉ <b>{{ dia_chi_delete.dia_chi }}</b> vĩnh viễn?
                                                             <br>
-                                                            Bạn có chắc chắn muốn xoá <b></b> không?
                                                         </div>
                                                     </div>
                                                 </div>
@@ -163,7 +164,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Đóng</button>
-                                            <button type="button" class="btn btn-danger"
+                                            <button v-on:click="xoaDiaChi()" type="button" class="btn btn-danger"
                                                 data-bs-dismiss="modal">Xoá</button>
                                         </div>
                                     </div>
@@ -182,21 +183,21 @@
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <label class="mb-2">Tên Người Nhận:</label>
-                                                    <input type="text" class="form-control" placeholder="Họ và tên">
+                                                    <input v-model="dia_chi_update.ten_nguoi_nhan" type="text" class="form-control" placeholder="Họ và tên">
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label class="mb-2">Số điện thoại:</label>
-                                                    <input type="text" class="form-control" placeholder="Số điện thoại">
+                                                    <input v-model="dia_chi_update.so_dien_thoai" type="text" class="form-control" placeholder="Số điện thoại">
                                                 </div>
                                             </div>
                                             <label class="mt-2 mb-2">Địa chỉ:</label>
-                                            <input type="text" class="form-control"
+                                            <input v-model="dia_chi_update.dia_chi" type="text" class="form-control"
                                                 placeholder="Tỉnh/Thành phố, Quận/Huyện, Phường/Xã">
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Đóng</button>
-                                            <button type="button" class="btn btn-primary"
+                                            <button v-on:click="capNhatDiaChi()" type="button" class="btn btn-primary"
                                                 data-bs-dismiss="modal">Lưu</button>
                                         </div>
                                     </div>
@@ -216,22 +217,25 @@
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <label class="mb-2">Tên Người Nhận:</label>
-                                                    <input type="text" class="form-control" placeholder="Họ và tên">
+                                                    <input v-model="dia_chi_create.ten_nguoi_nhan" type="text"
+                                                        class="form-control" placeholder="Họ và tên">
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label class="mb-2">Số điện thoại:</label>
-                                                    <input type="text" class="form-control" placeholder="Số điện thoại">
+                                                    <input v-model="dia_chi_create.so_dien_thoai" type="text"
+                                                        class="form-control" placeholder="Số điện thoại">
                                                 </div>
                                             </div>
                                             <label class="mt-2 mb-2">Địa chỉ:</label>
-                                            <input type="text" class="form-control"
+                                            <input v-on:keyup.enter="themMoiDiaChi()" type="text" v-model="dia_chi_create.dia_chi" class="form-control"
                                                 placeholder="Tỉnh/Thành phố, Quận/Huyện, Phường/Xã">
 
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Trở
                                                 lại</button>
-                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hoàn
+                                            <button type="button" v-on:click="themMoiDiaChi()" class="btn btn-danger"
+                                                data-bs-dismiss="modal">Hoàn
                                                 Thành</button>
                                         </div>
                                     </div>
@@ -250,7 +254,7 @@
                                     <label for="">Mật khẩu cũ</label>
                                 </div>
                                 <div class="col-lg-3">
-                                    <input type="text" placeholder="Nhập mật khẩu cũ" class="form-control">
+                                    <input v-model="update_password.old_password" type="text" placeholder="Nhập mật khẩu cũ" class="form-control">
                                 </div>
                             </div>
 
@@ -259,7 +263,7 @@
                                     <label for="">Mật khẩu mới</label>
                                 </div>
                                 <div class="col-lg-3">
-                                    <input type="password" placeholder="Nhập mật khẩu mới" class="form-control">
+                                    <input v-model="update_password.new_password" type="password" placeholder="Nhập mật khẩu mới" class="form-control">
                                 </div>
                             </div>
                             <div class="row mb-2">
@@ -267,10 +271,10 @@
                                     <label for="">Nhập lại Mật khẩu mới </label>
                                 </div>
                                 <div class="col-lg-3">
-                                    <input type="password" placeholder="Nhập lại mật khẩu mới" class="form-control">
+                                    <input v-model="update_password.re_password" type="password" placeholder="Nhập lại mật khẩu mới" class="form-control">
                                 </div>
                             </div>
-                            <button class="btn btn-primary">Lưu</button>
+                            <button class="btn btn-primary" v-on:click="doiMatKhau()">Lưu</button>
                         </div>
                     </div>
                 </div>
@@ -285,17 +289,23 @@ export default {
     data() {
         return {
             thong_tin: {},
+            dia_chi_create: {},
+            dia_chi_update: {},
+            dia_chi_delete: {},
+            update_password : {},
+            list_dia_chi: [],
         }
     },
 
     mounted() {
         this.layThongTinKhachHang();
+        this.loadDataDiaChi()
     },
 
     methods: {
         layThongTinKhachHang() {
             axios
-                .get("http://127.0.0.1:8000/api/khach-hang/profile", {
+                .get("http://127.0.0.1:8000/api/khach-hang/profile/data", {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -305,7 +315,6 @@ export default {
                         this.thong_tin = res.data.thong_tin;
                     } else {
                         this.$toast.error(res.data.message);
-                        this.$router.push('/');
                     }
                 })
                 .catch((res) => {
@@ -315,6 +324,137 @@ export default {
                     });
                 });
         },
+        capNhatProfile() {
+            axios
+                .post("http://127.0.0.1:8000/api/khach-hang/profile/edit", this.thong_tin, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
+                    }
+                })
+                .then((res) => {
+                    if (res.data.status) {
+                        this.$toast.success(res.data.message);
+                        this.layThongTinKhachHang();
+
+                    } else {
+                        this.$toast.error(res.data.message);
+                    }
+                })
+                .catch((res) => {
+                    var list_error = Object.values(res.response.data.errors);
+                    list_error.forEach((v, k) => {
+                        this.$toast.error(v[0]);
+                    });
+                });
+        },
+
+        loadDataDiaChi() {
+            axios
+                .get("http://127.0.0.1:8000/api/khach-hang/dia-chi/data", {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
+                    }
+                })
+                .then((res) => {
+                        this.list_dia_chi = res.data.data;
+                })
+                .catch((res) => {
+                    var list_error = Object.values(res.response.data.errors);
+                    list_error.forEach((v, k) => {
+                        this.$toast.error(v[0]);
+                    });
+                });
+        },
+        themMoiDiaChi() {
+            axios
+                .post("http://127.0.0.1:8000/api/khach-hang/dia-chi/create", this.dia_chi_create, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
+                    }
+                })
+                .then((res) => {
+                    if (res.data.status) {
+                        this.$toast.success(res.data.message);
+                        this.loadDataDiaChi();
+
+                    } else {
+                        this.$toast.error(res.data.message);
+                    }
+                })
+                .catch((res) => {
+                    var list_error = Object.values(res.response.data.errors);
+                    list_error.forEach((v, k) => {
+                        this.$toast.error(v[0]);
+                    });
+                });
+        },
+        capNhatDiaChi() {
+             axios
+                .post("http://127.0.0.1:8000/api/khach-hang/dia-chi/update", this.dia_chi_update, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
+                    }
+                })
+                .then((res) => {
+                    if (res.data.status) {
+                        this.$toast.success(res.data.message);
+                        this.loadDataDiaChi();
+                    } else {
+                        this.$toast.error(res.data.message);
+                    }
+                })
+                .catch((res) => {
+                    var list_error = Object.values(res.response.data.errors);
+                    list_error.forEach((v, k) => {
+                        this.$toast.error(v[0]);
+                    });
+                });
+        },
+         xoaDiaChi() {
+             axios
+                .post("http://127.0.0.1:8000/api/khach-hang/dia-chi/delete", this.dia_chi_delete, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
+                    }
+                })
+                .then((res) => {
+                    if (res.data.status) {
+                        this.$toast.success(res.data.message);
+                        this.loadDataDiaChi();
+                    } else {
+                        this.$toast.error(res.data.message);
+                    }
+                })
+                .catch((res) => {
+                    var list_error = Object.values(res.response.data.errors);
+                    list_error.forEach((v, k) => {
+                        this.$toast.error(v[0]);
+                    });
+                });
+        },
+        doiMatKhau() {
+             axios
+                .post("http://127.0.0.1:8000/api/khach-hang/password/change", this.update_password, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
+                    }
+                })
+                .then((res) => {
+                    if (res.data.status) {
+                        this.$toast.success(res.data.message);
+                        this.layThongTinKhachHang();
+                        this.update_password = {};
+                    } else {
+                        this.$toast.error(res.data.message);
+                    }
+                })
+                .catch((res) => {
+                    var list_error = Object.values(res.response.data.errors);
+                    list_error.forEach((v, k) => {
+                        this.$toast.error(v[0]);
+                    });
+                });
+        }
     },
 
 }

@@ -198,7 +198,7 @@
                         <div class="col-lg-12">
                             <div class="mb-2">
                                 <label>Mô Tả</label>
-                                <ckeditor v-model="create_sach.mo_ta" :editor="editor" :config="editorConfig" />
+                                <ckeditor v-model="create_sach.mo_ta" :editor="editor" :config="editorConfig"/>
                             </div>
                         </div>
                     </div>
@@ -486,3 +486,8 @@ export default {
     },
 }
 </script>
+<style>
+.ck-editor__editable {
+    min-height: 300px;
+}
+</style>
