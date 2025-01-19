@@ -126,7 +126,7 @@ export default {
 
         loadDataTheoDanhMuc() {
             axios
-                .get('http://127.0.0.1:8000/api/home/danh-muc/danh-sach/' + this.id_danh_muc)
+                .get('https://ban-sach-be.dzfullstack.edu.vn/api/home/danh-muc/danh-sach/' + this.id_danh_muc)
                 .then((res) => {
                     this.list = res.data.data
                     this.danh_muc = res.data.danh_muc

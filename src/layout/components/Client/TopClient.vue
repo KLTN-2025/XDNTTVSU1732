@@ -276,6 +276,11 @@
                                 </router-link>
                             </li>
                             <li>
+                                <router-link to="/khach-hang/gio-hang">
+                                    <a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>Giỏ Hàng Của Bạn</span></a>
+                                </router-link>
+                            </li>
+                            <li>
                                 <div class="dropdown-divider mb-0"></div>
                             </li>
                             <li><a class="dropdown-item" v-on:click="logout()" href="javascript:;"><i

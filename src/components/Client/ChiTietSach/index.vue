@@ -32,18 +32,23 @@
                     <hr>
                     <div class="row row-cols-auto row-cols-1 row-cols-md-3 align-items-center">
                         <div class="col">
-                                <label class="form-label">Số Lượng Mua</label>
-                                <div class="input-group input-spinner" style="width: 150px;">
-                                    <button class="btn btn-white" type="button" id="button-plus"> -
-                                    </button>
-                                    <input type="text" class="form-control text-center" value="1">
-                                    <button class="btn btn-white" type="button" id="button-minus"> +
-                                    </button>
-                                </div>
+                            <label class="form-label">Số Lượng Mua</label>
+                            <div class="input-group input-spinner">
+                                <button v-on:click="tru()" class="btn btn-white" type="button" id="button-plus">
+                                    -
+                                </button>
+                                <input v-on:change="doi()" v-model="chi_tiet_sach.so_luong_mua" type="number"
+                                    class="form-control text-center" style="width: 100px; max-width: 100px;">
+                                <button v-on:click="cong()" class="btn btn-white" type="button" id="button-minus"> +
+                                </button>
                             </div>
+                        </div>
                     </div>
                     <div class="d-flex gap-3 mt-3">
                         <a href="#" class="btn btn-primary">Mua Ngay</a>
+                        <a v-on:click="themGioHang()" class="btn btn-outline-primary"><span class="text">Thêm
+                                vào giỏ
+                                hàng</span> <i class="bx bxs-cart-alt"></i></a>
                     </div>
                 </div>
             </div>
@@ -122,7 +127,9 @@ export default {
     data() {
         return {
             id_sach: this.$route.params.id_sach,
-            chi_tiet_sach: {}
+            chi_tiet_sach: {},
+            order : 0,
+
         }
     },
 
@@ -132,15 +139,65 @@ export default {
 
     },
     methods: {
+         doi() {
+            if (this.chi_tiet_sach.so_luong_mua < 1) {
+                var message = "Số lượng mua tối thiểu phải là 1 sản phẩm."
+                var thong_bao = '<b>Thông báo</b><span style="margin-top: 5px">' + message + '<span>';
+                this.$toast.warning(thong_bao);
+                this.chi_tiet_sach.so_luong_mua = 1;
+            } else if (this.chi_tiet_sach.so_luong_mua > this.chi_tiet_sach.so_luong_ban) {
+                this.chi_tiet_sach.so_luong_mua = this.chi_tiet_sach.so_luong_ban;
+                var message = "Số lượng mua tối đa chỉ được " + this.chi_tiet_sach.so_luong_ban + " sản phẩm."
+                var thong_bao = '<b>Thông báo</b><span style="margin-top: 5px">' + message + '<span>';
+                this.$toast.warning(thong_bao);
+            }
+        },
+        tru() {
+            this.chi_tiet_sach.so_luong_mua = this.chi_tiet_sach.so_luong_mua * 1 - 1;
+            if (this.chi_tiet_sach.so_luong_mua < 1) {
+                var message = "Số lượng mua tối thiểu phải là 1 sản phẩm."
+                var thong_bao = '<b>Thông báo</b><span style="margin-top: 5px">' + message + '<span>';
+                this.$toast.warning(thong_bao);
+                this.chi_tiet_sach.so_luong_mua = 1;
+            }
+        },
+        cong() {
+            this.chi_tiet_sach.so_luong_mua = this.chi_tiet_sach.so_luong_mua * 1 + 1;
+            if (this.chi_tiet_sach.so_luong_mua > this.chi_tiet_sach.so_luong_ban) {
+                this.chi_tiet_sach.so_luong_mua = this.chi_tiet_sach.so_luong_ban;
+                var message = "Số lượng mua tối đa chỉ được " + this.chi_tiet_sach.so_luong_ban + " sản phẩm."
+                var thong_bao = '<b>Thông báo</b><span style="margin-top: 5px">' + message + '<span>';
+                this.$toast.warning(thong_bao);
+            }
+        }, 
         layThongTinSach() {
             axios
                 .get('http://127.0.0.1:8000/api/home/chi-tiet-sach/' + this.id_sach)
                 .then((res) => {
                     if (res.data.status) {
                         this.chi_tiet_sach = res.data.data;
+                         this.order = res.data.order;
+                         this.chi_tiet_sach.so_luong_mua = 1;
                     }
                 });
-        }
+        },
+        themGioHang() {
+            axios
+                .post("http://127.0.0.1:8000/api/khach-hang/gio-hang/create", this.chi_tiet_sach, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
+                    }
+                })
+                .then((res) => {
+                    if (res.data.status) {
+                        var thong_bao = '<b>Thông báo</b><span style="margin-top: 5px">' + res.data.message + '<span>';
+                        this.$toast.success(thong_bao);
+                    } else {
+                        var thong_bao = '<b>Thông báo</b><span style="margin-top: 5px">' + res.data.message + '<span>';
+                        this.$toast.error(thong_bao);
+                    }
+                })
+        },
     },
 }
 </script>

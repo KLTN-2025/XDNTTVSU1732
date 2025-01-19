@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router"; // cài vue-router: npm install vue-router@next --save
-import checkAdminLogin from './checkAdminLogin'
+import checkAdminLogin from "./checkAdminLogin";
 import checkKhachHangLogin from "./checkKhachHangLogin";
 const routes = [
     // Admin
@@ -77,7 +77,6 @@ const routes = [
                 path: "quen-mat-khau",
                 component: () =>
                     import("../components/KhachHang/QuenMatKhau/index.vue"),
-                props: true,
             },
             {
                 path: "dat-lai-mat-khau/:hash_reset",
@@ -131,6 +130,10 @@ const routes = [
             {
                 path: "dang-ky",
                 component: () => import("../components/KhachHang/DangKy/index.vue"),
+            },
+            {
+                path: "gio-hang",
+                component: () => import("../components/KhachHang/GioHang/index.vue"),
             },
         ],
     },
