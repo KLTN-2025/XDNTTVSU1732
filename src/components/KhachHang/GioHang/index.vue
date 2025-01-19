@@ -75,7 +75,7 @@
                                             class="form-control" cols="30" rows="3"></textarea>
                                     </td>
                                     <td class="text-center text-nowrap align-middle">
-                                        <button class="btn">
+                                        <button v-on:click="xoaGioHang(value)" class="btn">
                                             <i class="fa-solid fa-trash text-danger"></i>
                                         </button>
                                     </td>
@@ -224,6 +224,13 @@ export default {
                 })
                 .then((res) => {
                     this.list_gio_hang = res.data.data;
+                    this.list_gio_hang.forEach((value, key) => {
+                        if (value.id == this.$route.params.id_chi_tiet) {
+                            value.chon_sp = 1;
+                        }
+                    });
+                    this.list_gio_hang = [...this.list_gio_hang];
+                    this.tinhTongTien();
                 });
         },
         muaHang() {
@@ -245,15 +252,31 @@ export default {
                     },
                 })
 				.then((res) => {
-					// if (res.data.status) {
-					// 	this.$toast.success('Thông báo<br>' + res.data.message);
-					// 	this.tong_tien = 0,
-					// 	this.layDataGioHang();
-					// } else {
-					// 	this.$toast.error('Thông báo<br>' + res.data.message);
-					// }
+					if (res.data.status) {
+						this.$toast.success('Thông báo<br>' + res.data.message);
+						this.tong_tien = 0,
+						this.layDataGioHang();
+					} else {
+						this.$toast.error('Thông báo<br>' + res.data.message);
+					}
 				});
 		},
+        xoaGioHang(payload) {
+            axios
+                .post("http://127.0.0.1:8000/api/khach-hang/gio-hang/delete", payload, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
+                    }
+                })
+                .then((res) => {
+                    if (res.data.status) {
+                        this.$toast.success(res.data.message);
+                        this.layDataGioHang();
+                    } else {
+                        this.$toast.error(res.data.message);
+                    }
+                })
+        },
         capNhat(payload) {
             axios
                 .post("http://127.0.0.1:8000/api/khach-hang/gio-hang/update", payload, {

@@ -134,6 +134,7 @@ const routes = [
             {
                 path: "gio-hang",
                 component: () => import("../components/KhachHang/GioHang/index.vue"),
+                name: "gioHang",
             },
         ],
     },

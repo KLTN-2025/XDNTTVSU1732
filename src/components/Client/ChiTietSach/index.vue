@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="d-flex gap-3 mt-3">
-                        <a href="#" class="btn btn-primary">Mua Ngay</a>
+                        <a href="#" class="btn btn-primary" v-on:click="muaNgay()">Mua Ngay</a>
                         <a v-on:click="themGioHang()" class="btn btn-outline-primary"><span class="text">Thêm
                                 vào giỏ
                                 hàng</span> <i class="bx bxs-cart-alt"></i></a>
@@ -128,18 +128,16 @@ export default {
         return {
             id_sach: this.$route.params.id_sach,
             chi_tiet_sach: {},
-            order : 0,
+            order: 0,
 
         }
     },
 
     mounted() {
         this.layThongTinSach();
-        console.log(this.id_sach);
-
     },
     methods: {
-         doi() {
+        doi() {
             if (this.chi_tiet_sach.so_luong_mua < 1) {
                 var message = "Số lượng mua tối thiểu phải là 1 sản phẩm."
                 var thong_bao = '<b>Thông báo</b><span style="margin-top: 5px">' + message + '<span>';
@@ -169,15 +167,15 @@ export default {
                 var thong_bao = '<b>Thông báo</b><span style="margin-top: 5px">' + message + '<span>';
                 this.$toast.warning(thong_bao);
             }
-        }, 
+        },
         layThongTinSach() {
             axios
                 .get('http://127.0.0.1:8000/api/home/chi-tiet-sach/' + this.id_sach)
                 .then((res) => {
                     if (res.data.status) {
                         this.chi_tiet_sach = res.data.data;
-                         this.order = res.data.order;
-                         this.chi_tiet_sach.so_luong_mua = 1;
+                        this.order = res.data.order;
+                        this.chi_tiet_sach.so_luong_mua = 1;
                     }
                 });
         },
@@ -195,6 +193,25 @@ export default {
                     } else {
                         var thong_bao = '<b>Thông báo</b><span style="margin-top: 5px">' + res.data.message + '<span>';
                         this.$toast.error(thong_bao);
+                    }
+                })
+        },
+        muaNgay() {
+            axios
+                .post("http://127.0.0.1:8000/api/khach-hang/gio-hang/create", this.chi_tiet_sach, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
+                    }
+                })
+                .then((res) => {
+                    if (res.data.status) {
+                        var thong_bao = '<b>Thông báo</b><span style="margin-top: 5px">' + 'Vui lòng thực hiện thanh toán' + '<span>';
+                        this.$toast.success(thong_bao);
+                        this.$router.push({ name: 'gioHang', params: { id_chi_tiet: res.data.chi_tiet } });
+                    } else {
+                        var thong_bao = '<b>Thông báo</b><span style="margin-top: 5px">' + res.data.message + '<span>';
+                        this.$toast.error(thong_bao);
+                        this.$router.push('/khach-hang/dang-nhap');
                     }
                 })
         },
