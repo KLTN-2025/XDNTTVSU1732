@@ -42,6 +42,11 @@ const routes = [
                 component: () => import("../components/Admin/DonHang/index.vue"),
                 beforeEnter: checkAdminLogin,
             },
+            {
+                path: "profile",
+                component: () => import("../components/Admin/Profile/index.vue"),
+                beforeEnter: checkAdminLogin,
+            },
         ],
     },
     // End Admin

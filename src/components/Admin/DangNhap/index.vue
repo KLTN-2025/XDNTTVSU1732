@@ -78,7 +78,7 @@ export default {
                         localStorage.setItem("token_nhan_vien", res.data.token);
                         localStorage.setItem("name", res.data.name);
                         setTimeout(() => {
-                            window.location.href = "/admin/danh-muc"
+                            window.location.href = "/admin/profile"
                         }, 2000);
                     } else {
                         this.$toast.error(res.data.message);

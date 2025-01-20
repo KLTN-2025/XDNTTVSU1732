@@ -25,7 +25,7 @@
                 <li class="nav-item">
                     <router-link to="/admin/sach">
                         <a class="nav-link" href="/admin/sach">
-                            <div class="parent-icon"><i class="fa-solid fa-book-open"></i>
+                            <div class="parent-icon"><i class="fa-solid fa-book-open-reader"></i>
                             </div>
                             <div class="menu-title">Sách</div>
                         </a>
@@ -34,7 +34,7 @@
                 <li class="nav-item">
                     <router-link to="/admin/tac-gia">
                         <a class="nav-link" href="/admin/tac-gia">
-                            <div class="parent-icon"><i class="fa-solid fa-user-pen"></i>
+                            <div class="parent-icon"><i class="fa-solid fa-id-card"></i>
                             </div>
                             <div class="menu-title">Tác Giả</div>
                         </a>
@@ -43,7 +43,7 @@
                 <li class="nav-item">
                     <router-link to="/admin/nha-xuat-ban">
                         <a class="nav-link" href="/admin/nha-xuat-ban">
-                            <div class="parent-icon"><i class="fa-solid fa-user-pen"></i>
+                            <div class="parent-icon"><i class="fa-solid fa-user-tie"></i>
                             </div>
                             <div class="menu-title">Nhà Xuất Bản</div>
                         </a>
@@ -52,7 +52,7 @@
                 <li class="nav-item">
                     <router-link to="/admin/nhan-vien">
                         <a class="nav-link" href="/admin/nhan-vien">
-                            <div class="parent-icon"><i class="fa-solid fa-users-line"></i>
+                            <div class="parent-icon"><i class="fa-solid fa-users-gear"></i>
                             </div>
                             <div class="menu-title">Nhân Viên</div>
                         </a>
@@ -70,7 +70,7 @@
                 <li class="nav-item">
                     <router-link to="/admin/don-hang">
                         <a class="nav-link" href="/admin/don-hang">
-                            <div class="parent-icon"><i class="fa-solid fa-users-line"></i>
+                            <div class="parent-icon"><i class="fa-solid fa-cart-shopping"></i>
                             </div>
                             <div class="menu-title">Đơn Hàng</div>
                         </a>
