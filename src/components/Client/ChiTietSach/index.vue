@@ -22,8 +22,8 @@
                     <dl class="row">
                         <dt class="col-sm-3">Giá Gốc</dt>
                         <dd class="col-sm-9"><del>
-                            {{ formatVND(chi_tiet_sach.gia_ban) }}
-                        </del></dd>
+                                {{ formatVND(chi_tiet_sach.gia_ban) }}
+                            </del></dd>
 
                         <dt class="col-sm-3">Giá Khuyến Mãi</dt>
                         <dd class="col-sm-9 text-danger"><b>{{ formatVND(chi_tiet_sach.gia_km) }}</b></dd>
@@ -67,7 +67,7 @@
                         </div>
                     </a>
                 </li>
-                <li class="nav-item" role="presentation">
+                <li class="nav-item" v-on:click="getDataDanhGia()" role="presentation">
                     <a class="nav-link" data-bs-toggle="tab" href="#danhGia" role="tab" aria-selected="false"
                         tabindex="-1">
                         <div class="d-flex align-items-center">
@@ -85,32 +85,25 @@
                 <div class="tab-pane fade" id="danhGia" role="tabpanel">
                     <div class="card radius-10">
                         <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../../../assets/images/avatars/avatar-5.png"
-                                    class="align-self-center rounded-circle p-1 border" width="90" height="90"
-                                    alt="...">
-                                <div class="flex-grow-1 ms-3">
-                                    <h5 class="mt-0">Center-aligned media</h5>
-                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                                        sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra
-                                        turpis. Fusce condimentum nunc ac nisi vulputate fringilla</p>
-                                    <p class="mb-0">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu
-                                        leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                                        ridiculus mus.</p>
+                            <template v-for="(value, index) in list_danh_gia" :key="index">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://s3.ap-southeast-1.amazonaws.com/cdn.vntre.vn/default/avatar-cute-dong-vat-1725201830.jpg"
+                                        class="align-self-center rounded-circle p-1 border" width="90" height="90"
+                                        alt="...">
+                                    <div class="flex-grow-1 ms-3">
+                                        <h5 class="mt-0">{{ value.ho_va_ten }}</h5>
+                                        <p>{{ value.noi_dung }}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <img src="../../../assets/images/avatars/avatar-6.png"
-                                    class="align-self-end rounded-circle p-1 border" width="90" height="90" alt="...">
-                                <div class="flex-grow-1 ms-3">
-                                    <h5 class="mt-0">Bottom-aligned media</h5>
-                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                                        sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra
-                                        turpis. Fusce condimentum nunc ac nisi vulputate fringilla</p>
-                                    <p class="mb-0">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu
-                                        leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                                        ridiculus mus.</p>
+                                <hr>
+                            </template>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="input-group mb-3">
+                                        <input v-model="danh_gia.noi_dung" v-on:keyup.enter="danhGia()" type="text"
+                                            class="form-control" placeholder="Nhập đánh giá của bạn">
+                                        <span class="input-group-text" v-on:click="danhGia()">Đánh Giá</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +111,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 <script>
@@ -131,7 +123,11 @@ export default {
             id_sach: this.$route.params.id_sach,
             chi_tiet_sach: {},
             order: 0,
-
+            danh_gia: {
+                noi_dung: '',
+                id_sach: this.$route.params.id_sach
+            },
+            list_danh_gia: [],
         }
     },
 
@@ -139,7 +135,39 @@ export default {
         this.layThongTinSach();
     },
     methods: {
-         formatVND(number) {
+        getDataDanhGia() {
+            var payload = {
+                id_sach: this.id_sach
+            }
+            axios
+                .post("http://127.0.0.1:8000/api/khach-hang/danh-gia/data", payload, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
+                    }
+                })
+                .then((res) => {
+                    this.list_danh_gia = res.data.data;
+                })
+        },
+        danhGia() {
+            axios
+                .post("http://127.0.0.1:8000/api/khach-hang/danh-gia/create", this.danh_gia, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
+                    }
+                })
+                .then((res) => {
+                    if (res.data.status) {
+                        this.$toast.success(res.data.message);
+                        this.danh_gia.noi_dung = "";
+                        this.getDataDanhGia();
+                    } else {
+                        this.$toast.error(res.data.message);
+                        this.$router.push('/khach-hang/dang-nhap');
+                    }
+                })
+        },
+        formatVND(number) {
             number = parseInt(number);
             return number.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
         },

@@ -42,7 +42,7 @@
                                     <div class="card flex-fill">
                                         <div class="card-body">
                                             <div class="d-flex flex-column align-items-center text-center">
-                                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs3NATp_QrhVQoh8T0Z6lmyuQ8NwIz7hw_0w&s"
+                                                <img src="https://s3.ap-southeast-1.amazonaws.com/cdn.vntre.vn/default/avatar-cute-dong-vat-1725201830.jpg"
                                                     style="width: 140px; height: 140px;" alt=""
                                                     class="rounded-circle p-1 bg-primary">
                                                 <div class="mt-3">

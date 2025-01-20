@@ -17,8 +17,8 @@
                                         <i class="bx bx-chevron-down"></i>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <li><a class="dropdown-item" href="#">A -Z</a></li>
-                                        <li><a class="dropdown-item" href="#">Z - A</a></li>
+                                        <li><a class="dropdown-item" href="#" @click="sortList('az')">A -Z</a></li>
+                                        <li><a class="dropdown-item" href="#" @click="sortList('za')">Z - A</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -33,9 +33,10 @@
                                         <i class="bx bx-slider"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="btnGroupDrop1">
-                                        <li><a class="dropdown-item" href="#">Dưới 20k</a></li>
-                                        <li><a class="dropdown-item" href="#">Dưới 50</a></li>
-                                        <li><a class="dropdown-item" href="#">Dưới 100k</a></li>
+                                        <li><a class="dropdown-item" href="#" @click="sortPrice('tangDan')">Giá Tăng
+                                                Dần</a></li>
+                                        <li><a class="dropdown-item" href="#" @click="sortPrice('giamDan')">Giá Giảm
+                                                Dần</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -108,16 +109,33 @@ export default {
     },
     methods: {
         formatVND(number) {
-         return new Intl.NumberFormat('vi-VI', { style: 'currency', currency: 'VND' }).format(number,)
-      },
+            return new Intl.NumberFormat('vi-VI', { style: 'currency', currency: 'VND' }).format(number,)
+        },
         loadDataGoiy() {
             axios
                 .get('http://127.0.0.1:8000/api/home/data-goi-y-all')
                 .then((res) => {
                     this.list_sach_goi_y = res.data.list_sach_goi_y;
                 })
+        },
+        sortList(order) {
+            if (order === 'az') {
+                this.list_sach_goi_y.sort((a, b) => a.ten_sach.localeCompare(b.ten_sach));
+            } else if (order === 'za') {
+                this.list_sach_goi_y.sort((a, b) => b.ten_sach.localeCompare(a.ten_sach));
+            }
+        },
+        sortPrice(order) {
+            if (order === 'tangDan') {
+                this.list_sach_goi_y.sort((a, b) => a.gia_km - b.gia_km);
+            } else if (order === 'giamDan') {
+                this.list_sach_goi_y.sort((a, b) => b.gia_km - a.gia_km);
+            }
         }
     },
+    computed: {
+
+    }
 }
 </script>
 <style></style>

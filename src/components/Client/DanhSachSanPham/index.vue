@@ -7,45 +7,6 @@
                         <div class="col-lg-4">
                             <h6 class="mt-2"><b>{{ danh_muc.ten_danh_muc }}</b></h6>
                         </div>
-                        <div class="col">
-                            <div class="btn-group w-100" role="group" aria-label="Button group with nested dropdown">
-                                <button type="button" class="btn btn-white">Sắp Xếp</button>
-                                <div class="btn-group" role="group">
-                                    <button id="btnGroupDrop1" type="button"
-                                        class="btn btn-white dropdown-toggle dropdown-toggle-nocaret px-1"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bx bx-chevron-down"></i>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <li><a class="dropdown-item" href="#">A -Z</a></li>
-                                        <li><a class="dropdown-item" href="#">Z - A</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="btn-group w-100" role="group">
-                                <button type="button" class="btn btn-white">Chọn Giá</button>
-                                <div class="btn-group" role="group">
-                                    <button id="btnGroupDrop1" type="button"
-                                        class="btn btn-white dropdown-toggle dropdown-toggle-nocaret px-1"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bx bx-slider"></i>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="btnGroupDrop1">
-                                        <li><a class="dropdown-item" href="#">Dưới 20k</a></li>
-                                        <li><a class="dropdown-item" href="#">Dưới 50</a></li>
-                                        <li><a class="dropdown-item" href="#">Dưới 100k</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="col-lg-4">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Nhập tên sản phẩm cần tìm kiếm">
-                                <button type="button" class="input-group-text bg-success">Tìm Kiếm</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
