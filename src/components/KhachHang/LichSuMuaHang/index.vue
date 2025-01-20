@@ -19,8 +19,6 @@
                                     <th>Thông tin người mua</th>
                                     <th>Thanh Toán</th>
                                     <th>Tình Trạng Đơn Hàng</th>
-                                    <th>Đánh Giá</th>
-                                    <th>In Bill</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,10 +56,6 @@
                                         <button v-else-if="v.tinh_trang_don_hang == 3" class="btn btn-primary w-100">Đã
                                             Nhận</button>
                                         <button v-else class="btn btn-danger w-100">Đã Hủy</button>
-                                    </td>
-                                    <td class="text-center">
-                                        <button class="btn btn-secondary"><i
-                                                class="fa-solid fa-file-invoice-dollar"></i></button>
                                     </td>
                                 </tr>
                             </tbody>

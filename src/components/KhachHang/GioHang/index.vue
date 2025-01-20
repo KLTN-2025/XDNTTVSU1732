@@ -134,8 +134,8 @@
                             <tr>
                                 <th colspan="3" class="align-middle">
                                     <select v-model="id_dia_chi" class="form-select">
+                                        <option value="">-- Vui Lòng Chọn Địa Chỉ Giao Hàng --</option>
                                         <template v-for="(value, index) in list_dia_chi" :key="index">
-                                            <option value="">-- Vui Lòng Chọn Địa Chỉ Giao Hàng --</option>
                                             <option v-bind:value="value.id">
                                                 {{ value.ten_nguoi_nhan }} - {{ value.so_dien_thoai }} - {{
                                                 value.dia_chi }}
@@ -158,7 +158,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                     <button v-on:click="muaHang()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Xác Nhận Mua Hàng</button>
                 </div>
             </div>
