@@ -280,6 +280,11 @@
                                     <a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>Giỏ Hàng Của Bạn</span></a>
                                 </router-link>
                             </li>
+                             <li>
+                                <router-link to="/khach-hang/lich-su-mua-hang">
+                                    <a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>Lịch Sử Mua Hàng</span></a>
+                                </router-link>
+                            </li>
                             <li>
                                 <div class="dropdown-divider mb-0"></div>
                             </li>

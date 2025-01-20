@@ -37,6 +37,11 @@ const routes = [
                 component: () => import("../components/Admin/NhaXuatBan/index.vue"),
                 beforeEnter: checkAdminLogin,
             },
+            {
+                path: "don-hang",
+                component: () => import("../components/Admin/DonHang/index.vue"),
+                beforeEnter: checkAdminLogin,
+            },
         ],
     },
     // End Admin
@@ -135,6 +140,11 @@ const routes = [
                 path: "gio-hang",
                 component: () => import("../components/KhachHang/GioHang/index.vue"),
                 name: "gioHang",
+            },
+            {
+                path: "lich-su-mua-hang",
+                component: () =>
+                    import("../components/KhachHang/LichSuMuaHang/index.vue"),
             },
         ],
     },

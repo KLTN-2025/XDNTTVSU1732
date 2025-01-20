@@ -67,6 +67,15 @@
                         </a>
                     </router-link>
                 </li>
+                <li class="nav-item">
+                    <router-link to="/admin/don-hang">
+                        <a class="nav-link" href="/admin/don-hang">
+                            <div class="parent-icon"><i class="fa-solid fa-users-line"></i>
+                            </div>
+                            <div class="menu-title">Đơn Hàng</div>
+                        </a>
+                    </router-link>
+                </li>
             </ul>
         </nav>
     </div>
