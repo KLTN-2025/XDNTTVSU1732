@@ -47,6 +47,11 @@ const routes = [
                 component: () => import("../components/Admin/Profile/index.vue"),
                 beforeEnter: checkAdminLogin,
             },
+            {
+                path: "danh-gia",
+                component: () => import("../components/Admin/DanhGia/index.vue"),
+                beforeEnter: checkAdminLogin,
+            },
         ],
     },
     // End Admin

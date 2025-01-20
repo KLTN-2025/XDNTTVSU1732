@@ -76,6 +76,15 @@
                         </a>
                     </router-link>
                 </li>
+                <li class="nav-item">
+                    <router-link to="/admin/danh-gia">
+                        <a class="nav-link" href="/admin/danh-gia">
+                            <div class="parent-icon"><i class="fa-solid fa-ranking-star"></i>
+                            </div>
+                            <div class="menu-title">Đánh Giá</div>
+                        </a>
+                    </router-link>
+                </li>
             </ul>
         </nav>
     </div>
