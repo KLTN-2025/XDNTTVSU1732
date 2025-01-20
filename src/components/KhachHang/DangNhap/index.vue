@@ -12,14 +12,6 @@
                                 <div class="text-center">
                                     <h3 class="">ĐĂNG NHẬP</h3>
                                 </div>
-                                <div class="d-grid">
-                                    <a class="btn my-4 shadow-sm btn-white" href="javascript:;"> <span
-                                            class="d-flex justify-content-center align-items-center">
-                                            <img class="me-2" src="../../../assets/images/icons/search.svg" width="16"
-                                                alt="Image Description">
-                                            <span>Đăng Nhập Google</span>
-                                        </span></a>
-                                </div>
                                 <div class="form-body">
                                     <div class="row g-3">
                                         <div class="col-12"><label class="form-label">Email</label>
@@ -49,6 +41,9 @@
                                         <div class="col-12"><a href="/khach-hang/dang-ky" class=""><button type="button"
                                                     class="btn btn-danger w-100"><i class="bx bx-user"></i>Đăng
                                                     Ký</button></a></div>
+                                        <div class="col-lg-12">
+                                            <GoogleLogin :callback="callback" style="width: 100%;" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +56,7 @@
 </template>
 <script>
 import axios from 'axios';
-
+import { decodeCredential } from 'vue3-google-login'
 export default {
     data() {
         return {
@@ -94,6 +89,23 @@ export default {
                         this.$toast.error(v[0]);
                     });
                 });
+        },
+        callback(res) {
+            var user = {
+                "credential": res.credential
+            }
+            axios
+                .post("http://127.0.0.1:8000/api/khach-hang/login-gg", user)
+                .then((res) => {
+                    if (res.data.status == 1) {
+                        this.$toast.success(res.data.message);
+                        localStorage.setItem("token_khach_hang", res.data.token);
+                        this.$router.push('/khach-hang/profile');
+                    }
+                    else {
+                        this.$toast.error(res.data.message);
+                    }
+                })
         },
         kiemTraDangNhap() {
             axios
