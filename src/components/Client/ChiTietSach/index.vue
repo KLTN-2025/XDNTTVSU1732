@@ -21,10 +21,12 @@
                     </div>
                     <dl class="row">
                         <dt class="col-sm-3">Giá Gốc</dt>
-                        <dd class="col-sm-9">{{ chi_tiet_sach.gia_ban }}</dd>
+                        <dd class="col-sm-9"><del>
+                            {{ formatVND(chi_tiet_sach.gia_ban) }}
+                        </del></dd>
 
                         <dt class="col-sm-3">Giá Khuyến Mãi</dt>
-                        <dd class="col-sm-9">{{ chi_tiet_sach.gia_km }}</dd>
+                        <dd class="col-sm-9 text-danger"><b>{{ formatVND(chi_tiet_sach.gia_km) }}</b></dd>
 
                         <dt class="col-sm-3">Số Lượng Hiện Tại</dt>
                         <dd class="col-sm-9">{{ chi_tiet_sach.so_luong_ban }} </dd>
@@ -137,6 +139,10 @@ export default {
         this.layThongTinSach();
     },
     methods: {
+         formatVND(number) {
+            number = parseInt(number);
+            return number.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+        },
         doi() {
             if (this.chi_tiet_sach.so_luong_mua < 1) {
                 var message = "Số lượng mua tối thiểu phải là 1 sản phẩm."
@@ -191,6 +197,7 @@ export default {
                         var thong_bao = '<b>Thông báo</b><span style="margin-top: 5px">' + res.data.message + '<span>';
                         this.$toast.success(thong_bao);
                     } else {
+                        this.$router.push('/khach-hang/dang-nhap');
                         var thong_bao = '<b>Thông báo</b><span style="margin-top: 5px">' + res.data.message + '<span>';
                         this.$toast.error(thong_bao);
                     }

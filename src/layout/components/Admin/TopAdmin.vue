@@ -4,7 +4,7 @@
             <nav class="navbar navbar-expand">
                 <div class="topbar-logo-header">
                     <div class="">
-                        <img src="https://th.bing.com/th/id/OIP.V0NH3fa-mZ4AJ94SEQTy_wHaHa?rs=1&amp;pid=ImgDetMain" class="logo-icon" alt="logo icon">
+                        <img src="https://img.pikbest.com/png-images/20241014/modern-school-logo-vector-design-artwork_10962285.png!bw700" class="logo-icon" alt="logo icon">
                     </div>
                     <div class="">
                         <h4 class="logo-text">Rocker</h4>

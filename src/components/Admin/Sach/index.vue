@@ -179,8 +179,8 @@
                             <div class="mb-2">
                                 <label>Tình Trạng</label>
                                 <select v-model="create_sach.tinh_trang" class="form-select mt-2">
-                                    <option value="0">Hoạt Động</option>
-                                    <option value="1">Tạm Tắt</option>
+                                    <option value="1">Hoạt Động</option>
+                                    <option value="0">Tạm Tắt</option>
                                 </select>
                             </div>
                         </div>
@@ -310,8 +310,8 @@
                             <div class="mb-2">
                                 <label>Tình Trạng</label>
                                 <select v-model="cap_nhat_sach.tinh_trang" class="form-select mt-2">
-                                    <option value="0">Hoạt Động</option>
-                                    <option value="1">Tạm Tắt</option>
+                                    <option value="1">Hoạt Động</option>
+                                    <option value="0">Tạm Tắt</option>
                                 </select>
                             </div>
                         </div>

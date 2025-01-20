@@ -119,6 +119,14 @@ const routes = [
                 component: () => import("../components/Client/ChiTietSach/index.vue"),
                 props: true,
             },
+            {
+                path: "/goi-y-cho-ban",
+                component: () => import("../components/Client/GoiYChoBan/index.vue"),
+            },
+            {
+                path: "/dang-sale",
+                component: () => import("../components/Client/DangSale/index.vue"),
+            },
         ],
     },
     // End Home
@@ -132,14 +140,6 @@ const routes = [
                 path: "profile",
                 component: () => import("../components/KhachHang/Profile/index.vue"),
                 beforeEnter: checkKhachHangLogin,
-            },
-            {
-                path: "dang-nhap",
-                component: () => import("../components/KhachHang/DangNhap/index.vue"),
-            },
-            {
-                path: "dang-ky",
-                component: () => import("../components/KhachHang/DangKy/index.vue"),
             },
             {
                 path: "gio-hang",
@@ -159,6 +159,13 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes: routes,
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition;
+        } else {
+            return { top: 0 };
+        }
+    },
 });
 
 export default router;

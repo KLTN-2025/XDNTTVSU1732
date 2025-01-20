@@ -59,15 +59,6 @@
                                             Nhận</button>
                                         <button v-else class="btn btn-danger w-100">Đã Hủy</button>
                                     </td>
-                                    <td v-if="v.tinh_trang_don_hang == 3">
-                                        <router-link
-                                            :to="'/chi-tiet-san-pham/' + v.id_san_pham + '-' + v.slug_san_pham">
-                                            <button class="btn btn-success w-100">Đánh Giá</button>
-                                        </router-link>
-                                    </td>
-                                    <td v-else>
-                                        <button class="btn btn-success w-100" disabled>Đánh Giá</button>
-                                    </td>
                                     <td class="text-center">
                                         <button class="btn btn-secondary"><i
                                                 class="fa-solid fa-file-invoice-dollar"></i></button>

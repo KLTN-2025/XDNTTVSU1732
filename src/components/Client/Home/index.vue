@@ -169,9 +169,11 @@
                </div>
                <div class="row">
                   <div class="col-lg-12 text-center">
-                     <button type="button" class="btn btn-outline-success px-5 radius-30"><i
+                     <router-link to="/goi-y-cho-ban">
+                        <button type="button" class="btn btn-outline-success px-5 radius-30"><i
                            class="fa-regular fa-eye"></i>Xem
                         Thêm</button>
+                     </router-link>
                   </div>
                </div>
             </div>
@@ -179,7 +181,7 @@
       </div>
    </div>
 
-   <!-- SẢN PHẨM BÁN CHẠY -->
+   <!-- SẢN PHẨM ĐANG SALE -->
    <div class="row mt-3">
       <div class="col-lg-12">
          <h4 class="fw-bold mb-3">SẢN PHẨM ĐANG SALE</h4>
@@ -221,8 +223,10 @@
                </div>
                <div class="row">
                   <div class="col-lg-12 text-center">
-                     <button type="button" class="btn btn-outline-success px-5 radius-30"><i
+                     <router-link to="/dang-sale">
+                        <button type="button" class="btn btn-outline-success px-5 radius-30"><i
                            class="fa-regular fa-eye"></i>Xem Thêm</button>
+                     </router-link>
                   </div>
                </div>
             </div>
