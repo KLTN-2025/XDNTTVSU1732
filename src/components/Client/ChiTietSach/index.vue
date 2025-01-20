@@ -94,6 +94,20 @@
                                         <h5 class="mt-0">{{ value.ho_va_ten }}</h5>
                                         <p>{{ value.noi_dung }}</p>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="d-flex gap-3">
+                                                <button class="btn btn-outline-primary btn-sm"
+                                                    v-on:click="Object.assign(danh_gia_update, value)"
+                                                    data-bs-toggle='modal'
+                                                    data-bs-target='#updateDanhGiaModal'>Sửa</button>
+                                                <button class="btn btn-outline-danger btn-sm"
+                                                    v-on:click="Object.assign(delete_danh_gia, value)"
+                                                    data-bs-toggle='modal'
+                                                    data-bs-target='#deleteDanhGiaModal'>Xóa</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <hr>
                             </template>
@@ -108,6 +122,49 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Cập Nhật Đánh Giá -->
+    <div class='modal fade' id='updateDanhGiaModal' tabindex='-1' aria-labelledby='exampleModalLabel'
+        aria-hidden='true'>
+        <div class='modal-dialog'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h1 class='modal-title fs-5' id='exampleModalLabel'>Sửa Đánh Giá</h1>
+                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                </div>
+                <div class='modal-body'>
+                    <input v-model="danh_gia_update.noi_dung" type="text" class="form-control"
+                        placeholder="Nhập đánh giá của bạn">
+                </div>
+                <div class='modal-footer'>
+                    <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Đóng</button>
+                    <button type='button' class='btn btn-primary' v-on:click="suaDanhGia()" data-bs-dismiss='modal'>Xác
+                        Nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Xóa Đánh Giá -->
+    <div class='modal fade' id='deleteDanhGiaModal' tabindex='-1' aria-labelledby='exampleModalLabel'
+        aria-hidden='true'>
+        <div class='modal-dialog'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h1 class='modal-title fs-5' id='exampleModalLabel'>Xóa Đánh Giá</h1>
+                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                </div>
+                <div class='modal-body'>
+                    <p>Bạn có chắc chắn muốn xóa đánh giá này không?</p>
+                </div>
+                <div class='modal-footer'>
+                    <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Đóng</button>
+                    <button type='button' class='btn btn-primary' v-on:click="xoaDanhGia()" data-bs-dismiss='modal'>Xác
+                        Nhận</button>
                 </div>
             </div>
         </div>
@@ -128,6 +185,8 @@ export default {
                 id_sach: this.$route.params.id_sach
             },
             list_danh_gia: [],
+            danh_gia_update: {},
+            delete_danh_gia: {}
         }
     },
 
@@ -164,6 +223,39 @@ export default {
                     } else {
                         this.$toast.error(res.data.message);
                         this.$router.push('/khach-hang/dang-nhap');
+                    }
+                })
+        },
+        suaDanhGia() {
+            axios
+                .post("http://127.0.0.1:8000/api/khach-hang/danh-gia/update", this.danh_gia_update, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
+                    }
+                })
+                .then((res) => {
+                    if (res.data.status) {
+                        this.$toast.success(res.data.message);
+                        this.danh_gia_update.noi_dung = "";
+                        this.getDataDanhGia();
+                    } else {
+                        this.$toast.error(res.data.message);
+                    }
+                })
+        },
+        xoaDanhGia() {
+            axios
+                .post("http://127.0.0.1:8000/api/khach-hang/danh-gia/delete", this.delete_danh_gia, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
+                    }
+                })
+                .then((res) => {
+                    if (res.data.status) {
+                        this.$toast.success(res.data.message);
+                        this.getDataDanhGia();
+                    } else {
+                        this.$toast.error(res.data.message);
                     }
                 })
         },
