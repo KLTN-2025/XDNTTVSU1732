@@ -43,8 +43,8 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Nhập tên sản phẩm cần tìm kiếm">
-                                <button type="button" class="input-group-text bg-success">Tìm Kiếm</button>
+                                <input type="text" v-on:keyup.enter="timKiem()" v-model="search.noi_dung" class="form-control" placeholder="Nhập tên sản phẩm cần tìm kiếm">
+                                <button type="button" v-on:click="timKiem()" class="input-group-text bg-success">Tìm Kiếm</button>
                             </div>
                         </div>
                     </div>
@@ -92,13 +92,6 @@
                                 </div>
                             </template>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-12 text-center">
-                                <button type="button" class="btn btn-outline-success px-5 radius-30"><i
-                                        class="fa-regular fa-eye"></i>Xem
-                                    Thêm</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -111,7 +104,10 @@ import axios from 'axios';
 export default {
 data() {
         return {
-            list_sach_sale: []
+            list_sach_sale: [],
+            search: {
+                noi_dung: ''
+            }
         }
     },
     mounted() {
@@ -124,6 +120,13 @@ data() {
         loadDataGoiy() {
             axios
                 .get('http://127.0.0.1:8000/api/home/data-sale-all')
+                .then((res) => {
+                    this.list_sach_sale = res.data.list_sach_sale;
+                })
+        },
+         timKiem() {
+            axios
+                .post('http://127.0.0.1:8000/api/home/tim-kiem-sale', this.search)
                 .then((res) => {
                     this.list_sach_sale = res.data.list_sach_sale;
                 })

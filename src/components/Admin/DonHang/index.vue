@@ -26,14 +26,14 @@
                                         <td>{{ value.ten_nguoi_nhan }}</td>
                                         <td class="text-center">{{ formatDateTime(value.created_at) }}</td>
                                         <td class="text-center">
-                                            <button v-if="value.tinh_trang_don_hang == 0" class="btn btn-primary">Chờ Xử
+                                            <button v-if="value.tinh_trang_don_hang == 0" class="btn btn-warning">Chờ Xử
                                                 Lý</button>
-                                            <button v-if="value.tinh_trang_don_hang == 1" class="btn btn-primary">Đã Xử
+                                            <button v-if="value.tinh_trang_don_hang == 1" class="btn btn-success">Đã Xử
                                                 Lý</button>
                                             <button v-if="value.tinh_trang_don_hang == 2" class="btn btn-primary">Đã
                                                 Giao
                                                 Vân Chuyển</button>
-                                            <button v-if="value.tinh_trang_don_hang == 3" class="btn btn-primary">Đã
+                                            <button v-if="value.tinh_trang_don_hang == 3" class="btn btn-success">Đã
                                                 Giao
                                                 Thành Công</button>
                                             <button v-if="value.tinh_trang_don_hang == 4" class="btn btn-danger">Đã
@@ -43,7 +43,6 @@
                                             <button v-on:click="xem_don_hang = value" class="btn btn-primary me-2"
                                                 data-bs-toggle='modal' data-bs-target='#xemDonHangModal'>Xem Đơn
                                                 Hàng</button>
-                                            <button class="btn btn-danger">Xóa</button>
                                         </td>
                                     </tr>
                                 </template>

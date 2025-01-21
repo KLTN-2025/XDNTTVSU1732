@@ -52,6 +52,11 @@ const routes = [
                 component: () => import("../components/Admin/DanhGia/index.vue"),
                 beforeEnter: checkAdminLogin,
             },
+            {
+                path: "phan-quyen",
+                component: () => import("../components/Admin/PhanQuyen/index.vue"),
+                beforeEnter: checkAdminLogin,
+            },
         ],
     },
     // End Admin

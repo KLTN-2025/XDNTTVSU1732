@@ -43,8 +43,8 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Nhập tên sản phẩm cần tìm kiếm">
-                                <button type="button" class="input-group-text bg-success">Tìm Kiếm</button>
+                                <input type="text" v-on:keyup.enter="timKiem()" v-model="search.noi_dung" class="form-control" placeholder="Nhập tên sản phẩm cần tìm kiếm">
+                                <button type="button" v-on:click="timKiem()" class="input-group-text bg-success">Tìm Kiếm</button>
                             </div>
                         </div>
                     </div>
@@ -101,7 +101,10 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            list_sach_goi_y: []
+            list_sach_goi_y: [],
+            search: {
+                noi_dung: ''
+            }
         }
     },
     mounted() {
@@ -114,6 +117,13 @@ export default {
         loadDataGoiy() {
             axios
                 .get('http://127.0.0.1:8000/api/home/data-goi-y-all')
+                .then((res) => {
+                    this.list_sach_goi_y = res.data.list_sach_goi_y;
+                })
+        },
+        timKiem() {
+            axios
+                .post('http://127.0.0.1:8000/api/home/tim-kiem-goi-y', this.search)
                 .then((res) => {
                     this.list_sach_goi_y = res.data.list_sach_goi_y;
                 })
