@@ -60,7 +60,7 @@
                 <div class='modal-header'>
                     <h1 class='modal-title fs-5' id='exampleModalLabel'>Xem Thông Tin Đơn Hàng {{
                         xem_don_hang.ma_don_hang
-                    }}</h1>
+                        }}</h1>
                     <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                 </div>
                 <div class='modal-body'>
@@ -76,7 +76,8 @@
                         <tbody>
                             <tr class="align-middle">
                                 <td class="text-center">
-                                    <img :src="xem_don_hang.hinh_anh" class="img-fluid" style="width: 100%; height: 100px; object-fit: contain;" alt="">
+                                    <img :src="xem_don_hang.hinh_anh" class="img-fluid"
+                                        style="width: 100%; height: 100px; object-fit: contain;" alt="">
                                 </td>
                                 <td>{{ xem_don_hang.ten_sach }}</td>
                                 <td class="text-center">{{ xem_don_hang.so_luong }}</td>
@@ -114,9 +115,16 @@ export default {
         },
         getDataDonHang() {
             axios
-                .get('http://127.0.0.1:8000/api/admin/don-hang/data')
+                .get('http://127.0.0.1:8000/api/admin/don-hang/data', {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
+                    }
+                })
                 .then((res) => {
                     this.list_don_hang = res.data.data;
+                    if(res.data.status == false) {
+                        this.$toast.error(res.data.message)
+                    }
                 })
                 .catch((res) => {
                     var list_error = Object.values(res.response.data.errors);

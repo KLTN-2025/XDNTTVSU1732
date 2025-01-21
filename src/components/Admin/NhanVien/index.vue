@@ -38,7 +38,7 @@
                                     <td class="align-middle">{{ v.ho_va_ten }}</td>
                                     <td class="align-middle">{{ v.email }}</td>
                                     <td class="align-middle text-center">{{ v.so_dien_thoai }}</td>
-                                    <td class="align-middle text-center">Xử lý sau</td>
+                                    <td class="align-middle text-center">{{ v.ten_quyen }}</td>
                                     <td class="align-middle text-center">
                                         <template v-if="v.tinh_trang == 1">
                                             <button v-on:click="doiTrangThai(v)" class="btn btn-success w-100">Hoạt
@@ -91,11 +91,11 @@
                         <div class="mb-2">
                             <label>Quyền</label>
                             <select v-model="create_nhan_vien.id_quyen" class="form-select mt-2">
-                                <!-- <template v-for="(v, k) in list_quyen" :key="k">
+                                <template v-for="(v, k) in list_quyen" :key="k">
                                     <option :value="v.id">
                                         {{ v.ten_quyen }}
                                     </option>
-                                </template> -->
+                                </template>
                             </select>
                         </div>
                         <div class="mb-2">
@@ -157,18 +157,13 @@
                             <input v-model="edit_nhan_vien.so_dien_thoai" type="text" class="form-control">
                         </div>
                         <div class="mb-2">
-                            <label class="form-lable">Địa Chỉ</label>
-                            <input v-model="edit_nhan_vien.dia_chi" type="text" class="form-control">
-                        </div>
-                        <div class="mb-2">
                             <label>Quyền</label>
                             <select v-model="edit_nhan_vien.id_quyen" class="form-control mt-2">
-                                <!-- <template v-for="(v, k) in list_quyen" :key="k">
+                                <template v-for="(v, k) in list_quyen" :key="k">
                                     <option :value="v.id">
                                         {{ v.ten_quyen }}
                                     </option>
-                                </template> -->
-                                <option value="">Xử lý sau</option>
+                                </template>
                             </select>
                         </div>
                         <div class="mb-2">
@@ -200,14 +195,22 @@ export default {
             del_nhan_vien: {},
             list_nhan_vien: [],
             search: {},
-            // list_quyen: []
+            list_quyen: []
         }
 
     },
     mounted() {
         this.loadDataNhanVien();
+        this.loadDataQuyen();
     },
     methods: {
+         loadDataQuyen() {
+            axios
+                .get('http://127.0.0.1:8000/api/admin/phan-quyen/data')
+                .then((res) => {
+                    this.list_quyen = res.data.data;
+                })
+        },
         loadDataNhanVien() {
             axios
                 .get('http://127.0.0.1:8000/api/admin/nhan-vien/data')

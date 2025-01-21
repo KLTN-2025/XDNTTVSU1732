@@ -102,14 +102,25 @@ export default {
     methods: {
         loadDataKhDanhGia() {
             axios
-                .get('http://127.0.0.1:8000/api/admin/khach-hang-danh-gia/data')
+                .get('http://127.0.0.1:8000/api/admin/khach-hang-danh-gia/data', {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
+                    }
+                })
                 .then((res) => {
                     this.list_kh_danh_gia = res.data.data;
+                    if(res.data.stauts == false) {
+                        this.$toast.error(res.data.message)
+                    }
                 })
         },
         xoaDanhGia() {
             axios
-                .post('http://127.0.0.1:8000/api/admin/khach-hang-danh-gia/delete', this.delete_danh_gia)
+                .post('http://127.0.0.1:8000/api/admin/khach-hang-danh-gia/delete', this.delete_danh_gia, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
+                    }
+                })
                 .then((res) => {
                     if (res.data.status) {
                         this.loadDataKhDanhGia();

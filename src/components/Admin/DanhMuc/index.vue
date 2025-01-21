@@ -123,7 +123,7 @@
                         <label>Slug Danh Mục</label>
                         <input v-model="cap_nhat_danh_muc.slug_danh_muc" type="text" class="form-control mt-2" />
                     </div>
-                     <div class="mb-2">
+                    <div class="mb-2">
                         <label>Icon Danh Mục</label>
                         <input v-model="cap_nhat_danh_muc.icon" type="text" class="form-control mt-2" />
                     </div>
@@ -206,14 +206,25 @@ export default {
     methods: {
         loadDataDanhMuc() {
             axios
-                .get('http://127.0.0.1:8000/api/admin/danh-muc/data')
+                .get('http://127.0.0.1:8000/api/admin/danh-muc/data', {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
+                    }
+                })
                 .then((res) => {
                     this.list_danh_muc = res.data.data
+                    if(res.data.status == false){
+                        this.$toast.error(res.data.message);
+                    }
                 });
         },
         themMoiDanhMuc() {
             axios
-                .post("http://127.0.0.1:8000/api/admin/danh-muc/create", this.create_danh_muc)
+                .post("http://127.0.0.1:8000/api/admin/danh-muc/create", this.create_danh_muc, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
+                    }
+                })
                 .then((res) => {
                     if (res.data.status) {
                         this.$toast.success(res.data.message);
@@ -237,7 +248,11 @@ export default {
         },
         capNhatDanhMuc() {
             axios
-                .post("http://127.0.0.1:8000/api/admin/danh-muc/update", this.cap_nhat_danh_muc)
+                .post("http://127.0.0.1:8000/api/admin/danh-muc/update", this.cap_nhat_danh_muc, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
+                    }
+                })
                 .then((res) => {
                     if (res.data.status) {
                         this.$toast.success(res.data.message);
@@ -255,7 +270,11 @@ export default {
         },
         xoaDanhMuc() {
             axios
-                .post("http://127.0.0.1:8000/api/admin/danh-muc/delete", this.del_danh_muc)
+                .post("http://127.0.0.1:8000/api/admin/danh-muc/delete", this.del_danh_muc, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
+                    }
+                })
                 .then((res) => {
                     if (res.data.status) {
                         this.$toast.success(res.data.message);
@@ -273,7 +292,11 @@ export default {
         },
         doiTrangThai(value) {
             axios
-                .post("http://127.0.0.1:8000/api/admin/danh-muc/change", value)
+                .post("http://127.0.0.1:8000/api/admin/danh-muc/change", value, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
+                    }
+                })
                 .then((res) => {
                     if (res.data.status) {
                         this.$toast.success(res.data.message);

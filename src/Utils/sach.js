@@ -34,28 +34,63 @@ export default {
         },
         loadDataTacGia() {
             axios
-                .get("http://127.0.0.1:8000/api/admin/tac-gia/data-open")
+                .get("http://127.0.0.1:8000/api/admin/tac-gia/data-open", {
+                    headers: {
+                        Authorization:
+                            "Bearer " + localStorage.getItem("token_nhan_vien"),
+                    },
+                })
                 .then((res) => {
                     this.list_tac_gia = res.data.data;
+                    if(res.data.status == false) {
+                        this.$toast.error(res.data.message);
+                    }
                 });
         },
         loadDataNXB() {
-            axios.get("http://127.0.0.1:8000/api/admin/nha-xuat-ban/data-open")
-            .then((res) => {
-                this.list_nxb = res.data.data;
-            });
+            axios
+                .get("http://127.0.0.1:8000/api/admin/nha-xuat-ban/data-open", {
+                    headers: {
+                        Authorization:
+                            "Bearer " + localStorage.getItem("token_nhan_vien"),
+                    },
+                })
+                .then((res) => {
+                    this.list_nxb = res.data.data;
+                    if (res.data.status == false) {
+                      this.$toast.error(res.data.message);
+                    }
+                });
         },
         loadDataDanhMuc() {
             axios
-                .get("http://127.0.0.1:8000/api/admin/danh-muc/data-open")
+                .get("http://127.0.0.1:8000/api/admin/danh-muc/data-open", {
+                    headers: {
+                        Authorization:
+                            "Bearer " + localStorage.getItem("token_nhan_vien"),
+                    },
+                })
                 .then((res) => {
                     this.list_danh_muc = res.data.data;
+                    if (res.data.status == false) {
+                      this.$toast.error(res.data.message);
+                    }
                 });
         },
         loadDataSach() {
-            axios.get(`http://127.0.0.1:8000/api/admin/sach/data`).then((res) => {
-                this.list_sach = res.data.data; // Dữ liệu sách
-            });
+            axios
+                .get(`http://127.0.0.1:8000/api/admin/sach/data`, {
+                    headers: {
+                        Authorization:
+                            "Bearer " + localStorage.getItem("token_nhan_vien"),
+                    },
+                })
+                .then((res) => {
+                    this.list_sach = res.data.data; // Dữ liệu sách
+                    if (res.data.status == false) {
+                      this.$toast.error(res.data.message);
+                    }
+                });
         },
         themMoiSach() {
             let formData = new FormData();
@@ -77,6 +112,8 @@ export default {
                 .post("http://127.0.0.1:8000/api/admin/sach/create", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data", // Đặt header là multipart
+                        Authorization:
+                            "Bearer " + localStorage.getItem("token_nhan_vien"),
                     },
                 })
                 .then((res) => {
@@ -126,6 +163,8 @@ export default {
                 .post("http://127.0.0.1:8000/api/admin/sach/update", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data", // Đặt header là multipart
+                        Authorization:
+                            "Bearer " + localStorage.getItem("token_nhan_vien"),
                     },
                 })
                 .then((res) => {
@@ -149,59 +188,78 @@ export default {
         },
         xoaSach() {
             axios
-                .post("http://127.0.0.1:8000/api/admin/sach/delete", this.del_sach)
-                .then((res) => {
-                    if (res.data.status) {
-                        this.loadDataSach();
-                        this.$toast.success(res.data.message);
-                    } else {
-                        this.$toast.error(res.data.message);
-                    }
-                })
-                .catch((res) => {
-                    var list_error = Object.values(res.response.data.errors);
-                    list_error.forEach((v, k) => {
-                        toastr.error(v[0]);
-                    });
+              .post(
+                "http://127.0.0.1:8000/api/admin/sach/delete",
+                this.del_sach,
+                {
+                  headers: {
+                    Authorization:
+                      "Bearer " + localStorage.getItem("token_nhan_vien"),
+                  },
+                }
+              )
+              .then((res) => {
+                if (res.data.status) {
+                  this.loadDataSach();
+                  this.$toast.success(res.data.message);
+                } else {
+                  this.$toast.error(res.data.message);
+                }
+              })
+              .catch((res) => {
+                var list_error = Object.values(res.response.data.errors);
+                list_error.forEach((v, k) => {
+                  toastr.error(v[0]);
                 });
+              });
         },
 
         doiTrangThai(value) {
             axios
-                .post("http://127.0.0.1:8000/api/admin/sach/change", value)
-                .then((res) => {
-                    if (res.data.status) {
-                        this.loadDataSach();
-                        this.$toast.success(res.data.message);
-                    } else {
-                        this.$toast.error(res.data.message);
-                    }
-                })
-                .catch((res) => {
-                    var list_error = Object.values(res.response.data.errors);
-                    list_error.forEach((v, k) => {
-                        toastr.error(v[0]);
-                    });
+              .post("http://127.0.0.1:8000/api/admin/sach/change", value, {
+                headers: {
+                  Authorization:
+                    "Bearer " + localStorage.getItem("token_nhan_vien"),
+                },
+              })
+              .then((res) => {
+                if (res.data.status) {
+                  this.loadDataSach();
+                  this.$toast.success(res.data.message);
+                } else {
+                  this.$toast.error(res.data.message);
+                }
+              })
+              .catch((res) => {
+                var list_error = Object.values(res.response.data.errors);
+                list_error.forEach((v, k) => {
+                  toastr.error(v[0]);
                 });
+              });
         },
 
         doiTrangThaiSale(value) {
             axios
-                .post("http://127.0.0.1:8000/api/admin/sach/change-sale", value)
-                .then((res) => {
-                    if (res.data.status) {
-                        this.loadDataSach();
-                        this.$toast.success(res.data.message);
-                    } else {
-                        this.$toast.error(res.data.message);
-                    }
-                })
-                .catch((res) => {
-                    var list_error = Object.values(res.response.data.errors);
-                    list_error.forEach((v, k) => {
-                        toastr.error(v[0]);
-                    });
+              .post("http://127.0.0.1:8000/api/admin/sach/change-sale", value, {
+                headers: {
+                  Authorization:
+                    "Bearer " + localStorage.getItem("token_nhan_vien"),
+                },
+              })
+              .then((res) => {
+                if (res.data.status) {
+                  this.loadDataSach();
+                  this.$toast.success(res.data.message);
+                } else {
+                  this.$toast.error(res.data.message);
+                }
+              })
+              .catch((res) => {
+                var list_error = Object.values(res.response.data.errors);
+                list_error.forEach((v, k) => {
+                  toastr.error(v[0]);
                 });
+              });
         },
         toSluggg(title) {
             if (!title) return "";

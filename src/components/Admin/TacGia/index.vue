@@ -154,14 +154,25 @@ export default {
     methods: {
         loadDataTacGia() {
             axios
-                .get('http://127.0.0.1:8000/api/admin/tac-gia/data')
+                .get('http://127.0.0.1:8000/api/admin/tac-gia/data', {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
+                    }
+                })
                 .then((res) => {
                     this.list_tac_gia = res.data.data
+                    if(res.data.status == false) {
+                        this.$toast.error(res.data.message);
+                    }
                 });
         },
         themMoiTacGia() {
             axios
-                .post('http://127.0.0.1:8000/api/admin/tac-gia/create', this.create_tac_gia)
+                .post('http://127.0.0.1:8000/api/admin/tac-gia/create', this.create_tac_gia, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
+                    }
+                })
                 .then((res) => {
                     if (res.data.status) {
                         this.loadDataTacGia();
@@ -184,7 +195,11 @@ export default {
         },
         capNhatTacGia() {            
             axios
-                .post('http://127.0.0.1:8000/api/admin/tac-gia/update', this.edit_tac_gia)
+                .post('http://127.0.0.1:8000/api/admin/tac-gia/update', this.edit_tac_gia, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
+                    }
+                })
                 .then((res) => {
                     if (res.data.status) {
                         this.loadDataTacGia();
@@ -202,7 +217,11 @@ export default {
         },
         xoaTacGia() {
             axios
-                .post('http://127.0.0.1:8000/api/admin/tac-gia/delete', this.del_tac_gia)
+                .post('http://127.0.0.1:8000/api/admin/tac-gia/delete', this.del_tac_gia, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
+                    }
+                })
                 .then((res) => {
                     if (res.data.status) {
                         this.loadDataTacGia();
@@ -220,7 +239,11 @@ export default {
         },
         changeTrangThai(value) {
             axios
-                .post('http://127.0.0.1:8000/api/admin/tac-gia/change', value)
+                .post('http://127.0.0.1:8000/api/admin/tac-gia/change', value, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
+                    }
+                })
                 .then((res) => {
                     if (res.data.status) {
                         this.loadDataTacGia();
