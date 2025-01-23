@@ -116,14 +116,14 @@ export default {
         },
         loadDataGoiy() {
             axios
-                .get('http://127.0.0.1:8000/api/home/data-goi-y-all')
+                .get('https://ban-sach-be.dzfullstack.edu.vn/api/home/data-goi-y-all')
                 .then((res) => {
                     this.list_sach_goi_y = res.data.list_sach_goi_y;
                 })
         },
         timKiem() {
             axios
-                .post('http://127.0.0.1:8000/api/home/tim-kiem-goi-y', this.search)
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/home/tim-kiem-goi-y', this.search)
                 .then((res) => {
                     this.list_sach_goi_y = res.data.list_sach_goi_y;
                 })

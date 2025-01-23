@@ -185,7 +185,7 @@ export default {
     methods: {
         loadDataDiaChi() {
             axios
-                .get("http://127.0.0.1:8000/api/khach-hang/dia-chi/data", {
+                .get("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/dia-chi/data", {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -217,7 +217,7 @@ export default {
         },
         layDataGioHang() {
             axios
-                .get("http://127.0.0.1:8000/api/khach-hang/gio-hang/data", {
+                .get("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/gio-hang/data", {
                     headers: {
                         Authorization: "Bearer " + localStorage.getItem("token_khach_hang"),
                     },
@@ -246,7 +246,7 @@ export default {
                 'phuong_thuc': this.phuong_thuc
 			};
 			axios
-				.post('http://127.0.0.1:8000/api/khach-hang/mua-hang', payload, {
+				.post('https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/mua-hang', payload, {
                     headers: {
                         Authorization: "Bearer " + localStorage.getItem("token_khach_hang"),
                     },
@@ -263,7 +263,7 @@ export default {
 		},
         xoaGioHang(payload) {
             axios
-                .post("http://127.0.0.1:8000/api/khach-hang/gio-hang/delete", payload, {
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/gio-hang/delete", payload, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -279,7 +279,7 @@ export default {
         },
         capNhat(payload) {
             axios
-                .post("http://127.0.0.1:8000/api/khach-hang/gio-hang/update", payload, {
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/gio-hang/update", payload, {
                     headers: {
                         Authorization: "Bearer " + localStorage.getItem("token_khach_hang"),
                     },

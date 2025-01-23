@@ -17,7 +17,7 @@ export default {
             console.log(payload);
             
             axios
-                .post('http://127.0.0.1:8000/api/khach-hang/kich-hoat', payload)
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/kich-hoat', payload)
                 .then((res) => {
                     if (res.data.status == 1) {
                         this.$toast.success(res.data.message);

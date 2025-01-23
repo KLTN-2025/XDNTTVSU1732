@@ -81,7 +81,7 @@ export default {
     methods: {
         loadDataDanhMuc() {
             axios
-                .get('http://127.0.0.1:8000/api/home/data-menu')
+                .get('https://ban-sach-be.dzfullstack.edu.vn/api/home/data-menu')
                 .then((res) => {
                     this.list_danh_muc = res.data.data
                 });

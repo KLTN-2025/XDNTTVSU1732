@@ -4,7 +4,7 @@
             <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-2">
                 <div class="col mx-auto">
                     <div class="my-4 text-center">
-                        <img src="https://img.pikbest.com/png-images/20241014/modern-school-logo-vector-design-artwork_10962285.png!bw700"
+                        <img src="https://i.imgur.com/iaoteln.png"
                             width="100" alt="" />
                     </div>
                     <div class="card">
@@ -95,10 +95,13 @@ export default {
             dang_ky: {},
         };
     },
+    mounted() {
+        this.kiemTraDangNhap();
+    },
     methods: {
          dangKy() {
             axios
-                .post('http://127.0.0.1:8000/api/khach-hang/register', this.dang_ky)
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/register', this.dang_ky)
                 .then((res) => {
                     if (res.data.status) {
                         this.dang_ky = {};
@@ -113,6 +116,20 @@ export default {
                     list_error.forEach((v, k) => {
                         this.$toast.error(v[0]);
                     });
+                });
+        },
+        kiemTraDangNhap() {
+            axios
+                .get("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/check-login", {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
+                    }
+                })
+                .then((res) => {
+                    if (res.data.status == 1) {
+                        this.$router.push('/khach-hang/profile')
+                        // this.$toast.error(res.data.message)
+                    }
                 });
         },
     },

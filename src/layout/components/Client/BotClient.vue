@@ -36,12 +36,12 @@
                 <div class="row mt-3">
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                         <h6 class="text-uppercase fw-bold">
-                            DZFullStack</h6>
+                            NT BookStore</h6>
                         <hr class=" mt-0 d-inline-block mx-auto"
                             style="width: 60px; background-color: #7c4dff; height: 2px" /><br>
                         <div class="text-center mb-2">
-                            <img src="https://dzfullstack.com/assets/images/logo-img.png" class="img-fluid"
-                                style="width: 100px; height: auto;" alt="">
+                            <img src="https://i.imgur.com/iaoteln.png" class="img-fluid"
+                                style="width: 90px; height: auto;" alt="">
                         </div>
                         <p>
                             Here you can use rows and columns to organize your footer
@@ -87,8 +87,8 @@
                         <h6 class="text-uppercase fw-bold">Contact</h6>
                         <hr class="mb-4 mt-0 d-inline-block mx-auto"
                             style="width: 60px; background-color: #7c4dff; height: 2px" />
-                        <p><i class="fas fa-home mr-3"></i>32 Xuân Diệu, Hải Châu, Đà Nẵng</p>
-                        <p><i class="fas fa-envelope mr-3"></i> dzfullstack@gmai.com</p>
+                        <p><i class="fas fa-home mr-3"></i>256/22 Âu Cơ,Hòa Khánh Bắc, Liên Chiểu, Đà Nẵng</p>
+                        <p><i class="fas fa-envelope mr-3"></i> VoXuanTinh@gmail.com</p>
                         <p><i class="fas fa-phone mr-3"></i> + 0905523543</p>
                         <p><i class="fas fa-print mr-3"></i> + 0376659652</p>
                     </div>
@@ -96,8 +96,8 @@
             </div>
         </section>
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-            © 2024 Copyright:
-            <a class="text-white" href="/">DZFullStack Team</a>
+            © 2025 :
+            <a class="text-white" href="/">by Nhat Tinh</a>
         </div>
     </footer>
 </template>

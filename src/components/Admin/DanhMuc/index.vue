@@ -206,7 +206,7 @@ export default {
     methods: {
         loadDataDanhMuc() {
             axios
-                .get('http://127.0.0.1:8000/api/admin/danh-muc/data', {
+                .get('https://ban-sach-be.dzfullstack.edu.vn/api/admin/danh-muc/data', {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -220,7 +220,7 @@ export default {
         },
         themMoiDanhMuc() {
             axios
-                .post("http://127.0.0.1:8000/api/admin/danh-muc/create", this.create_danh_muc, {
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/admin/danh-muc/create", this.create_danh_muc, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -248,7 +248,7 @@ export default {
         },
         capNhatDanhMuc() {
             axios
-                .post("http://127.0.0.1:8000/api/admin/danh-muc/update", this.cap_nhat_danh_muc, {
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/admin/danh-muc/update", this.cap_nhat_danh_muc, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -270,7 +270,7 @@ export default {
         },
         xoaDanhMuc() {
             axios
-                .post("http://127.0.0.1:8000/api/admin/danh-muc/delete", this.del_danh_muc, {
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/admin/danh-muc/delete", this.del_danh_muc, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -292,7 +292,7 @@ export default {
         },
         doiTrangThai(value) {
             axios
-                .post("http://127.0.0.1:8000/api/admin/danh-muc/change", value, {
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/admin/danh-muc/change", value, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }

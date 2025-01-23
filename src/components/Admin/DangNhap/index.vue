@@ -4,7 +4,7 @@
             <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-2">
                 <div class="col mx-auto">
                     <div class="my-4 text-center">
-                        <img src="https://img.pikbest.com/png-images/20241014/modern-school-logo-vector-design-artwork_10962285.png!bw700"
+                        <img src="https://i.imgur.com/iaoteln.png"
                             width="180" alt="" />
                     </div>
                     <div class="card">
@@ -67,7 +67,7 @@ export default {
     methods: {
         dangNhap() {
             axios
-                .post("http://127.0.0.1:8000/api/admin/login", this.tai_Khoan)
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/admin/login", this.tai_Khoan)
                 .then((res) => {
                     if (res.data.status == 1) {
                         this.$toast.success(res.data.message);

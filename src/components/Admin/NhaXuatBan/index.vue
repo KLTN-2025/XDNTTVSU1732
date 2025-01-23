@@ -146,7 +146,7 @@ export default {
     methods: {
         loadDataNXB() {
             axios
-                .get('http://127.0.0.1:8000/api/admin/nha-xuat-ban/data', {
+                .get('https://ban-sach-be.dzfullstack.edu.vn/api/admin/nha-xuat-ban/data', {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -160,7 +160,7 @@ export default {
         },
         themMoiNXB() {
             axios
-                .post('http://127.0.0.1:8000/api/admin/nha-xuat-ban/create', this.create_nxb, {
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/nha-xuat-ban/create', this.create_nxb, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -186,7 +186,7 @@ export default {
         },
         capNhatNXB() {
             axios
-                .post('http://127.0.0.1:8000/api/admin/nha-xuat-ban/update', this.edit_nxb, {
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/nha-xuat-ban/update', this.edit_nxb, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -208,7 +208,7 @@ export default {
         },
         xoaNXB() {
             axios
-                .post('http://127.0.0.1:8000/api/admin/nha-xuat-ban/delete', this.del_nxb, {
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/nha-xuat-ban/delete', this.del_nxb, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -230,7 +230,7 @@ export default {
         },
         changeTrangThai(value) {
             axios
-                .post('http://127.0.0.1:8000/api/admin/nha-xuat-ban/change', value, {
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/nha-xuat-ban/change', value, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }

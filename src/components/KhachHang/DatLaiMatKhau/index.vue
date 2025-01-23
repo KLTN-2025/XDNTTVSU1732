@@ -3,7 +3,7 @@
         <div class="row row-cols-lg-2">
             <div class="col mx-auto">
                 <div class="mb-4 text-center">
-                    <img src="https://img.pikbest.com/png-images/20241014/modern-school-logo-vector-design-artwork_10962285.png!bw700" width="180" alt="">
+                    <img src="https://i.imgur.com/iaoteln.png" width="180" alt="">
                 </div>
                 <div class="card">
                     <div class="card-body">
@@ -65,7 +65,7 @@ export default {
     methods: {
         datLaiPassword(){
             axios
-                .post('http://127.0.0.1:8000/api/khach-hang/password/dat-lai',this.tai_Khoan)
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/password/dat-lai',this.tai_Khoan)
                     .then((res)=>{
                         if(res.data.status){
                             this.$toast.success(res.data.message);

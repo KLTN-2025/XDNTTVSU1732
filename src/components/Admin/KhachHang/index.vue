@@ -212,7 +212,7 @@ export default {
     methods: {
         loadDataKhachHang() {
             axios
-                .get('http://127.0.0.1:8000/api/admin/khach-hang/data', {
+                .get('https://ban-sach-be.dzfullstack.edu.vn/api/admin/khach-hang/data', {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -226,7 +226,7 @@ export default {
         },
         themMoiKhachHang() {
             axios
-                .post('http://127.0.0.1:8000/api/admin/khach-hang/create', this.create_kh, {
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/khach-hang/create', this.create_kh, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -249,7 +249,7 @@ export default {
         },
         capNhatKhachHang() {
             axios
-                .post('http://127.0.0.1:8000/api/admin/khach-hang/update', this.edit_kh, {
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/khach-hang/update', this.edit_kh, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -271,7 +271,7 @@ export default {
         },
         xoaKhachHang() {
             axios
-                .post('http://127.0.0.1:8000/api/admin/khach-hang/delete', this.del_kh, {
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/khach-hang/delete', this.del_kh, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -293,7 +293,7 @@ export default {
         },
         doiTrangThaiBlock(value) {
             axios
-                .post('http://127.0.0.1:8000/api/admin/khach-hang/change-block', value, {
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/khach-hang/change-block', value, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -315,7 +315,7 @@ export default {
         },
         doiTrangThaiActive(value) {
             axios
-                .post('http://127.0.0.1:8000/api/admin/khach-hang/change', value, {
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/khach-hang/change', value, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -337,7 +337,7 @@ export default {
         },
         timKiem() {
             axios
-                .post('http://127.0.0.1:8000/api/admin/khach-hang/search', this.search, {
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/khach-hang/search', this.search, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }

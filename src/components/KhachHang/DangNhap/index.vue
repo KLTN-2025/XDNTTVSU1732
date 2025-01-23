@@ -4,7 +4,7 @@
             <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-2">
                 <div class="col mx-auto">
                     <div class="my-4 text-center"><img
-                            src="https://img.pikbest.com/png-images/20241014/modern-school-logo-vector-design-artwork_10962285.png!bw700"
+                            src="https://i.imgur.com/iaoteln.png"
                             width="120" alt=""></div>
                     <div class="card">
                         <div class="card-body">
@@ -69,7 +69,7 @@ export default {
     methods: {
         dangNhap() {
             axios
-                .post("http://127.0.0.1:8000/api/khach-hang/login", this.dang_nhap)
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/login", this.dang_nhap)
                 .then((res) => {
                     if (res.data.status == 1) {
                         this.$toast.success(res.data.message);
@@ -95,7 +95,7 @@ export default {
                 "credential": res.credential
             }
             axios
-                .post("http://127.0.0.1:8000/api/khach-hang/login-gg", user)
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/login-gg", user)
                 .then((res) => {
                     if (res.data.status == 1) {
                         this.$toast.success(res.data.message);
@@ -109,7 +109,7 @@ export default {
         },
         kiemTraDangNhap() {
             axios
-                .get("http://127.0.0.1:8000/api/khach-hang/check-login", {
+                .get("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/check-login", {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }

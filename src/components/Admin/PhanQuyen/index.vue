@@ -202,21 +202,21 @@ export default {
     methods: {
         loadDataQuyen() {
             axios
-                .get('http://127.0.0.1:8000/api/admin/phan-quyen/data')
+                .get('https://ban-sach-be.dzfullstack.edu.vn/api/admin/phan-quyen/data')
                 .then((res) => {
                     this.list_quyen = res.data.data;
                 })
         },
         loadDataChucNang() {
             axios
-                .get('http://127.0.0.1:8000/api/admin/chuc-nang/data')
+                .get('https://ban-sach-be.dzfullstack.edu.vn/api/admin/chuc-nang/data')
                 .then((res) => {
                     this.list_chuc_nang = res.data.data;
                 })
         },
         taoQuyen() {
             axios
-                .post('http://127.0.0.1:8000/api/admin/phan-quyen/create', this.create_quyen)
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/phan-quyen/create', this.create_quyen)
                 .then((res) => {
                     if (res.data.status) {
                         this.$toast.success(res.data.message);
@@ -229,7 +229,7 @@ export default {
         },
         capNhatQuyen() {
             axios
-                .post('http://127.0.0.1:8000/api/admin/phan-quyen/update', this.update_quyen)
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/phan-quyen/update', this.update_quyen)
                 .then((res) => {
                     if (res.data.status) {
                         this.$toast.success(res.data.message);
@@ -241,7 +241,7 @@ export default {
         },
         xoaQuyen() {
             axios
-                .post('http://127.0.0.1:8000/api/admin/phan-quyen/delete', this.delete_quyen)
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/phan-quyen/delete', this.delete_quyen)
                 .then((res) => {
                     if (res.data.status) {
                         this.$toast.success(res.data.message);
@@ -253,7 +253,7 @@ export default {
         },
         timKiem() {
             axios
-                .post('http://127.0.0.1:8000/api/admin/phan-quyen/search', this.search)
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/phan-quyen/search', this.search)
                 .then((res) => {
                     this.list_quyen = res.data.data
                 })
@@ -261,7 +261,7 @@ export default {
         chonQuyen(value) {
             this.chon_quyen = value;
             axios
-                .post('http://127.0.0.1:8000/api/admin/chi-tiet-phan-quyen/data', this.chon_quyen, {
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/chi-tiet-phan-quyen/data', this.chon_quyen, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -286,7 +286,7 @@ export default {
                 id_chuc_nang: id_chuc_nang
             }
             axios
-                .post('http://127.0.0.1:8000/api/admin/chi-tiet-phan-quyen/create', payload, {
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/chi-tiet-phan-quyen/create', payload, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -308,7 +308,7 @@ export default {
         },
         huyQuyen(value) {
             axios
-                .post('http://127.0.0.1:8000/api/admin/chi-tiet-phan-quyen/delete', value, {
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/chi-tiet-phan-quyen/delete', value, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }

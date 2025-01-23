@@ -115,7 +115,7 @@ export default {
         },
         getDataDonHang() {
             axios
-                .get('http://127.0.0.1:8000/api/admin/don-hang/data', {
+                .get('https://ban-sach-be.dzfullstack.edu.vn/api/admin/don-hang/data', {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }

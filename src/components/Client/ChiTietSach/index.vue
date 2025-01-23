@@ -199,7 +199,7 @@ export default {
                 id_sach: this.id_sach
             }
             axios
-                .post("http://127.0.0.1:8000/api/khach-hang/danh-gia/data", payload, {
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/danh-gia/data", payload, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -210,7 +210,7 @@ export default {
         },
         danhGia() {
             axios
-                .post("http://127.0.0.1:8000/api/khach-hang/danh-gia/create", this.danh_gia, {
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/danh-gia/create", this.danh_gia, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -228,7 +228,7 @@ export default {
         },
         suaDanhGia() {
             axios
-                .post("http://127.0.0.1:8000/api/khach-hang/danh-gia/update", this.danh_gia_update, {
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/danh-gia/update", this.danh_gia_update, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -245,7 +245,7 @@ export default {
         },
         xoaDanhGia() {
             axios
-                .post("http://127.0.0.1:8000/api/khach-hang/danh-gia/delete", this.delete_danh_gia, {
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/danh-gia/delete", this.delete_danh_gia, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -296,7 +296,7 @@ export default {
         },
         layThongTinSach() {
             axios
-                .get('http://127.0.0.1:8000/api/home/chi-tiet-sach/' + this.id_sach)
+                .get('https://ban-sach-be.dzfullstack.edu.vn/api/home/chi-tiet-sach/' + this.id_sach)
                 .then((res) => {
                     if (res.data.status) {
                         this.chi_tiet_sach = res.data.data;
@@ -307,7 +307,7 @@ export default {
         },
         themGioHang() {
             axios
-                .post("http://127.0.0.1:8000/api/khach-hang/gio-hang/create", this.chi_tiet_sach, {
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/gio-hang/create", this.chi_tiet_sach, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -325,7 +325,7 @@ export default {
         },
         muaNgay() {
             axios
-                .post("http://127.0.0.1:8000/api/khach-hang/gio-hang/create", this.chi_tiet_sach, {
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/gio-hang/create", this.chi_tiet_sach, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }

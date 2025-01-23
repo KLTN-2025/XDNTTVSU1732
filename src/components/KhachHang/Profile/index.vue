@@ -248,6 +248,7 @@
                                 <h4>Thay đổi mật khẩu</h4>
                             </div>
                             <div class="col">Quản lý mật khẩu để bảo mật tài khoản</div>
+                            <div class="col"><b>Lưu ý:</b> Khi đăng nhập bằng google mật khẩu mặc định là <b class="text-danger">123456</b>, vui lòng đổi trước khi thực hiện mua hàng nhé!</div>
                             <hr>
                             <div class="row mb-2">
                                 <div class="col-lg-2">
@@ -305,7 +306,7 @@ export default {
     methods: {
         layThongTinKhachHang() {
             axios
-                .get("http://127.0.0.1:8000/api/khach-hang/profile/data", {
+                .get("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/profile/data", {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -326,7 +327,7 @@ export default {
         },
         capNhatProfile() {
             axios
-                .post("http://127.0.0.1:8000/api/khach-hang/profile/edit", this.thong_tin, {
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/profile/edit", this.thong_tin, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -350,7 +351,7 @@ export default {
 
         loadDataDiaChi() {
             axios
-                .get("http://127.0.0.1:8000/api/khach-hang/dia-chi/data", {
+                .get("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/dia-chi/data", {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -367,7 +368,7 @@ export default {
         },
         themMoiDiaChi() {
             axios
-                .post("http://127.0.0.1:8000/api/khach-hang/dia-chi/create", this.dia_chi_create, {
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/dia-chi/create", this.dia_chi_create, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -390,7 +391,7 @@ export default {
         },
         capNhatDiaChi() {
              axios
-                .post("http://127.0.0.1:8000/api/khach-hang/dia-chi/update", this.dia_chi_update, {
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/dia-chi/update", this.dia_chi_update, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -412,7 +413,7 @@ export default {
         },
          xoaDiaChi() {
              axios
-                .post("http://127.0.0.1:8000/api/khach-hang/dia-chi/delete", this.dia_chi_delete, {
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/dia-chi/delete", this.dia_chi_delete, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -434,7 +435,7 @@ export default {
         },
         doiMatKhau() {
              axios
-                .post("http://127.0.0.1:8000/api/khach-hang/password/change", this.update_password, {
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/password/change", this.update_password, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }

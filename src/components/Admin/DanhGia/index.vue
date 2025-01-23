@@ -102,7 +102,7 @@ export default {
     methods: {
         loadDataKhDanhGia() {
             axios
-                .get('http://127.0.0.1:8000/api/admin/khach-hang-danh-gia/data', {
+                .get('https://ban-sach-be.dzfullstack.edu.vn/api/admin/khach-hang-danh-gia/data', {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -116,7 +116,7 @@ export default {
         },
         xoaDanhGia() {
             axios
-                .post('http://127.0.0.1:8000/api/admin/khach-hang-danh-gia/delete', this.delete_danh_gia, {
+                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/khach-hang-danh-gia/delete', this.delete_danh_gia, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }

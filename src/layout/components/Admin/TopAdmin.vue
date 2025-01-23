@@ -4,10 +4,10 @@
             <nav class="navbar navbar-expand">
                 <div class="topbar-logo-header">
                     <div class="">
-                        <img src="https://img.pikbest.com/png-images/20241014/modern-school-logo-vector-design-artwork_10962285.png!bw700" class="logo-icon" alt="logo icon">
+                        <img src="https://i.imgur.com/iaoteln.png" class="logo-icon" alt="logo icon">
                     </div>
                     <div class="">
-                        <h4 class="logo-text">Rocker</h4>
+                        <h4 class="logo-text">NT BOOKSTORE</h4>
                     </div>
                 </div>
                 <div class="mobile-toggle-menu"><i class='bx bx-menu'></i></div>
@@ -278,7 +278,7 @@ data() {
 	methods: {
 		logout(){
 			axios
-				.get('http://127.0.0.1:8000/api/admin/logout', {
+				.get('https://ban-sach-be.dzfullstack.edu.vn/api/admin/logout', {
                     headers : {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -302,7 +302,7 @@ data() {
 		},
 		logoutAll(){
 			axios
-				.get('http://127.0.0.1:8000/api/admin/logout-all', {
+				.get('https://ban-sach-be.dzfullstack.edu.vn/api/admin/logout-all', {
                     headers : {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }

@@ -171,7 +171,7 @@ export default {
         },
         loadData() {
             axios
-                .get("http://127.0.0.1:8000/api/khach-hang/lich-su-don-hang/data", {
+                .get("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/lich-su-don-hang/data", {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -182,7 +182,7 @@ export default {
         },
         xacNhan() {
             axios
-                .post("http://127.0.0.1:8000/api/khach-hang/xac-nhan-don-hang/change", this.xac_nhan, {
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/xac-nhan-don-hang/change", this.xac_nhan, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -204,7 +204,7 @@ export default {
         },
         huyDon() {
             axios
-                .post("http://127.0.0.1:8000/api/khach-hang/huy-don-hang/change", this.huy_don, {
+                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/huy-don-hang/change", this.huy_don, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
