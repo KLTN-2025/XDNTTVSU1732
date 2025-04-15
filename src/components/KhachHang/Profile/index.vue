@@ -306,7 +306,7 @@ export default {
     methods: {
         layThongTinKhachHang() {
             axios
-                .get("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/profile/data", {
+                .get("http://127.0.0.1:8000/api/khach-hang/profile/data", {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -327,7 +327,7 @@ export default {
         },
         capNhatProfile() {
             axios
-                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/profile/edit", this.thong_tin, {
+                .post("http://127.0.0.1:8000/api/khach-hang/profile/edit", this.thong_tin, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -351,7 +351,7 @@ export default {
 
         loadDataDiaChi() {
             axios
-                .get("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/dia-chi/data", {
+                .get("http://127.0.0.1:8000/api/khach-hang/dia-chi/data", {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -368,7 +368,7 @@ export default {
         },
         themMoiDiaChi() {
             axios
-                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/dia-chi/create", this.dia_chi_create, {
+                .post("http://127.0.0.1:8000/api/khach-hang/dia-chi/create", this.dia_chi_create, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -391,7 +391,7 @@ export default {
         },
         capNhatDiaChi() {
              axios
-                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/dia-chi/update", this.dia_chi_update, {
+                .post("http://127.0.0.1:8000/api/khach-hang/dia-chi/update", this.dia_chi_update, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -413,7 +413,7 @@ export default {
         },
          xoaDiaChi() {
              axios
-                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/dia-chi/delete", this.dia_chi_delete, {
+                .post("http://127.0.0.1:8000/api/khach-hang/dia-chi/delete", this.dia_chi_delete, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -435,7 +435,7 @@ export default {
         },
         doiMatKhau() {
              axios
-                .post("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/password/change", this.update_password, {
+                .post("http://127.0.0.1:8000/api/khach-hang/password/change", this.update_password, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }

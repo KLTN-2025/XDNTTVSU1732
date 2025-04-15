@@ -119,14 +119,14 @@ data() {
       },
         loadDataGoiy() {
             axios
-                .get('https://ban-sach-be.dzfullstack.edu.vn/api/home/data-sale-all')
+                .get('http://127.0.0.1:8000/api/home/data-sale-all')
                 .then((res) => {
                     this.list_sach_sale = res.data.list_sach_sale;
                 })
         },
          timKiem() {
             axios
-                .post('https://ban-sach-be.dzfullstack.edu.vn/api/home/tim-kiem-sale', this.search)
+                .post('http://127.0.0.1:8000/api/home/tim-kiem-sale', this.search)
                 .then((res) => {
                     this.list_sach_sale = res.data.list_sach_sale;
                 })

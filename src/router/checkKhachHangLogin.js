@@ -6,7 +6,7 @@ const toaster = createToaster({
 });
 export default function (from, to, next) {
     axios
-        .get("https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/check-login", {
+        .get("http://127.0.0.1:8000/api/khach-hang/check-login", {
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token_khach_hang"),
             },

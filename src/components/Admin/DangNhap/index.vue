@@ -67,7 +67,7 @@ export default {
     methods: {
         dangNhap() {
             axios
-                .post("https://ban-sach-be.dzfullstack.edu.vn/api/admin/login", this.tai_Khoan)
+                .post("http://127.0.0.1:8000/api/admin/login", this.tai_Khoan)
                 .then((res) => {
                     if (res.data.status == 1) {
                         this.$toast.success(res.data.message);

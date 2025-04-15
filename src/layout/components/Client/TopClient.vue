@@ -338,7 +338,7 @@ export default {
     methods: {
         logout() {
             axios
-                .get('https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/logout', {
+                .get('http://127.0.0.1:8000/api/khach-hang/logout', {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }
@@ -369,7 +369,7 @@ export default {
         },
         logoutAll() {
             axios
-                .get('https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/logout-all', {
+                .get('http://127.0.0.1:8000/api/khach-hang/logout-all', {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_khach_hang")
                     }

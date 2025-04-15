@@ -206,21 +206,21 @@ export default {
     methods: {
          loadDataQuyen() {
             axios
-                .get('https://ban-sach-be.dzfullstack.edu.vn/api/admin/phan-quyen/data')
+                .get('http://127.0.0.1:8000/api/admin/phan-quyen/data')
                 .then((res) => {
                     this.list_quyen = res.data.data;
                 })
         },
         loadDataNhanVien() {
             axios
-                .get('https://ban-sach-be.dzfullstack.edu.vn/api/admin/nhan-vien/data')
+                .get('http://127.0.0.1:8000/api/admin/nhan-vien/data')
                 .then((res) => {
                     this.list_nhan_vien = res.data.data
                 });
         },
         themMoiNhanVien() {
             axios
-                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/nhan-vien/create', this.create_nhan_vien)
+                .post('http://127.0.0.1:8000/api/admin/nhan-vien/create', this.create_nhan_vien)
                 .then((res) => {
                     if (res.data.status) {
                         this.loadDataNhanVien();
@@ -239,7 +239,7 @@ export default {
         },
         capNhatNhanVien() {
             axios
-                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/nhan-vien/update', this.edit_nhan_vien)
+                .post('http://127.0.0.1:8000/api/admin/nhan-vien/update', this.edit_nhan_vien)
                 .then((res) => {
                     if (res.data.status) {
                         this.loadDataNhanVien();
@@ -257,7 +257,7 @@ export default {
         },
         xoaNhanVien() {
             axios
-                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/nhan-vien/delete', this.del_nhan_vien)
+                .post('http://127.0.0.1:8000/api/admin/nhan-vien/delete', this.del_nhan_vien)
                 .then((res) => {
                     if (res.data.status) {
                         this.loadDataNhanVien();
@@ -275,7 +275,7 @@ export default {
         },
         doiTrangThai(value) {
             axios
-                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/nhan-vien/change', value)
+                .post('http://127.0.0.1:8000/api/admin/nhan-vien/change', value)
                 .then((res) => {
                     if (res.data.status) {
                         this.loadDataNhanVien();
@@ -293,7 +293,7 @@ export default {
         },
         timKiem() {
             axios
-                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/nhan-vien/search', this.search)
+                .post('http://127.0.0.1:8000/api/admin/nhan-vien/search', this.search)
                 .then((res) => {
                     this.list_nhan_vien = res.data.data;
                 })

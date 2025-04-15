@@ -278,7 +278,7 @@ data() {
 	methods: {
 		logout(){
 			axios
-				.get('https://ban-sach-be.dzfullstack.edu.vn/api/admin/logout', {
+				.get('http://127.0.0.1:8000/api/admin/logout', {
                     headers : {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }

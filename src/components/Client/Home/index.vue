@@ -256,14 +256,14 @@ export default {
       },
       loadDataGoiY() {
          axios
-            .get('https://ban-sach-be.dzfullstack.edu.vn/api/home/data-goi-y')
+            .get('http://127.0.0.1:8000/api/home/data-goi-y')
             .then((res) => {
                this.list_sach_goi_y = res.data.list_sach_goi_y
             });
       },
       loadDataSale() {
          axios
-            .get('https://ban-sach-be.dzfullstack.edu.vn/api/home/data-sale')
+            .get('http://127.0.0.1:8000/api/home/data-sale')
             .then((res) => {
                this.list_sach_sale = res.data.list_sach_sale
             });

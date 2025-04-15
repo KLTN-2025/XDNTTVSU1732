@@ -34,7 +34,7 @@ export default {
         },
         loadDataTacGia() {
             axios
-                .get("https://ban-sach-be.dzfullstack.edu.vn/api/admin/tac-gia/data-open", {
+                .get("http://127.0.0.1:8000/api/admin/tac-gia/data-open", {
                     headers: {
                         Authorization:
                             "Bearer " + localStorage.getItem("token_nhan_vien"),
@@ -49,7 +49,7 @@ export default {
         },
         loadDataNXB() {
             axios
-                .get("https://ban-sach-be.dzfullstack.edu.vn/api/admin/nha-xuat-ban/data-open", {
+                .get("http://127.0.0.1:8000/api/admin/nha-xuat-ban/data-open", {
                     headers: {
                         Authorization:
                             "Bearer " + localStorage.getItem("token_nhan_vien"),
@@ -64,7 +64,7 @@ export default {
         },
         loadDataDanhMuc() {
             axios
-                .get("https://ban-sach-be.dzfullstack.edu.vn/api/admin/danh-muc/data-open", {
+                .get("http://127.0.0.1:8000/api/admin/danh-muc/data-open", {
                     headers: {
                         Authorization:
                             "Bearer " + localStorage.getItem("token_nhan_vien"),
@@ -79,7 +79,7 @@ export default {
         },
         loadDataSach() {
             axios
-                .get(`https://ban-sach-be.dzfullstack.edu.vn/api/admin/sach/data`, {
+                .get(`http://127.0.0.1:8000/api/admin/sach/data`, {
                     headers: {
                         Authorization:
                             "Bearer " + localStorage.getItem("token_nhan_vien"),
@@ -109,7 +109,7 @@ export default {
             formData.append("tinh_trang", this.create_sach.tinh_trang);
             formData.append("hinh_anh", this.file_anh); // Thêm ảnh vào FormData
             axios
-                .post("https://ban-sach-be.dzfullstack.edu.vn/api/admin/sach/create", formData, {
+                .post("http://127.0.0.1:8000/api/admin/sach/create", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data", // Đặt header là multipart
                         Authorization:
@@ -160,7 +160,7 @@ export default {
             }
 
             axios
-                .post("https://ban-sach-be.dzfullstack.edu.vn/api/admin/sach/update", formData, {
+                .post("http://127.0.0.1:8000/api/admin/sach/update", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data", // Đặt header là multipart
                         Authorization:
@@ -189,7 +189,7 @@ export default {
         xoaSach() {
             axios
               .post(
-                "https://ban-sach-be.dzfullstack.edu.vn/api/admin/sach/delete",
+                "http://127.0.0.1:8000/api/admin/sach/delete",
                 this.del_sach,
                 {
                   headers: {
@@ -216,7 +216,7 @@ export default {
 
         doiTrangThai(value) {
             axios
-              .post("https://ban-sach-be.dzfullstack.edu.vn/api/admin/sach/change", value, {
+              .post("http://127.0.0.1:8000/api/admin/sach/change", value, {
                 headers: {
                   Authorization:
                     "Bearer " + localStorage.getItem("token_nhan_vien"),
@@ -240,7 +240,7 @@ export default {
 
         doiTrangThaiSale(value) {
             axios
-              .post("https://ban-sach-be.dzfullstack.edu.vn/api/admin/sach/change-sale", value, {
+              .post("http://127.0.0.1:8000/api/admin/sach/change-sale", value, {
                 headers: {
                   Authorization:
                     "Bearer " + localStorage.getItem("token_nhan_vien"),

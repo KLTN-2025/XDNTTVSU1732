@@ -65,7 +65,7 @@ export default {
     methods: {
         datLaiPassword(){
             axios
-                .post('https://ban-sach-be.dzfullstack.edu.vn/api/khach-hang/password/dat-lai',this.tai_Khoan)
+                .post('http://127.0.0.1:8000/api/khach-hang/password/dat-lai',this.tai_Khoan)
                     .then((res)=>{
                         if(res.data.status){
                             this.$toast.success(res.data.message);

@@ -138,7 +138,7 @@ export default {
     methods: {
         layThongTinAdmin() {
             axios
-                .get("https://ban-sach-be.dzfullstack.edu.vn/api/admin/profile/data", {
+                .get("http://127.0.0.1:8000/api/admin/profile/data", {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -153,7 +153,7 @@ export default {
         },
         doiMatKhau() {
             axios
-                .post("https://ban-sach-be.dzfullstack.edu.vn/api/admin/password/change", this.update_pass, {
+                .post("http://127.0.0.1:8000/api/admin/password/change", this.update_pass, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -174,7 +174,7 @@ export default {
                 so_dien_thoai: this.thong_tin_update.so_dien_thoai
             };
             axios
-                .post("https://ban-sach-be.dzfullstack.edu.vn/api/admin/profile/update", payload, {
+                .post("http://127.0.0.1:8000/api/admin/profile/update", payload, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }

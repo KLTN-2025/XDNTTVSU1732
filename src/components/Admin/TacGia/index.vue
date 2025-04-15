@@ -154,7 +154,7 @@ export default {
     methods: {
         loadDataTacGia() {
             axios
-                .get('https://ban-sach-be.dzfullstack.edu.vn/api/admin/tac-gia/data', {
+                .get('http://127.0.0.1:8000/api/admin/tac-gia/data', {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -168,7 +168,7 @@ export default {
         },
         themMoiTacGia() {
             axios
-                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/tac-gia/create', this.create_tac_gia, {
+                .post('http://127.0.0.1:8000/api/admin/tac-gia/create', this.create_tac_gia, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -195,7 +195,7 @@ export default {
         },
         capNhatTacGia() {            
             axios
-                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/tac-gia/update', this.edit_tac_gia, {
+                .post('http://127.0.0.1:8000/api/admin/tac-gia/update', this.edit_tac_gia, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -217,7 +217,7 @@ export default {
         },
         xoaTacGia() {
             axios
-                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/tac-gia/delete', this.del_tac_gia, {
+                .post('http://127.0.0.1:8000/api/admin/tac-gia/delete', this.del_tac_gia, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
@@ -239,7 +239,7 @@ export default {
         },
         changeTrangThai(value) {
             axios
-                .post('https://ban-sach-be.dzfullstack.edu.vn/api/admin/tac-gia/change', value, {
+                .post('http://127.0.0.1:8000/api/admin/tac-gia/change', value, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien")
                     }
