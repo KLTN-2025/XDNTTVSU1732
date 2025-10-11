@@ -4,7 +4,7 @@
             <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-2">
                 <div class="col mx-auto">
                     <div class="my-4 text-center">
-                        <img src="https://i.imgur.com/iaoteln.png"
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRts0fnb727J_NkHq18r9CrNFN4pYyJ2ZqBpw&s"
                             width="180" alt="" />
                     </div>
                     <div class="card">
