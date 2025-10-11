@@ -26,23 +26,26 @@
                                         <td>{{ value.ten_nguoi_nhan }}</td>
                                         <td class="text-center">{{ formatDateTime(value.created_at) }}</td>
                                         <td class="text-center">
-                                            <button v-if="value.tinh_trang_don_hang == 0" class="btn btn-warning">Chờ Xử
-                                                Lý</button>
-                                            <button v-if="value.tinh_trang_don_hang == 1" class="btn btn-success">Đã Xử
-                                                Lý</button>
-                                            <button v-if="value.tinh_trang_don_hang == 2" class="btn btn-primary">Đã
-                                                Giao
-                                                Vân Chuyển</button>
-                                            <button v-if="value.tinh_trang_don_hang == 3" class="btn btn-success">Đã
-                                                Giao
-                                                Thành Công</button>
-                                            <button v-if="value.tinh_trang_don_hang == 4" class="btn btn-danger">Đã
-                                                Hủy</button>
+                                            <!-- nhóm nút đổi trạng thái (THÊM MỚI) -->
+                                            <div class="mb-2">
+                                                <select
+                                                    :class="['form-select form-select-sm w-auto d-inline-block', getStatusSelectClass(value.tinh_trang_don_hang)]"
+                                                    :value="value.tinh_trang_don_hang"
+                                                    @change="updateTrangThai(value.id, Number($event.target.value))">
+                                                    <option :value="0">Chờ Xử Lý</option>
+                                                    <option :value="1">Đã Xử Lý</option>
+                                                    <option :value="2">Đã Giao Vận Chuyển</option>
+                                                    <option :value="3">Đã Giao Thành Công</option>
+                                                    <option :value="4">Đã Hủy</option>
+                                                </select>
+
+                                            </div>
                                         </td>
                                         <td class="text-center">
                                             <button v-on:click="xem_don_hang = value" class="btn btn-primary me-2"
-                                                data-bs-toggle='modal' data-bs-target='#xemDonHangModal'>Xem Đơn
-                                                Hàng</button>
+                                                data-bs-toggle='modal' data-bs-target='#xemDonHangModal'>
+                                                Xem Đơn Hàng
+                                            </button>
                                         </td>
                                     </tr>
                                 </template>
@@ -107,6 +110,16 @@ export default {
         this.getDataDonHang();
     },
     methods: {
+        getStatusSelectClass(s) {
+            switch (Number(s)) {
+                case 0: return 'bg-warning text-dark border-warning';    // Chờ xử lý
+                case 1: return 'bg-success text-white border-success';   // Đã xử lý
+                case 2: return 'bg-primary text-white border-primary';   // Đang vận chuyển
+                case 3: return 'bg-success text-white border-success';   // Giao thành công
+                case 4: return 'bg-danger text-white border-danger';     // Đã hủy
+                default: return 'bg-secondary text-white border-secondary';
+            }
+        },
         formatVND(number) {
             return new Intl.NumberFormat("vi-VI", {
                 style: "currency",
@@ -122,7 +135,7 @@ export default {
                 })
                 .then((res) => {
                     this.list_don_hang = res.data.data;
-                    if(res.data.status == false) {
+                    if (res.data.status == false) {
                         this.$toast.error(res.data.message)
                     }
                 })
@@ -143,7 +156,27 @@ export default {
                 minute: '2-digit', // Nghĩa là hiển thị 2 số
                 second: '2-digit' // Nghĩa là hiển thị 2 số
             });
-        }
+        },
+        updateTrangThai(id, status) {
+            axios.post('http://127.0.0.1:8000/api/admin/don-hang/cap-nhat-trang-thai',
+                { id: id, tinh_trang_don_hang: status },
+                { headers: { Authorization: 'Bearer ' + localStorage.getItem("token_nhan_vien") } }
+            )
+                .then((res) => {
+                    if (res.data.status) {
+                        this.$toast?.success(res.data.message || 'Đã cập nhật');
+                        // cập nhật tại chỗ
+                        const row = this.list_don_hang.find(x => x.id === id);
+                        if (row) row.tinh_trang_don_hang = status;
+                    } else {
+                        this.$toast?.error(res.data.message || 'Cập nhật thất bại');
+                    }
+                })
+                .catch((err) => {
+                    this.$toast?.error('Lỗi cập nhật trạng thái');
+                    console.error(err);
+                });
+        },
     },
 }
 </script>

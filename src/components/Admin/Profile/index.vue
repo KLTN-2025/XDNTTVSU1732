@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <div class="d-flex flex-column align-items-center text-center">
                         <div class="position-relative d-inline-block">
-                            <img src="https://th.bing.com/th/id/OIP.V0NH3fa-mZ4AJ94SEQTy_wHaHa?rs=1&amp;pid=ImgDetMain"
+                            <img src="https://www.shutterstock.com/shutterstock/photos/1730974153/display_1500/stock-vector-man-with-the-inscription-admin-icon-outline-man-with-the-inscription-admin-vector-icon-for-web-1730974153.jpg"
                                 alt="Admin" class="rounded-circle" width="110">
                             <button type="button" data-bs-toggle='modal'
                                 v-on:click="Object.assign(thong_tin_update, thong_tin)"

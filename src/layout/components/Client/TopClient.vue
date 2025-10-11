@@ -4,23 +4,23 @@
             <nav class="navbar navbar-expand">
                 <div class="topbar-logo-header">
                     <div class="">
-                        <img src="https://i.imgur.com/iaoteln.png"
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRts0fnb727J_NkHq18r9CrNFN4pYyJ2ZqBpw&s"
                             class="logo-icon" alt="logo icon">
                     </div>
                     <div class="">
-                        <h4 class="logo-text">NT BOOKSTORE</h4>
+                        <h4 class="logo-text">NHÀ SÁCH YÊU THƯƠNG</h4>
                     </div>
                 </div>
                 <div class="mobile-toggle-menu"><i class='bx bx-menu'></i></div>
-                <div class="search-bar flex-grow-1">
-                    <div class="position-relative search-bar-box">
-                        <input type="text" class="form-control search-control" placeholder="Type to search...">
-                        <span class="position-absolute top-50 search-show translate-middle-y"><i
-                                class='bx bx-search'></i></span>
-                        <span class="position-absolute top-50 search-close translate-middle-y"><i
-                                class='bx bx-x'></i></span>
-                    </div>
-                </div>
+                    <!-- <div class="search-bar flex-grow-1">
+                        <div class="position-relative search-bar-box">
+                            <input type="text" class="form-control search-control" placeholder="Type to search...">
+                            <span class="position-absolute top-50 search-show translate-middle-y"><i
+                                    class='bx bx-search'></i></span>
+                            <span class="position-absolute top-50 search-close translate-middle-y"><i
+                                    class='bx bx-x'></i></span>
+                        </div>
+                    </div> -->
                 <div class="top-menu ms-auto">
                     <ul class="navbar-nav align-items-center">
                         <li class="nav-item mobile-search-icon">
@@ -318,6 +318,7 @@
             </nav>
         </div>
     </header>
+    
 </template>
 <script>
 import axios from 'axios';

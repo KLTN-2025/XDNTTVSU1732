@@ -1,6 +1,6 @@
 <template>
     <footer class="page-footer">
-        <p class="mb-0">© 2025. by Nhat Tinh.</p>
+        <p class="mb-0">© 2025. by Quốc Đạt.</p>
     </footer>
 </template>
 <script>

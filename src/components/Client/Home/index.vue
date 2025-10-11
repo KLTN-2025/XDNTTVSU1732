@@ -233,11 +233,16 @@
          </div>
       </div>
    </div>
+   <ChatGPT />
 </template>
 <script>
 import axios from 'axios';
-
+// import Chatbot from '../Chatbot.vue';
+import ChatGPT from "../ChatbotGpt.vue"
 export default {
+components: {
+    ChatGPT,
+  },
    data() {
       return {
          list_sach_goi_y: [],

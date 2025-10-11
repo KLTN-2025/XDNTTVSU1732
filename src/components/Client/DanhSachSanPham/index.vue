@@ -56,11 +56,13 @@
             </div>
         </div>
     </div>
+    
 </template>
 <script>
 import axios from 'axios';
 
 export default {
+    
     props: ['id_danh_muc', 'slug_danh_muc'],
     data() {
         return {

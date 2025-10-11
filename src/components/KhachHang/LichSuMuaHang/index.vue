@@ -39,8 +39,7 @@
                                             data-bs-target='#xemThongTinModal'>Xem thông tin</button>
                                     </td>
                                     <td class="text-center">
-                                        <button v-if="v.is_thanh_toan == 1" class="btn btn-success w-100">Đã Thanh
-                                            Toán</button>
+                                        <button v-if ="v.is_thanh_toan == 1" class="btn btn-success w-100">Đã Thanh Toán</button>
                                         <button v-else class="btn btn-warning text-white w-100">Chưa Thanh Toán</button>
                                     </td>
                                     <td class="text-center">
