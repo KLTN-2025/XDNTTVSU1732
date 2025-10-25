@@ -151,6 +151,8 @@ export default {
             timestamp: new Date()
           });
         }
+      
+
       } catch (error) {
         console.error("Error details:", error.response || error.message);
         this.messages.push({ 
@@ -164,6 +166,10 @@ export default {
       }
     },
 
+
+    
+    
+    
     convertMarkdown(content) {
       let htmlContent = marked(content);
 
