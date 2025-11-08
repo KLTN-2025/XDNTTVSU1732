@@ -127,59 +127,6 @@
       </div>
    </div>
 
-   <!-- GỢI Ý CHO BẠN -->
-   <!-- <div class="row mt-3">
-      <div class="col-lg-12">
-         <h4 class="fw-bold mb-3">GỢI Ý CHO BẠN</h4>
-         <hr />
-         <div class="card">
-            <div class="card-body">
-               <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 product-grid">
-                  <template v-for="(value, index) in list_sach_goi_y" :key="index">
-                     <div class="col-lg-2 d-flex">
-                        <div class="card flex-fill">
-                           <img :src="value.hinh_anh" style="max-height: 250px; width: 100%; object-fit: contain;"
-                              class="card-img-top" alt="..." />
-                           <div class="card-body">
-                               <router-link :to="'/chi-tiet/' + value.id + '-' + value.slug_sach">
-                                 <h6 class="card-title cursor-pointer">{{ value.ten_sach }}</h6>
-                              </router-link>
-                              <div class="clearfix">
-                                 <p class="mb-0 float-start">SL: <strong>{{ value.so_luong_ban }}</strong></p>
-                                 <p class="mb-0 float-end fw-bold">
-                                    <span class="me-2 text-decoration-line-through text-secondary"><del
-                                          class="text-danger">{{ formatVND(value.gia_ban) }}</del></span><span>{{
-                                             formatVND(value.gia_km) }}</span>
-                                 </p>
-                              </div>
-                              <div class="d-flex align-items-center mt-3 fs-6">
-                                 <div class="cursor-pointer">
-                                    <i class="bx bxs-star text-warning"></i>
-                                    <i class="bx bxs-star text-warning"></i>
-                                    <i class="bx bxs-star text-warning"></i>
-                                    <i class="bx bxs-star text-warning"></i>
-                                    <i class="bx bxs-star text-secondary"></i>
-                                 </div>
-                                 <p class="mb-0 ms-auto">4.2(182)</p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </template>
-               </div>
-               <div class="row">
-                  <div class="col-lg-12 text-center">
-                     <router-link to="/goi-y-cho-ban">
-                        <button type="button" class="btn btn-outline-success px-5 radius-30"><i
-                           class="fa-regular fa-eye"></i>Xem
-                        Thêm</button>
-                     </router-link>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div> -->
 
    <div class="row mt-3">
    <div class="col-lg-12">
@@ -236,58 +183,7 @@
    </div>
 </div>
 
-   <!-- SẢN PHẨM ĐANG SALE -->
-   <!-- <div class="row mt-3">
-      <div class="col-lg-12">
-         <h4 class="fw-bold mb-3">SẢN PHẨM ĐANG SALE</h4>
-         <hr />
-         <div class="card">
-            <div class="card-body">
-               <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 product-grid">
-                  <template v-for="(value, index) in list_sach_sale" :key="index">
-                     <div class="col-lg-2 d-flex">
-                        <div class="card flex-fill">
-                           <img :src="value.hinh_anh" style="max-height: 250px; width: 100%; object-fit: contain;"
-                              class="card-img-top" alt="..." />
-                           <div class="card-body">
-                              <router-link :to="'/chi-tiet/' + value.id + '-' + value.slug_sach">
-                                 <h6 class="card-title cursor-pointer">{{ value.ten_sach }}</h6>
-                              </router-link>
-                              <div class="clearfix">
-                                 <p class="mb-0 float-start">SL: <strong>{{ value.so_luong_ban }}</strong></p>
-                                 <p class="mb-0 float-end fw-bold">
-                                    <span class="me-2 text-decoration-line-through text-secondary"><del
-                                          class="text-danger">{{ formatVND(value.gia_ban) }}</del></span><span>{{
-                                             formatVND(value.gia_km) }}</span>
-                                 </p>
-                              </div>
-                              <div class="d-flex align-items-center mt-3 fs-6">
-                                 <div class="cursor-pointer">
-                                    <i class="bx bxs-star text-warning"></i>
-                                    <i class="bx bxs-star text-warning"></i>
-                                    <i class="bx bxs-star text-warning"></i>
-                                    <i class="bx bxs-star text-warning"></i>
-                                    <i class="bx bxs-star text-secondary"></i>
-                                 </div>
-                                 <p class="mb-0 ms-auto">4.2(182)</p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </template>
-               </div>
-               <div class="row">
-                  <div class="col-lg-12 text-center">
-                     <router-link to="/dang-sale">
-                        <button type="button" class="btn btn-outline-success px-5 radius-30"><i
-                           class="fa-regular fa-eye"></i>Xem Thêm</button>
-                     </router-link>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div> -->
+  
    
    <div class="row mt-3">
    <div class="col-lg-12">

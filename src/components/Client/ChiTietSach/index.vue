@@ -48,9 +48,9 @@
                     </div>
                     <div class="d-flex gap-3 mt-3">
                         <a href="#" class="btn btn-primary" v-on:click="muaNgay()">Mua Ngay</a>
-                        <a v-on:click="themGioHang()" class="btn btn-outline-primary"><span class="text">Thêm
-                                vào giỏ
+                        <a v-on:click="themGioHang()" class="btn btn-outline-primary"><span class="text">Thêm vào giỏ
                                 hàng</span> <i class="bx bxs-cart-alt"></i></a>
+                        <a href="#" class="btn btn-danger" v-on:click="Xemngaynao()">Xem Thêm</a>
                     </div>
                 </div>
             </div>
@@ -169,6 +169,74 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Xem Ngay (Gallery) -->
+    <div class="modal fade" id="xemNgayModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Hình ảnh sản phẩm — {{ chi_tiet_sach.ten_sach || 'Sản phẩm' }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div v-if="gallery_loading" class="py-4 text-center">
+                        <div class="spinner-border" role="status"></div>
+                        <div class="mt-2">Đang tải...</div>
+                    </div>
+
+                    <div v-else-if="!hinh_anh_san_pham.length" class="alert alert-warning mb-0">
+                        Chưa có hình ảnh bổ sung cho sản phẩm này.
+                    </div>
+
+                    <div v-else class="row g-3">
+                        <div class="col-12 col-lg-9">
+                            <div class="position-relative border rounded p-2 d-flex justify-content-center align-items-center"
+                                style="min-height:420px;">
+                                <img :src="hinh_anh_san_pham[gallery_index]" class="img-fluid"
+                                    style="max-height:420px; object-fit:contain;" :alt="`image-${gallery_index + 1}`" />
+                                <button type="button"
+                                    class="btn btn-light position-absolute top-50 start-0 translate-middle-y"
+                                    @click="prevAnh()" aria-label="Ảnh trước">
+                                    <i class="bx bx-chevron-left fs-3"></i>
+                                </button>
+                                <button type="button"
+                                    class="btn btn-light position-absolute top-50 end-0 translate-middle-y"
+                                    @click="nextAnh()" aria-label="Ảnh sau">
+                                    <i class="bx bx-chevron-right fs-3"></i>
+                                </button>
+                            </div>
+                            <div class="text-center mt-2 small text-muted">
+                                {{ gallery_index + 1 }} / {{ hinh_anh_san_pham.length }}
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-3">
+                            <div class="d-grid gap-2" style="max-height:440px; overflow:auto;">
+                                <button v-for="(img, i) in hinh_anh_san_pham" :key="`thumb-${i}`" type="button"
+                                    class="btn p-0 border rounded overflow-hidden text-start"
+                                    :class="{ 'border-primary': i === gallery_index }" @click="chonAnh(i)">
+                                    <img :src="img" style="width:100%; height:90px; object-fit:cover;"
+                                        :alt="`thumb-${i + 1}`" />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <a v-if="hinh_anh_san_pham.length" :href="hinh_anh_san_pham[gallery_index]" target="_blank"
+                        class="btn btn-primary">
+                        Mở ảnh hiện tại
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 </template>
 <script>
 import axios from 'axios';
@@ -186,7 +254,13 @@ export default {
             },
             list_danh_gia: [],
             danh_gia_update: {},
-            delete_danh_gia: {}
+            delete_danh_gia: {},
+
+            // ====== Gallery modal ======
+            hinh_anh_san_pham: [],      // [{url: '...'}, ...] hoặc ['...','...']
+            gallery_loading: false,
+            gallery_index: 0,
+
         }
     },
 
@@ -342,6 +416,43 @@ export default {
                     }
                 })
         },
+
+        Xemngaynao() {
+            this.gallery_loading = true;
+            this.gallery_index = 0;
+
+            // Gom ảnh: ảnh chính + ảnh phụ (mảng hoặc JSON string)
+            const list = [];
+            if (this.chi_tiet_sach?.hinh_anh) list.push(this.chi_tiet_sach.hinh_anh);
+
+            const extra = this.chi_tiet_sach?.hinh_anh_khac;
+            if (Array.isArray(extra)) {
+                list.push(...extra);
+            } else if (typeof extra === 'string' && extra.trim()) {
+                try {
+                    const parsed = JSON.parse(extra);
+                    if (Array.isArray(parsed)) list.push(...parsed);
+                } catch (_) { /* bỏ qua nếu không phải JSON */ }
+            }
+
+            // Lọc trùng + bỏ rỗng
+            this.hinh_anh_san_pham = [...new Set(list.filter(Boolean))];
+
+            this.gallery_loading = false;
+
+            // Mở Bootstrap Modal
+            const el = document.getElementById('xemNgayModal');
+            if (el) {
+                const ModalCtor = (window.bootstrap?.Modal || bootstrap?.Modal);
+                if (ModalCtor) new ModalCtor(el, { backdrop: 'static' }).show();
+            }
+        },
+
+        // Điều hướng & chọn ảnh trong modal
+        chonAnh(i) { if (i >= 0 && i < this.hinh_anh_san_pham.length) this.gallery_index = i; },
+        nextAnh() { if (this.hinh_anh_san_pham.length) this.gallery_index = (this.gallery_index + 1) % this.hinh_anh_san_pham.length; },
+        prevAnh() { if (this.hinh_anh_san_pham.length) this.gallery_index = (this.gallery_index - 1 + this.hinh_anh_san_pham.length) % this.hinh_anh_san_pham.length; },
+
     },
 }
 </script>
